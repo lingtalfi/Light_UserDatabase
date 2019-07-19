@@ -29,6 +29,8 @@ Or just download it and place it where you want otherwise.
 Summary
 ===========
 - [Light_UserDatabase api](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase.md) (generated with [DocTools](https://github.com/lingtalfi/DocTools))
+- [Services](#services)
+- [Related](#related)
 
 
 
@@ -63,6 +65,11 @@ user_database:
 
 
 
+Related
+=========
+- [Light_User](https://github.com/lingtalfi/Light_User/), an user representation for the Light framework 
+- [Light_UserManager](https://github.com/lingtalfi/Light_UserManager/), a system for managing users in a Light application 
+
 
 
 
@@ -70,6 +77,10 @@ user_database:
 History Log
 =============
 
+- 1.0.1 -- 2019-07-19
+
+    - add related sections to the documentation
+    
 - 1.0.0 -- 2019-07-19
 
     - initial commit
