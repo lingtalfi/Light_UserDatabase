@@ -28,6 +28,17 @@ use Ling\SqlWizard\Tool\MysqlSerializeTool;
  * - extra: any other fields that you might like (it's a php serialized array)
  *
  *
+ * The table is created if it doesn't exist, using the @page(initializer service).
+ *
+ * Also, a root user is created along with the table, so that the maintainer can connect directly to the gui
+ * without having to create the user manually (the serialized arrays make it annoying to create user manually
+ * even with tools like phpMyAdmin).
+ *
+ * Tip: to create the root user manually, use the following for serialized keys:
+ * - rights: a:1:{i:0;s:1:"*";}
+ * - extra: a:0:{}
+ *
+ *
  *
  *
  */
@@ -59,6 +70,20 @@ class MysqlLightUserDatabase implements LightUserDatabaseInterface, LightInitial
 
 
     /**
+     * This property holds the root_username for this instance.
+     *
+     * @var string = root
+     */
+    protected $root_username;
+
+    /**
+     * This property holds the root_password for this instance.
+     * @var string = root
+     */
+    protected $root_password;
+
+
+    /**
      * Builds the MysqlLightUserDatabase instance.
      */
     public function __construct()
@@ -66,6 +91,8 @@ class MysqlLightUserDatabase implements LightUserDatabaseInterface, LightInitial
         $this->database = null;
         $this->table = "user";
         $this->pdoWrapper = null;
+        $this->root_username = "root";
+        $this->root_password = "root";
     }
 
     /**
@@ -164,6 +191,11 @@ class MysqlLightUserDatabase implements LightUserDatabaseInterface, LightInitial
     {
         $util = new MysqlInfoUtil();
         $util->setWrapper($this->pdoWrapper);
+        /**
+         * If the plugin is loaded for the first time,
+         * we create the user table, and a root user, so that the user can connect.
+         *
+         */
         if (false === $util->hasTable($this->table)) {
             $util = MysqlCreateTableUtil::create($this->table, $this->database);
             $util->addColumn(PrimaryKeyAutoIncrementedColumn::create()->name("id"));
@@ -175,6 +207,8 @@ class MysqlLightUserDatabase implements LightUserDatabaseInterface, LightInitial
             $util->addColumn(Column::create()->name("extra")->type('text')->notNullable());
             $stmt = $util->render();
             $this->pdoWrapper->executeStatement($stmt);
+
+            $this->addUser($this->root_username, $this->root_password, ['rights' => ['*']]);
 
         }
 

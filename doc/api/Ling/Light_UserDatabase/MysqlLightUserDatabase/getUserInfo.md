@@ -62,7 +62,7 @@ Returns array | false.
 
 Source Code
 ===========
-See the source code for method [MysqlLightUserDatabase::getUserInfo](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightUserDatabase.php#L87-L98)
+See the source code for method [MysqlLightUserDatabase::getUserInfo](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightUserDatabase.php#L114-L125)
 
 
 See Also

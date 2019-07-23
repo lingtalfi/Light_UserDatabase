@@ -27,6 +27,17 @@ In this implementation, we use a table named "user" by default, with the followi
 - extra: any other fields that you might like (it's a php serialized array)
 
 
+The table is created if it doesn't exist, using the [initializer service](https://github.com/lingtalfi/Light_Initializer/).
+
+Also, a root user is created along with the table, so that the maintainer can connect directly to the gui
+without having to create the user manually (the serialized arrays make it annoying to create user manually
+even with tools like phpMyAdmin).
+
+Tip: to create the root user manually, use the following for serialized keys:
+- rights: a:1:{i:0;s:1:"*";}
+- extra: a:0:{}
+
+
 
 Class synopsis
 ==============
@@ -38,6 +49,8 @@ class <span class="pl-k">MysqlLightUserDatabase</span> implements [LightUserData
     - protected string|null [$database](#property-database) ;
     - protected string [$table](#property-table) ;
     - protected [Ling\Light_Database\LightDatabasePdoWrapper](https://github.com/lingtalfi/Light_Database/blob/master/doc/api/Ling/Light_Database/LightDatabasePdoWrapper.md) [$pdoWrapper](#property-pdoWrapper) ;
+    - protected string [$root_username](#property-root_username) ;
+    - protected string [$root_password](#property-root_password) ;
 
 - Methods
     - public [__construct](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/MysqlLightUserDatabase/__construct.md)() : void
@@ -78,6 +91,18 @@ Properties
 
     This property holds the pdoWrapper for this instance.
     The pdoWrapper is provided by the [Light_Database plugin](https://github.com/lingtalfi/Light_Database)
+    
+    
+
+- <span id="property-root_username"><b>root_username</b></span>
+
+    This property holds the root_username for this instance.
+    
+    
+
+- <span id="property-root_password"><b>root_password</b></span>
+
+    This property holds the root_password for this instance.
     
     
 

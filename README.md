@@ -55,11 +55,26 @@ Here is an example of the service configuration file using a database stored in 
 
 ```yaml
 user_database:
-    instance: Ling\Light_UserDatabase\BabyYamlLightUserDatabase
+    instance: Ling\Light_UserDatabase\MysqlLightUserDatabase
     methods:
-        setFile:
-            file: ${app_dir}/config/user_database/database.byml
+        setPdoWrapper:
+            wrapper: @service(database)
 
+
+
+# babyYaml configuration example
+#user_database:
+#    instance: Ling\Light_UserDatabase\BabyYamlLightUserDatabase
+#    methods:
+#        setFile:
+#            file: ${app_dir}/config/user_database/database.byml
+
+
+# --------------------------------------
+# hooks
+# --------------------------------------
+$initializer.methods.setInitializers.initializers:
+    - @service(user_database)
 
 ```
 
@@ -77,6 +92,10 @@ Related
 History Log
 =============
 
+- 1.2.0 -- 2019-07-23
+
+    - update MysqlLightUserDatabase, now also creates a root user along with the user table
+    
 - 1.1.0 -- 2019-07-23
 
     - add MysqlLightUserDatabase
