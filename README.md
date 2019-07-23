@@ -77,6 +77,10 @@ Related
 History Log
 =============
 
+- 1.1.0 -- 2019-07-23
+
+    - add MysqlLightUserDatabase
+    
 - 1.0.1 -- 2019-07-19
 
     - add related sections to the documentation
