@@ -127,6 +127,21 @@ class MysqlLightUserDatabase implements LightUserDatabaseInterface, LightInitial
     /**
      * @implementation
      */
+    public function getUserInfoByIdentifier(string $identifier)
+    {
+        $table = $this->dQuoteTable($this->table);
+        $ret = $this->pdoWrapper->fetch("select * from $table where user_id=:user_id", [
+            "user_id" => $identifier,
+        ]);
+        if (false !== $ret) {
+            $this->unserialize($ret);
+        }
+        return $ret;
+    }
+
+    /**
+     * @implementation
+     */
     public function addUser(string $identifier, string $password, array $userInfo)
     {
         $table = $this->dQuoteTable($this->table);

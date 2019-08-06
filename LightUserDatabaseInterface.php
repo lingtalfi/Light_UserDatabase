@@ -41,6 +41,17 @@ interface LightUserDatabaseInterface
      */
     public function getUserInfo(string $identifier, string $password);
 
+    /**
+     * Returns the user info array matching the given user identifier, or false if the identifier
+     * doesn't match an user. The returned array structure depends on your application.
+     * Related: getUserInfo method.
+     *
+     *
+     * @param string $identifier
+     * @return array|false
+     */
+    public function getUserInfoByIdentifier(string $identifier);
+
 
     /**
      * Adds the user info to the database.

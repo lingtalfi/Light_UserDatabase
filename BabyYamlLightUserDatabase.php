@@ -67,6 +67,20 @@ class BabyYamlLightUserDatabase implements LightUserDatabaseInterface
     /**
      * @implementation
      */
+    public function getUserInfoByIdentifier(string $identifier)
+    {
+        $users = $this->getUsers();
+        foreach ($users as $user) {
+            if ($identifier === $user['id']) {
+                return $user;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @implementation
+     */
     public function addUser(string $identifier, string $password, array $userInfo)
     {
         $users = $this->getUsers();

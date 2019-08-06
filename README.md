@@ -92,6 +92,10 @@ Related
 History Log
 =============
 
+- 1.3.0 -- 2019-08-06
+
+    - add MysqlLightUserDatabaseInterface->getUserInfoByIdentifier method
+
 - 1.2.0 -- 2019-07-23
 
     - update MysqlLightUserDatabase, now also creates a root user along with the user table
