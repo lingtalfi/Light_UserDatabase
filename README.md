@@ -67,7 +67,7 @@ user_database:
 #    instance: Ling\Light_UserDatabase\BabyYamlLightWebsiteUserDatabase
 #    methods:
 #        setFile:
-#            file: ${app_dir}/config/user_database/database.byml
+#            file: ${app_dir}/config/data/Light_UserDatabase/database.byml
 
 
 # --------------------------------------
@@ -92,6 +92,10 @@ Related
 
 History Log
 =============
+
+- 1.4.1 -- 2019-08-13
+
+    - change location of babyYaml configuration data
 
 - 1.4.0 -- 2019-08-07
 
