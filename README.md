@@ -93,6 +93,10 @@ Related
 History Log
 =============
 
+- 1.5.0 -- 2019-08-13
+
+    - change user table to lud_user
+    
 - 1.4.1 -- 2019-08-13
 
     - change location of babyYaml configuration data
