@@ -298,6 +298,8 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
 
 
 
+
+
     //--------------------------------------------
     //
     //--------------------------------------------
@@ -425,7 +427,15 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
     }
 
 
-
+    /**
+     * Returns the table name.
+     *
+     * @return string
+     */
+    public function getTable(): string
+    {
+        return $this->table;
+    }
 
 
     //--------------------------------------------
