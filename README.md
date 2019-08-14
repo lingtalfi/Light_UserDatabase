@@ -112,6 +112,10 @@ Related
 History Log
 =============
 
+- 1.8.1 -- 2019-08-14
+
+    - fix typo in LightWebsiteUserDatabaseBullsheeter->generateRows 
+    
 - 1.8.0 -- 2019-08-14
 
     - remove LightWebsiteUserDatabaseInterface->getTable 

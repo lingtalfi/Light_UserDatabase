@@ -11,6 +11,7 @@ use Ling\Light_Database\LightDatabasePdoWrapper;
 use Ling\Light_PasswordProtector\Service\LightPasswordProtector;
 use Ling\Light_UserDatabase\Exception\LightUserDatabaseException;
 use Ling\Light_UserDatabase\LightWebsiteUserDatabaseInterface;
+use Ling\Light_UserDatabase\MysqlLightWebsiteUserDatabase;
 use Ling\TinyBullsheeter\TinyBullsheeterTool;
 
 
@@ -59,7 +60,7 @@ class LightWebsiteUserDatabaseBullsheeter extends LightAbstractBullsheeter
             $db = $this->container->get("database");
             $userdb = $this->container->get("user_database");
 
-            if ($userdb instanceof LightWebsiteUserDatabaseInterface) {
+            if ($userdb instanceof MysqlLightWebsiteUserDatabase) {
 
                 $table = $userdb->getTable();
 
@@ -100,7 +101,7 @@ class LightWebsiteUserDatabaseBullsheeter extends LightAbstractBullsheeter
 
 
             } else {
-                throw new LightUserDatabaseException("Invalid user_database instance. A LightWebsiteUserDatabaseInterface instance is expected.");
+                throw new LightUserDatabaseException("Invalid user_database instance. A MysqlLightWebsiteUserDatabase instance is expected.");
             }
         }
     }

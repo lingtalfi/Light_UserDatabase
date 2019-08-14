@@ -52,7 +52,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [LightWebsiteUserDatabaseBullsheeter::getRandomRights](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Bullsheet/LightWebsiteUserDatabaseBullsheeter.php#L144-L165)
+See the source code for method [LightWebsiteUserDatabaseBullsheeter::getRandomRights](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Bullsheet/LightWebsiteUserDatabaseBullsheeter.php#L145-L166)
 
 
 See Also
