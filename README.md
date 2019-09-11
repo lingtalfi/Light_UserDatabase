@@ -76,8 +76,12 @@ user_database_vars:
 # --------------------------------------
 # hooks
 # --------------------------------------
-$initializer.methods.setInitializers.initializers:
-    - @service(user_database)
+$initializer.methods_collection:
+    -
+        method: registerInitializer
+        args:
+            initializer: @service(user_database)
+            slot: install
 
 
 $bullsheet.methods_collection:
@@ -92,7 +96,6 @@ $bullsheet.methods_collection:
                         dir: ${app_dir}
                     setAvatarImgDir:
                         dir: ${user_database_vars.bullsheeterAvatarImgDir}
-
 
 
 ```
@@ -111,6 +114,10 @@ Related
 
 History Log
 =============
+
+- 1.9.0 -- 2019-09-11
+
+    - update service instantiation to accommodate the new initializer interface
 
 - 1.8.1 -- 2019-08-14
 

@@ -1,0 +1,12 @@
+users: 
+    - 
+        id: 1
+        identifier: root
+        pseudo: root
+        password: $2y$10$MGp5zxvq3W22h5DZcBJFsOLcjvBqo/I8PXQ.lx2cmqOLcrLQQ6mWm
+        avatar_url: /plugins/Light_Kit_Admin/img/avatars/root_avatar.png
+        extra: []
+        rights: 
+            - *
+        
+    

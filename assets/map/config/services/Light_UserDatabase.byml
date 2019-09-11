@@ -20,8 +20,12 @@ user_database_vars:
 # --------------------------------------
 # hooks
 # --------------------------------------
-$initializer.methods.setInitializers.initializers:
-    - @service(user_database)
+$initializer.methods_collection:
+    -
+        method: registerInitializer
+        args:
+            initializer: @service(user_database)
+            slot: install
 
 
 $bullsheet.methods_collection:
