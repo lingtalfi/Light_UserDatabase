@@ -57,8 +57,8 @@ Here is an example of the service configuration file using a database stored in 
 user_database:
     instance: Ling\Light_UserDatabase\MysqlLightWebsiteUserDatabase
     methods:
-        setPdoWrapper:
-            wrapper: @service(database)
+        setContainer:
+            container: @container()
 
 
 user_database_vars:
@@ -97,6 +97,19 @@ $bullsheet.methods_collection:
                     setAvatarImgDir:
                         dir: ${user_database_vars.bullsheeterAvatarImgDir}
 
+$plugin_database_installer.methods_collection:
+    -
+        method: registerInstaller
+        args:
+            plugin: Light_UserDatabase
+            installer:
+                -
+                    - @service(user_database)
+                    - installDatabase
+                -
+                    - @service(user_database)
+                    - uninstallDatabase
+
 
 ```
 
@@ -115,6 +128,10 @@ Related
 History Log
 =============
 
+- 1.9.1 -- 2019-09-11
+
+    - fix last point not implemented
+    
 - 1.9.0 -- 2019-09-11
 
     - update service instantiation to accommodate the new initializer interface

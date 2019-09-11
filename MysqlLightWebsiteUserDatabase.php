@@ -7,9 +7,11 @@ namespace Ling\Light_UserDatabase;
 use Ling\Bat\ArrayTool;
 use Ling\Light\Core\Light;
 use Ling\Light\Http\HttpRequestInterface;
+use Ling\Light\ServiceContainer\LightServiceContainerInterface;
 use Ling\Light_Database\LightDatabasePdoWrapper;
 use Ling\Light_Initializer\Initializer\LightInitializerInterface;
 use Ling\Light_PasswordProtector\Service\LightPasswordProtector;
+use Ling\Light_PluginDatabaseInstaller\Service\LightPluginDatabaseInstallerService;
 use Ling\MysqlCreateTableUtil\Column\Column;
 use Ling\MysqlCreateTableUtil\Column\PrimaryKeyAutoIncrementedColumn;
 use Ling\MysqlCreateTableUtil\MysqlCreateTableUtil;
@@ -55,8 +57,13 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
     protected $table;
 
     /**
+     * This property holds the container for this instance.
+     * @var LightServiceContainerInterface
+     */
+    protected $container;
+
+    /**
      * This property holds the pdoWrapper for this instance.
-     * The pdoWrapper is provided by the @page(Light_Database plugin)
      * @var LightDatabasePdoWrapper
      */
     protected $pdoWrapper;
@@ -117,7 +124,7 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
     {
         $this->database = null;
         $this->table = "lud_user";
-        $this->pdoWrapper = null;
+        $this->container = null;
         $this->root_identifier = "root";
         $this->root_password = "root";
         $this->root_pseudo = "root";
@@ -127,13 +134,15 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
     }
 
     /**
-     * Sets the pdoWrapper.
+     * Sets the container.
      *
-     * @param LightDatabasePdoWrapper $pdoWrapper
+     * @param LightServiceContainerInterface $container
+     * @throws \Exception
      */
-    public function setPdoWrapper(LightDatabasePdoWrapper $pdoWrapper)
+    public function setContainer(LightServiceContainerInterface $container)
     {
-        $this->pdoWrapper = $pdoWrapper;
+        $this->container = $container;
+        $this->pdoWrapper = $container->get("database");
     }
 
     //--------------------------------------------
@@ -308,14 +317,30 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
      */
     public function initialize(Light $light, HttpRequestInterface $httpRequest)
     {
+
+
+        /**
+         * @var $pih LightPluginDatabaseInstallerService
+         */
+        $pih = $this->container->get("plugin_database_installer");
+
+        if (false === $pih->isInstalled("Light_UserDatabase")) {
+            $pih->install("Light_UserDatabase");
+        }
+    }
+
+
+    /**
+     * Installs the database part of this planet.
+     *
+     * @throws \Exception
+     */
+    public function installDatabase()
+    {
         $util = new MysqlInfoUtil();
         $util->setWrapper($this->pdoWrapper);
-        /**
-         * If the plugin is loaded for the first time,
-         * we create the user table, and a root user, so that the user can connect.
-         *
-         */
         if (false === $util->hasTable($this->table)) {
+
             $util = MysqlCreateTableUtil::create($this->table, $this->database);
             $util->addColumn(PrimaryKeyAutoIncrementedColumn::create()->name("id"));
             $util->addColumn(Column::create()->name("identifier")->type('varchar')->typeSize(128)->notNullable()->uniqueIndex());
@@ -335,12 +360,19 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
                 'extra' => $this->root_extra,
                 'rights' => ['*'],
             ]);
-
         }
-
     }
 
 
+    /**
+     * Uninstalls the database part of this planet.
+     *
+     * @throws \Exception
+     */
+    public function uninstallDatabase()
+    {
+        $this->pdoWrapper->executeStatement("DROP table if exists " . $this->table);
+    }
 
 
     //--------------------------------------------
