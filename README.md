@@ -128,6 +128,10 @@ Related
 History Log
 =============
 
+- 1.11.7 -- 2019-09-17
+
+    - fix tables not having unique indexes
+    
 - 1.11.6 -- 2019-09-17
 
     - add another comment in conception notes
