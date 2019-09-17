@@ -57,13 +57,16 @@ interface LightUserDatabaseInterface
 
     /**
      * Adds the user info to the database.
+     *
      * The user info array depends on the implementor and the application structure.
+     * The return of this method also depends of the implementor.
+     *
      *
      * An LightUserDatabaseException exception is thrown if the identifier already exists in the database.
      *
      *
      * @param array $userInfo
-     * @return void
+     * @return mixed
      * @throws LightUserDatabaseException
      *
      */

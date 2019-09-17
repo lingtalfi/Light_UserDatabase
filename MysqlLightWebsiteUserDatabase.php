@@ -126,9 +126,6 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
     private $table;
 
 
-
-
-
     /**
      * Builds the MysqlLightUserDatabase instance.
      */
@@ -266,9 +263,7 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
         }
 
 
-
-
-
+        return (int)$array['id'];
     }
 
     /**

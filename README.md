@@ -128,6 +128,10 @@ Related
 History Log
 =============
 
+- 1.11.4 -- 2019-09-17
+
+    - update LightWebsiteUserDatabaseInterface->addUser now returns an int
+    
 - 1.11.3 -- 2019-09-17
 
     - add comment in README.md

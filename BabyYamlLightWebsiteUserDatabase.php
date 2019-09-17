@@ -281,6 +281,7 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
             ]);
         }
 
+        return (int)$id;
 
     }
 

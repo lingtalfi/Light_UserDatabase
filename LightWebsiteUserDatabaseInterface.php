@@ -8,6 +8,7 @@ use Ling\Light_UserDatabase\Api\PermissionApiInterface;
 use Ling\Light_UserDatabase\Api\PermissionGroupApiInterface;
 use Ling\Light_UserDatabase\Api\PermissionGroupHasPermissionApiInterface;
 use Ling\Light_UserDatabase\Api\UserHasPermissionGroupApiInterface;
+use Ling\Light_UserDatabase\Exception\LightUserDatabaseException;
 
 /**
  * The LightWebsiteUserDatabaseInterface interface.
@@ -28,6 +29,23 @@ use Ling\Light_UserDatabase\Api\UserHasPermissionGroupApiInterface;
  */
 interface LightWebsiteUserDatabaseInterface extends LightUserDatabaseInterface
 {
+
+
+    /**
+     * Important: this is an override of the parent method.
+     *
+     * We basically just redefine the return of the method (since the concept
+     * of the id now exists), which is an integer representing the id of the user.
+     *
+     * @param array $userInfo
+     * @return int
+     * @throws LightUserDatabaseException
+     *
+     */
+    public function addUser(array $userInfo);
+
+
+
 
     /**
      * Returns the user info array matching the given user id, or false if the id
