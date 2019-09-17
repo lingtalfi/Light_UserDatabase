@@ -17,7 +17,7 @@ Introduction
 The MysqlLightWebsiteUserDatabase interface.
 
 In this implementation, we create the tables if they don't exist, using the [initializer service](https://github.com/lingtalfi/Light_Initializer/).
-The created tables are the ones defined in the conception notes.
+The created tables are the ones defined in the [conception notes](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/pages/conception-notes.md).
 
 
 Also, a root user is created along with the "user" table, so that the maintainer can connect directly to the gui

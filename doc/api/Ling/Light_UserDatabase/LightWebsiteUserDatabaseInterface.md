@@ -26,7 +26,7 @@ The info representing the database user are the one that match the [light websit
 - extra: array. Any other information that you want to attach to the user should be found in this array.
 
 
-This interface also implements the concept of user permissions.
+This interface also implements the concept of [user permissions](https://github.com/lingtalfi/Light_User/blob/master/doc/pages/permission-conception-notes.md).
 
 
 

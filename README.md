@@ -128,6 +128,10 @@ Related
 History Log
 =============
 
+- 1.11.1 -- 2019-09-17
+
+    - fix doc links
+    
 - 1.11.0 -- 2019-09-17
 
     - add careless implementation of new permissions system

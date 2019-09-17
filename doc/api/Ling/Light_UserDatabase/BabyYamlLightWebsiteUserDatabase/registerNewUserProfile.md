@@ -23,7 +23,7 @@ public [BabyYamlLightWebsiteUserDatabase::registerNewUserProfile](https://github
 
 When a new user is created, the permissions she will get depends on her profiles.
 A profile is also known as a permission group.
-See more details in the permissions conception notes.
+See more details in the [permissions conception notes](https://github.com/lingtalfi/Light_User/blob/master/doc/pages/permission-conception-notes.md).
 
 Plugins can register new profiles using this method.
 The profile parameter can be either:

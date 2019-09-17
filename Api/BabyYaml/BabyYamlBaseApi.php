@@ -136,6 +136,16 @@ class BabyYamlBaseApi
     }
 
 
+    /**
+     * Inserts the given item in the database.
+     * This is a @page(lsom) method.
+     *
+     * @param array $item
+     * @param bool $ignoreDuplicate
+     * @param bool $returnRic
+     * @return array|bool|int|null
+     * @throws \Exception
+     */
     protected function insertItem(array $item, bool $ignoreDuplicate = true, bool $returnRic = false)
     {
         $db = $this->getBabyYamlDatabase();

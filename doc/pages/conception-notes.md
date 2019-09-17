@@ -62,7 +62,7 @@ az($db->getPermissionApi()->insertPermission([
 ]));
 ```
 
-More details in the LightWebsiteUserDatabaseInterface class.
+More details in the [LightWebsiteUserDatabaseInterface class](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/LightWebsiteUserDatabaseInterface.md).
 
 
 

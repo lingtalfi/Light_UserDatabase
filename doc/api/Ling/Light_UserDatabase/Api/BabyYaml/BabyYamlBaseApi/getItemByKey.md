@@ -22,7 +22,7 @@ protected [BabyYamlBaseApi::getItemByKey](https://github.com/lingtalfi/Light_Use
 
 
 Returns the first row matching the given key.
-This is a lsom method.
+This is a [lsom](https://github.com/lingtalfi/Light_BreezeGenerator/blob/master/doc/pages/ling-standard-object-methods.md) method.
 
 
 

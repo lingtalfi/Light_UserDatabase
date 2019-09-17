@@ -15,7 +15,7 @@ Introduction
 ============
 
 The PermissionGroupApiInterface interface.
-It implements the ling standard object methods concept.
+It implements the [ling standard object methods](https://github.com/lingtalfi/Light_BreezeGenerator/blob/master/doc/pages/ling-standard-object-methods.md) concept.
 
 
 
