@@ -30,7 +30,8 @@ First, we see the user as a database structure with the following tables:
 The semantics of those table names takes its roots in the [permission conception notes](https://github.com/lingtalfi/Light_User/blob/master/doc/pages/permission-conception-notes.md),
 which we implement.
 
-In our mysql implementation, all tables have cascading for DELETE and UPDATE.
+In our mysql implementation, all tables have cascading for DELETE and UPDATE,
+and our tables are prefixed with the "lud_" prefix (i.e. lud_user, lud_permission, ...).
 
 
 Our implementation offers two database types:
