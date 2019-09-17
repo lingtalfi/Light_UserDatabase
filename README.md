@@ -44,7 +44,7 @@ Services
 
 This plugin provides the following services:
 
-- user_database
+- user_database         (returns LightWebsiteUserDatabaseInterface)
 
 
 Any data related to an user can be stored in the database, although the primary intent
@@ -128,6 +128,10 @@ Related
 History Log
 =============
 
+- 1.11.3 -- 2019-09-17
+
+    - add comment in README.md
+    
 - 1.11.2 -- 2019-09-17
 
     - fix MysqlLightWebsiteUserDatabase->uninstallDatabase not uninstalling all tables
