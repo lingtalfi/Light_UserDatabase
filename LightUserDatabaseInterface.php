@@ -28,6 +28,11 @@ interface LightUserDatabaseInterface
      * Returns the user info array matching the given credentials, or false if the
      * credentials don't match any user.
      *
+     * This method will also return the "rights" key populated with the rights
+     * according to the user "profiles".
+     * See more details in the @page(conception notes).
+     *
+     *
      *
      * @param string $identifier
      * @param string $password
@@ -39,6 +44,9 @@ interface LightUserDatabaseInterface
      * Returns the user info array matching the given user identifier, or false if the identifier
      * doesn't match an user. The returned array structure depends on your application.
      * Related: getUserInfo method.
+     *
+     *
+     * Note: this method will not return the related "rights" of the user.
      *
      *
      * @param string $identifier
@@ -65,7 +73,7 @@ interface LightUserDatabaseInterface
      * Updates the user identified by the given identifier.
      *
      * The userInfo can contain all the information, or only some of them.
-     * The password should be updated with the key "pass".
+     * The password should be updated with the key "password".
      *
      * @param string $identifier
      * @param array $userInfo

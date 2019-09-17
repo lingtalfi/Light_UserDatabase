@@ -24,6 +24,10 @@ public [MysqlLightWebsiteUserDatabase::getUserInfoByCredentials](https://github.
 Returns the user info array matching the given credentials, or false if the
 credentials don't match any user.
 
+This method will also return the "rights" key populated with the rights
+according to the user "profiles".
+See more details in the conception notes.
+
 
 
 
@@ -54,7 +58,7 @@ Returns array | false.
 
 Source Code
 ===========
-See the source code for method [MysqlLightWebsiteUserDatabase::getUserInfoByCredentials](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L154-L181)
+See the source code for method [MysqlLightWebsiteUserDatabase::getUserInfoByCredentials](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L167-L203)
 
 
 See Also

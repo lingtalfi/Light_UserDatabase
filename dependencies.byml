@@ -1,7 +1,10 @@
 dependencies: 
     Ling: 
-        - BabyYaml
+        - ArrayToString
+        - BabyYamlDatabase
         - Bat
+        - SimplePdoWrapper
+        - BabyYaml
         - Light
         - Light_Initializer
         - Light_PasswordProtector
@@ -9,8 +12,6 @@ dependencies:
         - Light_Database
         - TinyBullsheeter
         - Light_PluginDatabaseInstaller
-        - MysqlCreateTableUtil
-        - SimplePdoWrapper
         - SqlWizard
     
 

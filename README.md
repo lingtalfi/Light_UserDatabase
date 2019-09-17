@@ -29,6 +29,8 @@ Or just download it and place it where you want otherwise.
 Summary
 ===========
 - [Light_UserDatabase api](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase.md) (generated with [DocTools](https://github.com/lingtalfi/DocTools))
+- Pages
+    - [Conception notes](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/pages/conception-notes.md) 
 - [Services](#services)
 - [Related](#related)
 
@@ -109,8 +111,6 @@ $plugin_database_installer.methods_collection:
                 -
                     - @service(user_database)
                     - uninstallDatabase
-
-
 ```
 
 
@@ -128,6 +128,15 @@ Related
 History Log
 =============
 
+- 1.11.0 -- 2019-09-17
+
+    - add careless implementation of new permissions system
+    
+- 1.10.0 -- 2019-09-11
+
+    - now implements permissions
+    - updated LightUserDatabaseInterface->getUserInfoByCredentials, now returns the rights
+    
 - 1.9.1 -- 2019-09-11
 
     - fix last point not implemented

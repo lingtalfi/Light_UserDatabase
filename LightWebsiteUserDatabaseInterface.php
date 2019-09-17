@@ -4,6 +4,11 @@
 namespace Ling\Light_UserDatabase;
 
 
+use Ling\Light_UserDatabase\Api\PermissionApiInterface;
+use Ling\Light_UserDatabase\Api\PermissionGroupApiInterface;
+use Ling\Light_UserDatabase\Api\PermissionGroupHasPermissionApiInterface;
+use Ling\Light_UserDatabase\Api\UserHasPermissionGroupApiInterface;
+
 /**
  * The LightWebsiteUserDatabaseInterface interface.
  *
@@ -14,8 +19,10 @@ namespace Ling\Light_UserDatabase;
  * - password: string. The password of the user. Whether it's encrypted is left to the implementor.
  * - pseudo: string. The pseudo of the user.
  * - avatar_url: string. The url of the user avatar.
- * - rights: array. The @page(rights of the user).
  * - extra: array. Any other information that you want to attach to the user should be found in this array.
+ *
+ *
+ * This interface also implements the concept of @page(user permissions).
  *
  *
  */
@@ -52,4 +59,59 @@ interface LightWebsiteUserDatabaseInterface extends LightUserDatabaseInterface
      */
     public function deleteUserById(int $id);
 
+
+
+
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    /**
+     * When a new user is created, the permissions she will get depends on her profiles.
+     * A profile is also known as a permission group.
+     * See more details in the @page(permissions conception notes).
+     *
+     * Plugins can register new profiles using this method.
+     * The profile parameter can be either:
+     *
+     * - a string, the profile
+     * - an array of profile strings
+     * - a callable, which returns a profile (string) or an array of profiles.
+     *          The callable has the following signature:
+     *              function ( array user ): array|string
+     *
+     *          Note: the "user" parameter is the array containing all the
+     *          newly created light website user info (except for the profiles).
+     *
+     *
+     * @param $profile
+     * @return void
+     */
+    public function registerNewUserProfile($profile);
+
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    /**
+     * Returns a PermissionApiInterface instance.
+     * @return PermissionApiInterface
+     */
+    public function getPermissionApi(): PermissionApiInterface;
+
+    /**
+     * Returns a PermissionGroupApiInterface instance.
+     * @return PermissionGroupApiInterface
+     */
+    public function getPermissionGroupApi(): PermissionGroupApiInterface;
+
+    /**
+     * Returns a PermissionGroupHasPermissionApiInterface instance.
+     * @return PermissionGroupHasPermissionApiInterface
+     */
+    public function getPermissionGroupHasPermissionApi(): PermissionGroupHasPermissionApiInterface;
+
+    /**
+     * Returns a UserHasPermissionGroupApiInterface instance.
+     * @return UserHasPermissionGroupApiInterface
+     */
+    public function getUserHasPermissionGroupApi(): UserHasPermissionGroupApiInterface;
 }
