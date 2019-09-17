@@ -128,6 +128,10 @@ Related
 History Log
 =============
 
+- 1.11.2 -- 2019-09-17
+
+    - fix MysqlLightWebsiteUserDatabase->uninstallDatabase not uninstalling all tables
+
 - 1.11.1 -- 2019-09-17
 
     - fix doc links

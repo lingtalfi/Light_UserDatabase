@@ -121,7 +121,7 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
     /**
      * This property holds the name table containing all the users.
      *
-     * @var string = user
+     * @var string = lud_user
      */
     private $table;
 
@@ -375,6 +375,51 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
         }
     }
 
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    /**
+     * Installs the database part of this planet.
+     *
+     * @throws \Exception
+     */
+    public function installDatabase()
+    {
+        $util = new MysqlInfoUtil();
+        $util->setWrapper($this->pdoWrapper);
+        if (false === $util->hasTable($this->table)) {
+            $this->pdoWrapper->executeStatement(file_get_contents(__DIR__ . "/assets/fixtures/recreate-structure.sql"));
+
+            $this->updateUserById(1, [
+                'identifier' => $this->root_identifier,
+                'pseudo' => $this->root_pseudo,
+                'password' => $this->root_password,
+                'avatar_url' => $this->root_avatar_url,
+                'extra' => $this->root_extra,
+            ]);
+        }
+    }
+
+
+    /**
+     * Uninstalls the database part of this planet.
+     *
+     * @throws \Exception
+     */
+    public function uninstallDatabase()
+    {
+        $this->pdoWrapper->executeStatement("DROP table if exists lud_permission_group_has_permission");
+        $this->pdoWrapper->executeStatement("DROP table if exists lud_user_has_permission_group");
+        $this->pdoWrapper->executeStatement("DROP table if exists lud_permission_group");
+        $this->pdoWrapper->executeStatement("DROP table if exists lud_permission");
+        $this->pdoWrapper->executeStatement("DROP table if exists " . $this->table);
+    }
+
+
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+
     /**
      * @implementation
      */
@@ -419,42 +464,6 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
 
 
 
-
-    //--------------------------------------------
-    //
-    //--------------------------------------------
-    /**
-     * Installs the database part of this planet.
-     *
-     * @throws \Exception
-     */
-    public function installDatabase()
-    {
-        $util = new MysqlInfoUtil();
-        $util->setWrapper($this->pdoWrapper);
-        if (false === $util->hasTable($this->table)) {
-            $this->pdoWrapper->executeStatement(file_get_contents(__DIR__ . "/assets/fixtures/recreate-structure.sql"));
-
-            $this->updateUserById(1, [
-                'identifier' => $this->root_identifier,
-                'pseudo' => $this->root_pseudo,
-                'password' => $this->root_password,
-                'avatar_url' => $this->root_avatar_url,
-                'extra' => $this->root_extra,
-            ]);
-        }
-    }
-
-
-    /**
-     * Uninstalls the database part of this planet.
-     *
-     * @throws \Exception
-     */
-    public function uninstallDatabase()
-    {
-        $this->pdoWrapper->executeStatement("DROP table if exists " . $this->table);
-    }
 
 
     //--------------------------------------------
