@@ -392,7 +392,7 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
         if (false === $util->hasTable($this->table)) {
             $this->pdoWrapper->executeStatement(file_get_contents(__DIR__ . "/assets/fixtures/recreate-structure.sql"));
 
-            $this->updateUserById(1, [
+            $this->addUser([
                 'identifier' => $this->root_identifier,
                 'pseudo' => $this->root_pseudo,
                 'password' => $this->root_password,
