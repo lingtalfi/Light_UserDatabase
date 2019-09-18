@@ -20,6 +20,7 @@ use Ling\Light_UserDatabase\Api\PermissionGroupApiInterface;
 use Ling\Light_UserDatabase\Api\PermissionGroupHasPermissionApiInterface;
 use Ling\Light_UserDatabase\Api\UserHasPermissionGroupApiInterface;
 use Ling\Light_UserDatabase\Exception\LightUserDatabaseException;
+use Ling\Light_UserDatabase\Tool\LightWebsiteUserDatabaseTool;
 
 /**
  * The BabyYamlLightWebsiteUserDatabase interface.
@@ -262,16 +263,18 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
             }
         }
 
-        $users[] = array_replace($userInfo, [
+        $userInfo = array_replace($userInfo, [
             "id" => ++$id,
         ]);
+        $users[] = $userInfo;
+
         $this->updateUsers($users);
 
 
         //--------------------------------------------
         // PROFILES
         //--------------------------------------------
-        $allProfiles = LightWebsiteUserDatabaseTool::resolveProfiles($this->newUserProfiles);
+        $allProfiles = LightWebsiteUserDatabaseTool::resolveProfiles($this->newUserProfiles, $userInfo);
 
         foreach ($allProfiles as $profile) {
             $profileId = $this->getPermissionGroupApi()->getPermissionGroupIdByName($profile);

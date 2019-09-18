@@ -105,7 +105,7 @@ class MysqlPermissionGroupApi implements PermissionGroupApiInterface
      */
     public function getPermissionGroupIdByName(string $name)
     {
-        $ret = $this->pdoWrapper->fetch("select id from user where name=:name", [
+        $ret = $this->pdoWrapper->fetch("select id from lud_user where name=:name", [
             "name" => $name,
 
         ]);

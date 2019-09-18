@@ -4,6 +4,7 @@
 namespace Ling\Light_UserDatabase;
 
 
+use Ling\ArrayToString\ArrayToStringTool;
 use Ling\Bat\ArrayTool;
 use Ling\Light\Core\Light;
 use Ling\Light\Http\HttpRequestInterface;
@@ -20,6 +21,8 @@ use Ling\Light_UserDatabase\Api\PermissionApiInterface;
 use Ling\Light_UserDatabase\Api\PermissionGroupApiInterface;
 use Ling\Light_UserDatabase\Api\PermissionGroupHasPermissionApiInterface;
 use Ling\Light_UserDatabase\Api\UserHasPermissionGroupApiInterface;
+use Ling\Light_UserDatabase\Exception\LightUserDatabaseException;
+use Ling\Light_UserDatabase\Tool\LightWebsiteUserDatabaseTool;
 use Ling\SimplePdoWrapper\Util\MysqlInfoUtil;
 use Ling\SqlWizard\Tool\MysqlSerializeTool;
 
@@ -247,23 +250,31 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
         }
 
         $this->serialize($array);
-        $this->pdoWrapper->insert($table, $array);
+        $userId = $this->pdoWrapper->insert($table, $array);
+        if (false === $userId) {
+            $error = $this->pdoWrapper->getError();
+            $sErrorDetails = '';
+            if (null !== $error) {
+                $sErrorDetails = ArrayToStringTool::toInlinePhpArray($error);
+            }
+            throw new LightUserDatabaseException("An error occurred with the database while inserting the user " . $array['identifier'] . ": $sErrorDetails.");
+        }
 
         //--------------------------------------------
         // PROFILES
         //--------------------------------------------
-        $allProfiles = LightWebsiteUserDatabaseTool::resolveProfiles($this->newUserProfiles);
+        $allProfiles = LightWebsiteUserDatabaseTool::resolveProfiles($this->newUserProfiles, $array);
 
         foreach ($allProfiles as $profile) {
             $profileId = $this->getPermissionGroupApi()->getPermissionGroupIdByName($profile);
             $this->getUserHasPermissionGroupApi()->insertUserHasPermissionGroup([
-                "user_id" => $array['id'],
+                "user_id" => $userId,
                 "permission_group_id" => $profileId,
             ]);
         }
 
 
-        return (int)$array['id'];
+        return (int)$userId;
     }
 
     /**
@@ -337,9 +348,6 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
     }
 
 
-
-
-
     //--------------------------------------------
     //
     //--------------------------------------------
@@ -360,7 +368,6 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
      */
     public function initialize(Light $light, HttpRequestInterface $httpRequest)
     {
-
         /**
          * @var $pih LightPluginDatabaseInstallerService
          */

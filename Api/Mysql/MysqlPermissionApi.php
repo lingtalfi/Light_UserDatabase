@@ -103,16 +103,16 @@ class MysqlPermissionApi implements PermissionApiInterface
      */
     public function getPermissionNamesByUserId(int $id): array
     {
-        return $this->pdoWrapper->fetchAll("
+        $ret = $this->pdoWrapper->fetchAll("
         
-        select p.name from user u
-        inner join user_has_permission_group uhg on uhg.user_id=u.id
-        inner join permission_group_has_permission php on php.permission_group_id=uhg.permission_group_id
-        inner join permission p on p.id=php.permission_id
+        select p.name from lud_user u
+        inner join lud_user_has_permission_group uhg on uhg.user_id=u.id
+        inner join lud_permission_group_has_permission php on php.permission_group_id=uhg.permission_group_id
+        inner join lud_permission p on p.id=php.permission_id
          where u.id=:id", [
             "id" => $id,
-
-        ], [], \PDO::FETCH_COLUMN);
+        ], \PDO::FETCH_COLUMN);
+        return $ret;
     }
 
 

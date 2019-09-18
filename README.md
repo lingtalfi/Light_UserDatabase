@@ -128,6 +128,10 @@ Related
 History Log
 =============
 
+- 1.11.8 -- 2019-09-18
+
+    - fix careless implementation errors
+    
 - 1.11.7 -- 2019-09-17
 
     - fix tables not having unique indexes

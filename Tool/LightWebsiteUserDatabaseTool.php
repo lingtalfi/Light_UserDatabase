@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Ling\Light_UserDatabase;
+namespace Ling\Light_UserDatabase\Tool;
 
 
 use Ling\Light_UserDatabase\Exception\LightUserDatabaseException;
