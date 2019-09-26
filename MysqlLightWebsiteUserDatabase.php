@@ -390,15 +390,43 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
         $util = new MysqlInfoUtil();
         $util->setWrapper($this->pdoWrapper);
         if (false === $util->hasTable($this->table)) {
-            $this->pdoWrapper->executeStatement(file_get_contents(__DIR__ . "/assets/fixtures/recreate-structure.sql"));
 
-            $this->addUser([
-                'identifier' => $this->root_identifier,
-                'pseudo' => $this->root_pseudo,
-                'password' => $this->root_password,
-                'avatar_url' => $this->root_avatar_url,
-                'extra' => $this->root_extra,
-            ]);
+
+            /**
+             * @var $exception \Exception
+             */
+            $exception = null;
+            $res = $this->pdoWrapper->transaction(function () {
+
+                $this->pdoWrapper->executeStatement(file_get_contents(__DIR__ . "/assets/fixtures/recreate-structure.sql"));
+
+                /**
+                 * Reminder: we created the following: (in assets/fixtures/recreate-structure.sql)
+                 * - permission_group: 1 => root
+                 * - permission: 1 => *
+                 *
+                 *
+                 */
+                $userId = $this->addUser([
+                    'identifier' => $this->root_identifier,
+                    'pseudo' => $this->root_pseudo,
+                    'password' => $this->root_password,
+                    'avatar_url' => $this->root_avatar_url,
+                    'extra' => $this->root_extra,
+                ]);
+
+                $this->getUserHasPermissionGroupApi()->insertUserHasPermissionGroup([
+                    "user_id" => $userId,
+                    "permission_group_id" => 1,
+                ]);
+
+
+            }, $exception);
+            if (false === $res) {
+                throw $exception;
+            }
+
+
         }
     }
 

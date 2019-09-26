@@ -102,6 +102,24 @@ CREATE TABLE IF NOT EXISTS `lud_permission_group_has_permission` (
 ENGINE = InnoDB;
 
 
+
+
+INSERT INTO `lud_permission_group` (`id`, `name`) VALUES
+(1, 'root')
+;
+
+
+INSERT INTO `lud_permission` (`id`, `name`) VALUES
+(1, '*')
+;
+
+INSERT INTO `lud_permission_group_has_permission` (`permission_group_id`, `permission_id`) VALUES
+(1, 1)
+;
+
+
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

@@ -128,6 +128,10 @@ Related
 History Log
 =============
 
+- 1.11.9 -- 2019-09-26
+
+    - fix LightWebsiteUserDatabaseBullsheeter->generateRows generating rights
+    
 - 1.11.8 -- 2019-09-18
 
     - fix MysqlLightWebsiteUserDatabase->installDatabase updating user instead of inserting user
