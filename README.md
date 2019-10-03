@@ -128,6 +128,10 @@ Related
 History Log
 =============
 
+- 1.12.0 -- 2019-10-03
+
+    - add LightUserDatabaseInterface->getAllUserInfo
+    
 - 1.11.9 -- 2019-09-26
 
     - fix LightWebsiteUserDatabaseBullsheeter->generateRows generating rights

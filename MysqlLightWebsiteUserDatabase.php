@@ -348,6 +348,25 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
     }
 
 
+    /**
+     * @implementation
+     */
+    public function getAllUserInfo(): array
+    {
+        $ret=[];
+        $table = $this->dQuoteTable($this->table);
+        $rows = $this->pdoWrapper->fetchAll("select * from $table");
+        foreach($rows as $k => $row){
+            $this->unserialize($row);
+            $ret[$k] = $row;
+        }
+        return $ret;
+    }
+
+
+
+
+
     //--------------------------------------------
     //
     //--------------------------------------------
