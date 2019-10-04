@@ -320,6 +320,7 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
         }
         $this->serialize($userInfo);
 
+
         $this->pdoWrapper->update($table, $userInfo, [
             "id" => $id,
         ]);
@@ -412,12 +413,18 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
 
 
             /**
+             * We cannot put this statement inside the transaction, because of the mysql implicit commit rule:
+             * https://dev.mysql.com/doc/refman/8.0/en/implicit-commit.html
+             */
+            $this->pdoWrapper->executeStatement(file_get_contents(__DIR__ . "/assets/fixtures/recreate-structure.sql"));
+
+
+            /**
              * @var $exception \Exception
              */
             $exception = null;
             $res = $this->pdoWrapper->transaction(function () {
 
-                $this->pdoWrapper->executeStatement(file_get_contents(__DIR__ . "/assets/fixtures/recreate-structure.sql"));
 
                 /**
                  * Reminder: we created the following: (in assets/fixtures/recreate-structure.sql)

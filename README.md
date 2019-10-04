@@ -64,7 +64,7 @@ user_database:
 
 
 user_database_vars:
-    bullsheeterAvatarImgDir: /overrideme
+    bullsheeter_avatar_img_dir: /overrideme
 
 
 # babyYaml configuration example
@@ -97,7 +97,7 @@ $bullsheet.methods_collection:
                     setApplicationDir:
                         dir: ${app_dir}
                     setAvatarImgDir:
-                        dir: ${user_database_vars.bullsheeterAvatarImgDir}
+                        dir: ${user_database_vars.bullsheeter_avatar_img_dir}
 
 $plugin_database_installer.methods_collection:
     -
@@ -128,6 +128,10 @@ Related
 History Log
 =============
 
+- 1.12.1 -- 2019-10-04
+
+    - change variable case in service configuration
+    
 - 1.12.0 -- 2019-10-03
 
     - add LightUserDatabaseInterface->getAllUserInfo
