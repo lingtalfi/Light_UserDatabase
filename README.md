@@ -78,7 +78,7 @@ user_database_vars:
 # --------------------------------------
 # hooks
 # --------------------------------------
-breeze_generator.methods_collection:
+$breeze_generator.methods_collection:
     -
         method: addConfigurationEntryByFile
         args:
@@ -135,6 +135,10 @@ Related
 
 History Log
 =============
+
+- 1.12.3 -- 2019-10-30
+
+    - fix typo
 
 - 1.12.2 -- 2019-10-30
 
