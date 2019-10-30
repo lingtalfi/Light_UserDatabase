@@ -78,6 +78,14 @@ user_database_vars:
 # --------------------------------------
 # hooks
 # --------------------------------------
+breeze_generator.methods_collection:
+    -
+        method: addConfigurationEntryByFile
+        args:
+            key: lud
+            file: ${app_dir}/config/data/Light_UserDatabase/Light_BreezeGenerator/lud.byml
+
+
 $initializer.methods_collection:
     -
         method: registerInitializer
@@ -128,6 +136,10 @@ Related
 History Log
 =============
 
+- 1.12.2 -- 2019-10-30
+
+    - update service configuration for breeze generator
+    
 - 1.12.1 -- 2019-10-04
 
     - change variable case in service configuration
