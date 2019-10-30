@@ -17,5 +17,6 @@ conf:
     # Used mainly for debugging purposes, in production you probably should set this to false
     # The default value is false
     overwriteExisting: false
+    useMicroPermission: false
     generate:
         prefix: lud

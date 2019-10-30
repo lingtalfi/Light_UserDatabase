@@ -136,6 +136,10 @@ Related
 History Log
 =============
 
+- 1.12.4 -- 2019-10-30
+
+    - fix missing useMicroPermission implicitly set to true in the breeze configuration
+    
 - 1.12.3 -- 2019-10-30
 
     - fix typo
