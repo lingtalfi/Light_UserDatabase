@@ -46,7 +46,7 @@ Returns [PermissionApiInterface](https://github.com/lingtalfi/Light_UserDatabase
 
 Source Code
 ===========
-See the source code for method [LightWebsiteUserDatabaseInterface::getPermissionApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/LightWebsiteUserDatabaseInterface.php#L92-L92)
+See the source code for method [LightWebsiteUserDatabaseInterface::getPermissionApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/LightWebsiteUserDatabaseInterface.php#L98-L98)
 
 
 See Also
@@ -54,5 +54,5 @@ See Also
 
 The [LightWebsiteUserDatabaseInterface](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/LightWebsiteUserDatabaseInterface.md) class.
 
-Previous method: [deleteUserById](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/LightWebsiteUserDatabaseInterface/deleteUserById.md)<br>Next method: [getPermissionGroupApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/LightWebsiteUserDatabaseInterface/getPermissionGroupApi.md)<br>
+Previous method: [getAllUserIds](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/LightWebsiteUserDatabaseInterface/getAllUserIds.md)<br>Next method: [getPermissionGroupApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/LightWebsiteUserDatabaseInterface/getPermissionGroupApi.md)<br>
 

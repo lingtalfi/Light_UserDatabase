@@ -54,7 +54,7 @@ Returns array | false.
 
 Source Code
 ===========
-See the source code for method [BabyYamlLightWebsiteUserDatabase::getUserInfoByIdentifier](https://github.com/lingtalfi/Light_UserDatabase/blob/master/BabyYamlLightWebsiteUserDatabase.php#L240-L249)
+See the source code for method [BabyYamlLightWebsiteUserDatabase::getUserInfoByIdentifier](https://github.com/lingtalfi/Light_UserDatabase/blob/master/BabyYamlLightWebsiteUserDatabase.php#L239-L248)
 
 
 See Also

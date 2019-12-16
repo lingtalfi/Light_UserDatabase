@@ -58,7 +58,7 @@ Returns array | false.
 
 Source Code
 ===========
-See the source code for method [BabyYamlLightWebsiteUserDatabase::getUserInfoByCredentials](https://github.com/lingtalfi/Light_UserDatabase/blob/master/BabyYamlLightWebsiteUserDatabase.php#L204-L235)
+See the source code for method [BabyYamlLightWebsiteUserDatabase::getUserInfoByCredentials](https://github.com/lingtalfi/Light_UserDatabase/blob/master/BabyYamlLightWebsiteUserDatabase.php#L203-L234)
 
 
 See Also

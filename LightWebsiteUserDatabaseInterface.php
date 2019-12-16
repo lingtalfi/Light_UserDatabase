@@ -47,8 +47,6 @@ interface LightWebsiteUserDatabaseInterface extends LightUserDatabaseInterface
     public function addUser(array $userInfo);
 
 
-
-
     /**
      * Returns the user info array matching the given user id, or false if the id
      * doesn't match an user.
@@ -78,6 +76,14 @@ interface LightWebsiteUserDatabaseInterface extends LightUserDatabaseInterface
      * @return void
      */
     public function deleteUserById(int $id);
+
+
+    /**
+     * Returns an array of all user ids.
+     *
+     * @return array
+     */
+    public function getAllUserIds(): array;
 
 
 

@@ -119,8 +119,6 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
     protected $passwordProtector;
 
 
-
-
     /**
      * This property holds the name table containing all the users.
      *
@@ -255,8 +253,6 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
         $array = $event->getVar('userInfo');
 
 
-
-
         if (null !== $this->passwordProtector) {
             $array['password'] = $this->passwordProtector->passwordHash($array['password']);
         }
@@ -360,6 +356,17 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
             $ret[$k] = $row;
         }
         return $ret;
+    }
+
+
+    /**
+     * @implementation
+     */
+    public function getAllUserIds(): array
+    {
+        $ret = [];
+        $table = $this->dQuoteTable($this->table);
+        return $this->pdoWrapper->fetchAll("select id from $table", [], \PDO::FETCH_COLUMN);
     }
 
 

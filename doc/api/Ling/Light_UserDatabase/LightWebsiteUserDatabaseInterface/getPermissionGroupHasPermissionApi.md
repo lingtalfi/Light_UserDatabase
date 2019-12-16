@@ -46,7 +46,7 @@ Returns [PermissionGroupHasPermissionApiInterface](https://github.com/lingtalfi/
 
 Source Code
 ===========
-See the source code for method [LightWebsiteUserDatabaseInterface::getPermissionGroupHasPermissionApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/LightWebsiteUserDatabaseInterface.php#L104-L104)
+See the source code for method [LightWebsiteUserDatabaseInterface::getPermissionGroupHasPermissionApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/LightWebsiteUserDatabaseInterface.php#L110-L110)
 
 
 See Also

@@ -111,7 +111,6 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
     protected $passwordProtector;
 
 
-
     /**
      * This property holds the cached/configured _permissionApi for this instance.
      * @var PermissionApiInterface
@@ -288,8 +287,6 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
         $array = $event->getVar('userInfo');
 
 
-
-
         if (null !== $this->passwordProtector) {
             $array['password'] = $this->passwordProtector->passwordHash($array['password']);
         }
@@ -410,6 +407,22 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
     {
         return $this->getUsers();
     }
+
+    /**
+     * @implementation
+     */
+    public function getAllUserIds(): array
+    {
+        $ret = [];
+        $users = $this->getUsers();
+        foreach ($users as $index => $user) {
+            $ret[] = $user['id'];
+        }
+        return $ret;
+    }
+
+
+
 
 
 

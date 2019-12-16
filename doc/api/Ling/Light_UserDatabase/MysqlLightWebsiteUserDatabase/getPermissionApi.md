@@ -46,7 +46,7 @@ Returns [PermissionApiInterface](https://github.com/lingtalfi/Light_UserDatabase
 
 Source Code
 ===========
-See the source code for method [MysqlLightWebsiteUserDatabase::getPermissionApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L467-L472)
+See the source code for method [MysqlLightWebsiteUserDatabase::getPermissionApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L474-L479)
 
 
 See Also

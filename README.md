@@ -149,6 +149,10 @@ Related
 History Log
 =============
 
+- 1.15.0 -- 2019-12-16
+
+    - add LightWebsiteUserDatabaseInterface.getAllUserIds method
+    
 - 1.14.0 -- 2019-12-16
 
     - add Light_UserDatabase.on_new_user_before event

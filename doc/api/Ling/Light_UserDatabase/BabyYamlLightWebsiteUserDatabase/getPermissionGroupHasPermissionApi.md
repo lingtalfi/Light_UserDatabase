@@ -46,7 +46,7 @@ Returns [PermissionGroupHasPermissionApiInterface](https://github.com/lingtalfi/
 
 Source Code
 ===========
-See the source code for method [BabyYamlLightWebsiteUserDatabase::getPermissionGroupHasPermissionApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/BabyYamlLightWebsiteUserDatabase.php#L446-L453)
+See the source code for method [BabyYamlLightWebsiteUserDatabase::getPermissionGroupHasPermissionApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/BabyYamlLightWebsiteUserDatabase.php#L459-L466)
 
 
 See Also
