@@ -16,11 +16,15 @@ use Ling\Light_PluginDatabaseInstaller\Service\LightPluginDatabaseInstallerServi
 use Ling\Light_UserDatabase\Api\Mysql\MysqlPermissionApi;
 use Ling\Light_UserDatabase\Api\Mysql\MysqlPermissionGroupApi;
 use Ling\Light_UserDatabase\Api\Mysql\MysqlPermissionGroupHasPermissionApi;
+use Ling\Light_UserDatabase\Api\Mysql\MysqlPermissionOptionsApi;
 use Ling\Light_UserDatabase\Api\Mysql\MysqlUserHasPermissionGroupApi;
+use Ling\Light_UserDatabase\Api\Mysql\MysqlUserOptionsApi;
 use Ling\Light_UserDatabase\Api\PermissionApiInterface;
 use Ling\Light_UserDatabase\Api\PermissionGroupApiInterface;
 use Ling\Light_UserDatabase\Api\PermissionGroupHasPermissionApiInterface;
+use Ling\Light_UserDatabase\Api\PermissionOptionsApiInterface;
 use Ling\Light_UserDatabase\Api\UserHasPermissionGroupApiInterface;
+use Ling\Light_UserDatabase\Api\UserOptionsApiInterface;
 use Ling\Light_UserDatabase\Exception\LightUserDatabaseException;
 use Ling\Light_UserDatabase\Tool\LightWebsiteUserDatabaseTool;
 use Ling\SimplePdoWrapper\Util\MysqlInfoUtil;
@@ -354,10 +358,10 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
      */
     public function getAllUserInfo(): array
     {
-        $ret=[];
+        $ret = [];
         $table = $this->dQuoteTable($this->table);
         $rows = $this->pdoWrapper->fetchAll("select * from $table");
-        foreach($rows as $k => $row){
+        foreach ($rows as $k => $row) {
             $this->unserialize($row);
             $ret[$k] = $row;
         }
@@ -515,6 +519,27 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
         $o->setPdoWrapper($this->pdoWrapper);
         return $o;
     }
+
+    /**
+     * @implementation
+     */
+    public function getUserOptionsApi(): UserOptionsApiInterface
+    {
+        $o = new MysqlUserOptionsApi();
+        $o->setPdoWrapper($this->pdoWrapper);
+        return $o;
+    }
+
+    /**
+     * @implementation
+     */
+    public function getPermissionOptionsApi(): PermissionOptionsApiInterface
+    {
+        $o = new MysqlPermissionOptionsApi();
+        $o->setPdoWrapper($this->pdoWrapper);
+        return $o;
+    }
+
 
 
 

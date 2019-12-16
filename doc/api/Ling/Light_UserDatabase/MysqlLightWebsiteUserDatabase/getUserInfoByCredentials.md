@@ -58,7 +58,7 @@ Returns array | false.
 
 Source Code
 ===========
-See the source code for method [MysqlLightWebsiteUserDatabase::getUserInfoByCredentials](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L167-L203)
+See the source code for method [MysqlLightWebsiteUserDatabase::getUserInfoByCredentials](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L171-L207)
 
 
 See Also

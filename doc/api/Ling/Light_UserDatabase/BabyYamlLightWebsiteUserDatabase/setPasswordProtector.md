@@ -49,7 +49,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [BabyYamlLightWebsiteUserDatabase::setPasswordProtector](https://github.com/lingtalfi/Light_UserDatabase/blob/master/BabyYamlLightWebsiteUserDatabase.php#L556-L559)
+See the source code for method [BabyYamlLightWebsiteUserDatabase::setPasswordProtector](https://github.com/lingtalfi/Light_UserDatabase/blob/master/BabyYamlLightWebsiteUserDatabase.php#L598-L601)
 
 
 See Also

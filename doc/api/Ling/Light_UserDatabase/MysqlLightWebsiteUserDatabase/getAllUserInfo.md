@@ -46,7 +46,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [MysqlLightWebsiteUserDatabase::getAllUserInfo](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L355-L365)
+See the source code for method [MysqlLightWebsiteUserDatabase::getAllUserInfo](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L359-L369)
 
 
 See Also

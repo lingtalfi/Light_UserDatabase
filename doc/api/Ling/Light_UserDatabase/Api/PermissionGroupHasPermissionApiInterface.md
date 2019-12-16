@@ -4,7 +4,7 @@
 
 The PermissionGroupHasPermissionApiInterface class
 ================
-2019-07-19 --> 2019-10-30
+2019-07-19 --> 2019-12-16
 
 
 
@@ -59,4 +59,4 @@ See the source code of [Ling\Light_UserDatabase\Api\PermissionGroupHasPermission
 
 SeeAlso
 ==============
-Previous class: [PermissionGroupApiInterface](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/PermissionGroupApiInterface.md)<br>Next class: [UserHasPermissionGroupApiInterface](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/UserHasPermissionGroupApiInterface.md)<br>
+Previous class: [PermissionGroupApiInterface](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/PermissionGroupApiInterface.md)<br>Next class: [PermissionOptionsApiInterface](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/PermissionOptionsApiInterface.md)<br>

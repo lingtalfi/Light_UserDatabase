@@ -1,5 +1,5 @@
 user_database:
-    instance: Ling\Light_UserDatabase\MysqlLightWebsiteUserDatabase
+    instance: Ling\Light_UserDatabase\Service\LightUserDatabaseService
     methods:
         setContainer:
             container: @container()
@@ -61,3 +61,15 @@ $plugin_database_installer.methods_collection:
                 -
                     - @service(user_database)
                     - uninstallDatabase
+
+
+
+#$user_row_ownership.methods_collection:
+#    -
+#        method: registerRowInspector
+#        args:
+#            inspector:
+#                instance: Ling\Light_UserDatabase\UserRowOwnership\LightUserDatabaseRowInspector
+#                methods:
+#                    setHandledTablesFile:
+#                        file: ${app_dir}/config/data/Light_UserDatabase/Light_UserRowOwnership/handled_tables.byml

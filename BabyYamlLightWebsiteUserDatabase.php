@@ -14,11 +14,15 @@ use Ling\Light_PasswordProtector\Service\LightPasswordProtector;
 use Ling\Light_UserDatabase\Api\BabyYaml\BabyYamlPermissionApi;
 use Ling\Light_UserDatabase\Api\BabyYaml\BabyYamlPermissionGroupApi;
 use Ling\Light_UserDatabase\Api\BabyYaml\BabyYamlPermissionGroupHasPermissionApi;
+use Ling\Light_UserDatabase\Api\BabyYaml\BabyYamlPermissionOptionsApi;
 use Ling\Light_UserDatabase\Api\BabyYaml\BabyYamlUserHasPermissionGroupApi;
+use Ling\Light_UserDatabase\Api\BabyYaml\BabyYamlUserOptionsApi;
 use Ling\Light_UserDatabase\Api\PermissionApiInterface;
 use Ling\Light_UserDatabase\Api\PermissionGroupApiInterface;
 use Ling\Light_UserDatabase\Api\PermissionGroupHasPermissionApiInterface;
+use Ling\Light_UserDatabase\Api\PermissionOptionsApiInterface;
 use Ling\Light_UserDatabase\Api\UserHasPermissionGroupApiInterface;
+use Ling\Light_UserDatabase\Api\UserOptionsApiInterface;
 use Ling\Light_UserDatabase\Exception\LightUserDatabaseException;
 use Ling\Light_UserDatabase\Tool\LightWebsiteUserDatabaseTool;
 
@@ -130,6 +134,18 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
      */
     protected $_userHasPermissionGroupApi;
 
+    /**
+     * This property holds the cached/configured _userOptionsApi for this instance.
+     * @var UserOptionsApiInterface
+     */
+    protected $_userOptionsApi;
+
+    /**
+     * This property holds the cached/configured _permissionOptionsApi for this instance.
+     * @var PermissionOptionsApiInterface
+     */
+    protected $_permissionOptionsApi;
+
 
     /**
      * Builds the BabyYamlLightUserDatabase instance.
@@ -148,6 +164,8 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
         $this->_permissionGroupApi = null;
         $this->_permissionGroupHasPermissionApi = null;
         $this->_userHasPermissionGroupApi = null;
+        $this->_userOptionsApi = null;
+        $this->_permissionOptionsApi = null;
     }
 
     /**
@@ -443,6 +461,30 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
             $this->_userHasPermissionGroupApi->setFile($this->file);
         }
         return $this->_userHasPermissionGroupApi;
+    }
+
+    /**
+     * @implementation
+     */
+    public function getUserOptionsApi(): UserOptionsApiInterface
+    {
+        if (null === $this->_userOptionsApi) {
+            $this->_userOptionsApi = new BabyYamlUserOptionsApi();
+            $this->_userOptionsApi->setFile($this->file);
+        }
+        return $this->_userOptionsApi;
+    }
+
+    /**
+     * @implementation
+     */
+    public function getPermissionOptionsApi(): PermissionOptionsApiInterface
+    {
+        if (null === $this->_permissionOptionsApi) {
+            $this->_permissionOptionsApi = new BabyYamlPermissionOptionsApi();
+            $this->_permissionOptionsApi->setFile($this->file);
+        }
+        return $this->_permissionOptionsApi;
     }
 
 

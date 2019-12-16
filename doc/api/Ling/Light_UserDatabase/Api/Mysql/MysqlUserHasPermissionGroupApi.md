@@ -4,7 +4,7 @@
 
 The MysqlUserHasPermissionGroupApi class
 ================
-2019-07-19 --> 2019-10-30
+2019-07-19 --> 2019-12-16
 
 
 
@@ -74,4 +74,4 @@ See the source code of [Ling\Light_UserDatabase\Api\Mysql\MysqlUserHasPermission
 
 SeeAlso
 ==============
-Previous class: [MysqlPermissionGroupHasPermissionApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Mysql/MysqlPermissionGroupHasPermissionApi.md)<br>Next class: [PermissionApiInterface](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/PermissionApiInterface.md)<br>
+Previous class: [MysqlPermissionOptionsApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Mysql/MysqlPermissionOptionsApi.md)<br>Next class: [MysqlUserOptionsApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Mysql/MysqlUserOptionsApi.md)<br>

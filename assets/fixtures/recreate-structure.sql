@@ -102,6 +102,50 @@ CREATE TABLE IF NOT EXISTS `lud_permission_group_has_permission` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `lud_user_options`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `lud_user_options` ;
+
+CREATE TABLE IF NOT EXISTS `lud_user_options` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `name` VARCHAR(64) NOT NULL,
+  `value` VARCHAR(512) NOT NULL,
+  `plugin` VARCHAR(64) NOT NULL,
+  `description` VARCHAR(512) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_lud_user_options_lud_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_lud_user_options_lud_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `lud_user` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `lud_permission_options`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `lud_permission_options` ;
+
+CREATE TABLE IF NOT EXISTS `lud_permission_options` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `permission_id` INT NOT NULL,
+  `name` VARCHAR(64) NOT NULL,
+  `value` VARCHAR(512) NOT NULL,
+  `plugin` VARCHAR(64) NOT NULL,
+  `description` VARCHAR(512) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_lud_permission_options_lud_permission1_idx` (`permission_id` ASC),
+  CONSTRAINT `fk_lud_permission_options_lud_permission1`
+    FOREIGN KEY (`permission_id`)
+    REFERENCES `lud_permission` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
 
 
 INSERT INTO `lud_permission_group` (`id`, `name`) VALUES

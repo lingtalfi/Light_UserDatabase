@@ -57,7 +57,7 @@ Here is an example of the service configuration file using a database stored in 
 
 ```yaml
 user_database:
-    instance: Ling\Light_UserDatabase\MysqlLightWebsiteUserDatabase
+    instance: Ling\Light_UserDatabase\Service\LightUserDatabaseService
     methods:
         setContainer:
             container: @container()
@@ -119,6 +119,18 @@ $plugin_database_installer.methods_collection:
                 -
                     - @service(user_database)
                     - uninstallDatabase
+
+
+
+#$user_row_ownership.methods_collection:
+#    -
+#        method: registerRowInspector
+#        args:
+#            inspector:
+#                instance: Ling\Light_UserDatabase\UserRowOwnership\LightUserDatabaseRowInspector
+#                methods:
+#                    setHandledTablesFile:
+#                        file: ${app_dir}/config/data/Light_UserDatabase/Light_UserRowOwnership/handled_tables.byml
 ```
 
 
@@ -136,6 +148,10 @@ Related
 History Log
 =============
 
+- 1.13.0 -- 2019-12-16
+
+    - add lud_user_options and lud_permission_options tables
+    
 - 1.12.4 -- 2019-10-30
 
     - fix missing useMicroPermission implicitly set to true in the breeze configuration

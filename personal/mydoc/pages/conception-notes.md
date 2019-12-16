@@ -25,9 +25,11 @@ First, we see the user as a database structure with the following tables:
 - permission_group
 - user_has_permission_group
 - permission_group_has_permission
+- user_options
+- permission_options
 
 
-The semantics of those table names takes its roots in the [permission conception notes](https://github.com/lingtalfi/Light_User/blob/master/doc/pages/permission-conception-notes.md),
+The semantics of those table names takes its roots in the [Light_User permission conception notes](https://github.com/lingtalfi/Light_User/blob/master/doc/pages/permission-conception-notes.md),
 which we implement.
 
 In our mysql implementation, all tables have cascading for DELETE and UPDATE,
@@ -45,12 +47,13 @@ whereas our babyYaml implementation doesn't provide such functionality.
 
 The babyYaml implementation was an early implementation that I personally used in the early stages of the development
 of this planet, when there was only one "user" table, and I needed a quick tool to interact with it.
-So, again, now that the mysql implementation is done, we recommend to use the mysql implementation.
+So, again, now that the mysql implementation is done, we recommend to use the mysql implementation only, which is more suitable for
+storing larger/real life data.
 
 
 
 So now what's peculiar to our implementation of the Light WebsiteUser is that the methods related to the 
-user table (i.e. getUser, insertUser, ...) are directly available in the object, whereas the interaction
+user table (i.e. getUser, insertUser, ...) are directly available in the object (MysqlLightWebsiteUserDatabase), whereas the interaction
 with the other tables (i.e. permission, permission_group, ...) is accessed via apis.
 
 So for instance, in order to insert a permission, you need to use access the permission api first, like this:
@@ -68,7 +71,7 @@ az($db->getPermissionApi()->insertPermission([
 More details in the @page(LightWebsiteUserDatabaseInterface class).
 
 
-
+Note: we used the [Light_BreezeGenerator](https://github.com/lingtalfi/Light_BreezeGenerator) plugin to generate the bulk of our apis.
 
 
 
@@ -128,12 +131,28 @@ The **getUserInfoByCredentials** method is a key moment in the website user's li
 
 In fact, the **getUserInfoByCredentials** is called just before the website user is instantiated in the php session.
 
-In our implementation, we believe that the permissions of the user should be stored in the session, and therefore
+In our implementation, we believe that the permissions of the user should be stored in the session (to avoid database requests
+everytime we need to check whether the user has a certain permission), and therefore
 our **getUserInfoByCredentials** method returns an extended user array, which is like the regular user info array,
 but with the extra "rights" property, which contains all the permissions of the given user.
 
 
 
+
+
+The user_options and permission_options tables
+-----------------
+2019-12-16
+
+
+The two tables **user_options** and **permission_options** are in the process of being added today.
+
+The goal with this tables is that plugins can attach some additional information to an user or a permission,
+and even provide a gui interface to interact with it.
+
+This is for instance used by the **Light_UserData** plugin (implementation in progress as I write those lines),
+which stores the maximum allowed storage capacity in bytes based on the user permission. So for instance the user with permission
+**Light_UserData_Class1** has a maximum storage capacity of 20M, then the user with permission **Light_UserData_Class2** has 50M, etc... 
 
 
 
