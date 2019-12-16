@@ -8,7 +8,10 @@ use Ling\BabyYaml\BabyYamlUtil;
 use Ling\Bat\ArrayTool;
 use Ling\Bat\FileSystemTool;
 use Ling\Light\Core\Light;
+use Ling\Light\Events\LightEvent;
 use Ling\Light\Http\HttpRequestInterface;
+use Ling\Light\ServiceContainer\LightServiceContainerInterface;
+use Ling\Light_Events\Service\LightEventsService;
 use Ling\Light_Initializer\Initializer\LightInitializerInterface;
 use Ling\Light_PasswordProtector\Service\LightPasswordProtector;
 use Ling\Light_UserDatabase\Api\BabyYaml\BabyYamlPermissionApi;
@@ -24,7 +27,6 @@ use Ling\Light_UserDatabase\Api\PermissionOptionsApiInterface;
 use Ling\Light_UserDatabase\Api\UserHasPermissionGroupApiInterface;
 use Ling\Light_UserDatabase\Api\UserOptionsApiInterface;
 use Ling\Light_UserDatabase\Exception\LightUserDatabaseException;
-use Ling\Light_UserDatabase\Tool\LightWebsiteUserDatabaseTool;
 
 /**
  * The BabyYamlLightWebsiteUserDatabase interface.
@@ -87,6 +89,12 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
      */
     protected $root_extra;
 
+    /**
+     * This property holds the container for this instance.
+     * @var LightServiceContainerInterface
+     */
+    protected $container;
+
 
     /**
      * This property holds the @page(passwordProtector) for this instance.
@@ -102,12 +110,6 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
      */
     protected $passwordProtector;
 
-
-    /**
-     * This property holds the registered new user's profiles for this instance.
-     * @var array
-     */
-    protected $newUserProfiles;
 
 
     /**
@@ -152,6 +154,7 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
      */
     public function __construct()
     {
+        $this->container = null;
         $this->file = null;
         $this->root_identifier = "root";
         $this->root_password = "root";
@@ -159,7 +162,6 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
         $this->root_avatar_url = "";
         $this->root_extra = [];
         $this->passwordProtector = null;
-        $this->newUserProfiles = [];
         $this->_permissionApi = null;
         $this->_permissionGroupApi = null;
         $this->_permissionGroupHasPermissionApi = null;
@@ -177,6 +179,18 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
     {
         $this->file = $file;
     }
+
+    /**
+     * Sets the container.
+     *
+     * @param LightServiceContainerInterface $container
+     */
+    public function setContainer(LightServiceContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
+
 
 
 
@@ -263,6 +277,19 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
         ];
         $array = ArrayTool::superimpose($userInfo, $defaults);
 
+
+        /**
+         * @var $dispatcher LightEventsService
+         */
+        $dispatcher = $this->get('events');
+        $event = LightEvent::createByContainer($this->container);
+        $event->setVar('userInfo', $array);
+        $dispatcher->dispatch('Light_UserDatabase.on_new_user_before', $event);
+        $array = $event->getVar('userInfo');
+
+
+
+
         if (null !== $this->passwordProtector) {
             $array['password'] = $this->passwordProtector->passwordHash($array['password']);
         }
@@ -288,19 +315,6 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
 
         $this->updateUsers($users);
 
-
-        //--------------------------------------------
-        // PROFILES
-        //--------------------------------------------
-        $allProfiles = LightWebsiteUserDatabaseTool::resolveProfiles($this->newUserProfiles, $userInfo);
-
-        foreach ($allProfiles as $profile) {
-            $profileId = $this->getPermissionGroupApi()->getPermissionGroupIdByName($profile);
-            $this->getUserHasPermissionGroupApi()->insertUserHasPermissionGroup([
-                "user_id" => $id,
-                "permission_group_id" => $profileId,
-            ]);
-        }
 
         return (int)$id;
 
@@ -397,19 +411,6 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
         return $this->getUsers();
     }
 
-
-
-
-    //--------------------------------------------
-    //
-    //--------------------------------------------
-    /**
-     * @implementation
-     */
-    public function registerNewUserProfile($profile)
-    {
-        $this->newUserProfiles[] = $profile;
-    }
 
 
     //--------------------------------------------

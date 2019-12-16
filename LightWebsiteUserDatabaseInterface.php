@@ -86,32 +86,6 @@ interface LightWebsiteUserDatabaseInterface extends LightUserDatabaseInterface
     //
     //--------------------------------------------
     /**
-     * When a new user is created, the permissions she will get depends on her profiles.
-     * A profile is also known as a permission group.
-     * See more details in the @page(permissions conception notes).
-     *
-     * Plugins can register new profiles using this method.
-     * The profile parameter can be either:
-     *
-     * - a string, the profile
-     * - an array of profile strings
-     * - a callable, which returns a profile (string) or an array of profiles.
-     *          The callable has the following signature:
-     *              function ( array user ): array|string
-     *
-     *          Note: the "user" parameter is the array containing all the
-     *          newly created light website user info (except for the profiles).
-     *
-     *
-     * @param $profile
-     * @return void
-     */
-    public function registerNewUserProfile($profile);
-
-    //--------------------------------------------
-    //
-    //--------------------------------------------
-    /**
      * Returns a PermissionApiInterface instance.
      * @return PermissionApiInterface
      */

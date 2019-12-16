@@ -46,7 +46,7 @@ Returns [UserOptionsApiInterface](https://github.com/lingtalfi/Light_UserDatabas
 
 Source Code
 ===========
-See the source code for method [BabyYamlLightWebsiteUserDatabase::getUserOptionsApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/BabyYamlLightWebsiteUserDatabase.php#L469-L476)
+See the source code for method [BabyYamlLightWebsiteUserDatabase::getUserOptionsApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/BabyYamlLightWebsiteUserDatabase.php#L470-L477)
 
 
 See Also

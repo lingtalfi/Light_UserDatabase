@@ -46,7 +46,7 @@ Returns [UserOptionsApiInterface](https://github.com/lingtalfi/Light_UserDatabas
 
 Source Code
 ===========
-See the source code for method [LightWebsiteUserDatabaseInterface::getUserOptionsApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/LightWebsiteUserDatabaseInterface.php#L143-L143)
+See the source code for method [LightWebsiteUserDatabaseInterface::getUserOptionsApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/LightWebsiteUserDatabaseInterface.php#L117-L117)
 
 
 See Also

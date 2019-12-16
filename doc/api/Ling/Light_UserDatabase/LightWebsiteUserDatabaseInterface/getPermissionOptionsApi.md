@@ -46,7 +46,7 @@ Returns [PermissionOptionsApiInterface](https://github.com/lingtalfi/Light_UserD
 
 Source Code
 ===========
-See the source code for method [LightWebsiteUserDatabaseInterface::getPermissionOptionsApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/LightWebsiteUserDatabaseInterface.php#L149-L149)
+See the source code for method [LightWebsiteUserDatabaseInterface::getPermissionOptionsApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/LightWebsiteUserDatabaseInterface.php#L123-L123)
 
 
 See Also

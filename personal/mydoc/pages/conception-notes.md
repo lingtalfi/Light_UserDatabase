@@ -74,54 +74,7 @@ More details in the @page(LightWebsiteUserDatabaseInterface class).
 Note: we used the [Light_BreezeGenerator](https://github.com/lingtalfi/Light_BreezeGenerator) plugin to generate the bulk of our apis.
 
 
-
-
-Permissions and plugins, our implementation
-==================
-2019-09-17
-
-
-There are three moments when we need to pay special attention to the user's profiles (aka permission groups):
-
-- when the root user is created
-- when a new user is created
-- when an user is updated
-
-
-The creation of the root user is done at the **LightWebsiteUserDatabaseInterface** level, at the same moment
-when the "tables" are created.
-The **root** user belongs to the special (permission) group named "root" (it's a reserved permission group name),
-which contains only one permission named "*" (also reserved), which grants any right/permission to the users who owns it.
-
-
-When a new user is created, the **LightWebsiteUserDatabaseInterface** instance has already asked the plugins in advance
-what groups should a new user belong to, and those groups are then affected to the new user.
-
-How this works is that during the service container initialization, plugins registers the new user's profiles via the **registerNewUserProfile** method of
-our **LightWebsiteUserDatabaseInterface** instance. 
-Also, plugins are responsible for adding their own groups and permissions when they are initialized.
-
-So for instance if a plugin **PluginAAA** is installed, it will add its own permissions and groups in the database,
-for instance it will create two groups PluginAAA.admin and PluginAAA.user, with the corresponding rights.
-
-And in parallel of that, the **PluginAAA** plugin will also register the new user profile, in this case **PluginAAA.user**.
-
-Unless you have a special reason to do otherwise, we recommend that plugins who distinguishes between admin and user rights always give the 
-"user" groups to the newly created users, and let an human admin bind them to an "admin" group later, using the gui manually.
-
-
-When an user is updated using the updateUser method, we actually don't change the user's permission groups here, although that could have been possible.
-Instead, we prefer to isolate the operation of changing user groups as a standalone operation.
-
-In other words, the user groups are created only when the user is created for the first time, and then to change them,
-we generally wait for an human admin intervention via a gui.
-
-
-Also, we recommend to never delete/update a permission group created by a plugin, otherwise when you create a new user, some
-exceptions might be thrown because the group he wants to be in has been deleted.
-
-
-  
+ 
 
 
 The getUserInfoByCredentials method
@@ -136,6 +89,17 @@ everytime we need to check whether the user has a certain permission), and there
 our **getUserInfoByCredentials** method returns an extended user array, which is like the regular user info array,
 but with the extra "rights" property, which contains all the permissions of the given user.
 
+
+
+The root user
+-----------
+2019-12-16
+
+
+The creation of the root user is done at the **LightWebsiteUserDatabaseInterface** level, at the same moment
+when the "tables" are created.
+The **root** user belongs to the special (permission) group named "root" (it's a reserved permission group name),
+which contains only one permission named "*" (also reserved), which grants any right/permission to the users who owns it.
 
 
 
@@ -156,25 +120,33 @@ which stores the maximum allowed storage capacity in bytes based on the user per
 
 
 
+Binding information to the user
+-----------
+2019-12-16
+
+Our plugin basically provides you with two ways of binding data to the user:
+
+- using the **user_options** and/or **permission_options** tables
+- adding information to the extra field of the user table 
 
 
+We generally use the first method to store data that we intend to retrieve by the mean of a database request.
+But sometimes, we want the data to be accessible directly from the session, to avoid that database request (which can
+be considered slow). And so when this is the case, we tend to store that kind of hot data directly in the extra field of the **user** table,
+which then should be accessible from the session.  
 
 
+In order to add data in the **user_options** and **permission_options** tables, we rely on the events provided by 
+the [Light_Database plugin](https://github.com/lingtalfi/Light_Database):
 
+- **Light_Database.on_lud_user_options_create** 
+- **Light_Database.on_lud_permission_options_create**
 
+See the [Light_Database events page](https://github.com/lingtalfi/Light_Database/blob/master/personal/mydoc/pages/events.md) for more details. 
 
+Now to store the data in the extra field of the **user** table, we use an event of ours:
 
+- Light_UserDatabase.on_new_user_before
 
-
-
-
-
-
-
-
-
-
- 
-
-
+See more about this events in [our events page](https://github.com/lingtalfi/Light_UserDatabase/blob/master/personal/mydoc/pages/events.md).
 

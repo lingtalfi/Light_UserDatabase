@@ -6,6 +6,7 @@ dependencies:
         - SimplePdoWrapper
         - BabyYaml
         - Light
+        - Light_Events
         - Light_Initializer
         - Light_PasswordProtector
         - Light_Bullsheet

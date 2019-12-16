@@ -7,9 +7,11 @@ namespace Ling\Light_UserDatabase;
 use Ling\ArrayToString\ArrayToStringTool;
 use Ling\Bat\ArrayTool;
 use Ling\Light\Core\Light;
+use Ling\Light\Events\LightEvent;
 use Ling\Light\Http\HttpRequestInterface;
 use Ling\Light\ServiceContainer\LightServiceContainerInterface;
 use Ling\Light_Database\LightDatabasePdoWrapper;
+use Ling\Light_Events\Service\LightEventsService;
 use Ling\Light_Initializer\Initializer\LightInitializerInterface;
 use Ling\Light_PasswordProtector\Service\LightPasswordProtector;
 use Ling\Light_PluginDatabaseInstaller\Service\LightPluginDatabaseInstallerService;
@@ -26,7 +28,6 @@ use Ling\Light_UserDatabase\Api\PermissionOptionsApiInterface;
 use Ling\Light_UserDatabase\Api\UserHasPermissionGroupApiInterface;
 use Ling\Light_UserDatabase\Api\UserOptionsApiInterface;
 use Ling\Light_UserDatabase\Exception\LightUserDatabaseException;
-use Ling\Light_UserDatabase\Tool\LightWebsiteUserDatabaseTool;
 use Ling\SimplePdoWrapper\Util\MysqlInfoUtil;
 use Ling\SqlWizard\Tool\MysqlSerializeTool;
 
@@ -118,11 +119,6 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
     protected $passwordProtector;
 
 
-    /**
-     * This property holds the registered new user's profiles for this instance.
-     * @var array
-     */
-    protected $newUserProfiles;
 
 
     /**
@@ -146,7 +142,6 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
         $this->root_pseudo = "root";
         $this->root_avatar_url = "";
         $this->root_extra = [];
-        $this->newUserProfiles = [];
         $this->passwordProtector = null;
     }
 
@@ -249,6 +244,19 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
         ];
         $array = ArrayTool::superimpose($userInfo, $defaults);
 
+
+        /**
+         * @var $dispatcher LightEventsService
+         */
+        $dispatcher = $this->container->get('events');
+        $event = LightEvent::createByContainer($this->container);
+        $event->setVar('userInfo', $array);
+        $dispatcher->dispatch('Light_UserDatabase.on_new_user_before', $event);
+        $array = $event->getVar('userInfo');
+
+
+
+
         if (null !== $this->passwordProtector) {
             $array['password'] = $this->passwordProtector->passwordHash($array['password']);
         }
@@ -263,20 +271,6 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
             }
             throw new LightUserDatabaseException("An error occurred with the database while inserting the user " . $array['identifier'] . ": $sErrorDetails.");
         }
-
-        //--------------------------------------------
-        // PROFILES
-        //--------------------------------------------
-        $allProfiles = LightWebsiteUserDatabaseTool::resolveProfiles($this->newUserProfiles, $array);
-
-        foreach ($allProfiles as $profile) {
-            $profileId = $this->getPermissionGroupApi()->getPermissionGroupIdByName($profile);
-            $this->getUserHasPermissionGroupApi()->insertUserHasPermissionGroup([
-                "user_id" => $userId,
-                "permission_group_id" => $profileId,
-            ]);
-        }
-
 
         return (int)$userId;
     }
@@ -369,19 +363,6 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
     }
 
 
-
-
-
-    //--------------------------------------------
-    //
-    //--------------------------------------------
-    /**
-     * @implementation
-     */
-    public function registerNewUserProfile($profile)
-    {
-        $this->newUserProfiles[] = $profile;
-    }
 
 
     //--------------------------------------------

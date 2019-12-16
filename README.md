@@ -73,7 +73,8 @@ user_database_vars:
 #    methods:
 #        setFile:
 #            file: ${app_dir}/config/data/Light_UserDatabase/database.byml
-
+#        setContainer:
+#            container: @container()
 
 # --------------------------------------
 # hooks
@@ -148,6 +149,10 @@ Related
 History Log
 =============
 
+- 1.14.0 -- 2019-12-16
+
+    - add Light_UserDatabase.on_new_user_before event
+    
 - 1.13.0 -- 2019-12-16
 
     - add lud_user_options and lud_permission_options tables
