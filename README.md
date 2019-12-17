@@ -154,6 +154,10 @@ Related
 History Log
 =============
 
+- 1.18.0 -- 2019-12-17
+
+    - add UserGroupApiInterface->getUserGroupIdByName method
+    
 - 1.17.0 -- 2019-12-17
 
     - update schema, add user_group and plugin_options tables

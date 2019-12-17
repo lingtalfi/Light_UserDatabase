@@ -5,9 +5,8 @@ namespace Ling\Light_UserDatabase\Api\Mysql;
 
 
 use Ling\Light_UserDatabase\Api\UserGroupApiInterface;
-use Ling\SimplePdoWrapper\SimplePdoWrapperInterface;
 use Ling\SimplePdoWrapper\SimplePdoWrapper;
-
+use Ling\SimplePdoWrapper\SimplePdoWrapperInterface;
 
 
 /**
@@ -23,7 +22,6 @@ class MysqlUserGroupApi implements UserGroupApiInterface
     protected $pdoWrapper;
 
 
-
     /**
      * Builds the UserGroupApi instance.
      */
@@ -32,8 +30,6 @@ class MysqlUserGroupApi implements UserGroupApiInterface
         $this->pdoWrapper = null;
 
     }
-
-
 
 
     /**
@@ -62,6 +58,24 @@ class MysqlUserGroupApi implements UserGroupApiInterface
     }
 
 
+    /**
+     * @implementation
+     */
+    public function getUserGroupIdByName(string $name, $default = null, bool $throwNotFoundEx = false)
+    {
+        $ret = $this->pdoWrapper->fetch("select id from `lud_user_group` where name=:name", [
+            "name" => $name,
+
+        ]);
+        if (false === $ret) {
+            if (true === $throwNotFoundEx) {
+                throw new \RuntimeException("Row not found with name=$name.");
+            } else {
+                $ret = $default;
+            }
+        }
+        return $ret;
+    }
 
 
     /**
@@ -87,7 +101,6 @@ class MysqlUserGroupApi implements UserGroupApiInterface
     {
         $this->doUpdateUserGroupByName($name, $userGroup);
     }
-
 
 
     /**
@@ -232,16 +245,14 @@ class MysqlUserGroupApi implements UserGroupApiInterface
     }
 
 
-
-
     /**
      * The working horse behind the updateUserGroupById method.
      * See the updateUserGroupById method for more details.
      *
      * @param int $id
      * @param array $userGroup
-     * @throws \Exception
      * @return void
+     * @throws \Exception
      */
     protected function doUpdateUserGroupById(int $id, array $userGroup)
     {
@@ -257,8 +268,8 @@ class MysqlUserGroupApi implements UserGroupApiInterface
      *
      * @param string $name
      * @param array $userGroup
-     * @throws \Exception
      * @return void
+     * @throws \Exception
      */
     protected function doUpdateUserGroupByName(string $name, array $userGroup)
     {
@@ -269,14 +280,13 @@ class MysqlUserGroupApi implements UserGroupApiInterface
     }
 
 
-
     /**
      * The working horse behind the deleteUserGroupById method.
      * See the deleteUserGroupById method for more details.
      *
      * @param int $id
-     * @throws \Exception
      * @return void
+     * @throws \Exception
      */
     protected function doDeleteUserGroupById(int $id)
     {
@@ -291,8 +301,8 @@ class MysqlUserGroupApi implements UserGroupApiInterface
      * See the deleteUserGroupByName method for more details.
      *
      * @param string $name
-     * @throws \Exception
      * @return void
+     * @throws \Exception
      */
     protected function doDeleteUserGroupByName(string $name)
     {
