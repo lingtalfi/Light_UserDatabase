@@ -76,4 +76,4 @@ See the source code of [Ling\Light_UserDatabase\Api\Mysql\MysqlPermissionApi](ht
 
 SeeAlso
 ==============
-Previous class: [BabyYamlUserOptionsApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/BabyYaml/BabyYamlUserOptionsApi.md)<br>Next class: [MysqlPermissionGroupApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Mysql/MysqlPermissionGroupApi.md)<br>
+Next class: [MysqlPermissionGroupApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Mysql/MysqlPermissionGroupApi.md)<br>

@@ -16,7 +16,7 @@ conf:
     # Whether to overwrite existing files (if false, skip them)
     # Used mainly for debugging purposes, in production you probably should set this to false
     # The default value is false
-    overwriteExisting: false
+    overwriteExisting: true
     useMicroPermission: false
     generate:
         prefix: lud

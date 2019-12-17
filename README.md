@@ -154,6 +154,11 @@ Related
 History Log
 =============
 
+- 1.17.0 -- 2019-12-17
+
+    - update schema, add user_group and plugin_options tables
+    - removed BabyYaml implementation
+    
 - 1.16.1 -- 2019-12-17
 
     - fix functional typo in service configuration

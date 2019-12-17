@@ -25,8 +25,13 @@ First, we see the user as a database structure with the following tables:
 - permission_group
 - user_has_permission_group
 - permission_group_has_permission
-- user_options
-- permission_options
+- user_group
+- plugin_option
+- user_group_has_plugin_option
+
+
+All table names in this document are simplified, in the concrete implementation they are all prefixed with the "lud" prefix (which stands for light user database).
+
 
 
 The semantics of those table names takes its roots in the [Light_User permission conception notes](https://github.com/lingtalfi/Light_User/blob/master/doc/pages/permission-conception-notes.md),
@@ -36,20 +41,10 @@ In our mysql implementation, all tables have cascading for DELETE and UPDATE,
 and our tables are prefixed with the "lud_" prefix (i.e. lud_user, lud_permission, ...).
 
 
-Our implementation offers two database types:
+Our implementation uses mysql under the hood.
 
-- either a babyYaml based database (BabyYamlLightWebsiteUserDatabase)
-- or a regular mysql database (MysqlLightWebsiteUserDatabase)
-
-
-Usually, we recommend to stick with the mysql implementation, as mysql has natural foreign key constraint checking,
-whereas our babyYaml implementation doesn't provide such functionality.
-
-The babyYaml implementation was an early implementation that I personally used in the early stages of the development
-of this planet, when there was only one "user" table, and I needed a quick tool to interact with it.
-So, again, now that the mysql implementation is done, we recommend to use the mysql implementation only, which is more suitable for
-storing larger/real life data.
-
+Note: in version 1.16.1 and earlier, there was also a babyYaml based database implementation, 
+but I removed it because it was incomplete, plus it took me too much time to update the plugin every time there was a new change in the schema structure.
 
 
 So now what's peculiar to our implementation of the Light WebsiteUser is that the methods related to the 
@@ -91,62 +86,121 @@ but with the extra "rights" property, which contains all the permissions of the 
 
 
 
-The root user
------------
-2019-12-16
-
-
-The creation of the root user is done at the **LightWebsiteUserDatabaseInterface** level, at the same moment
-when the "tables" are created.
-The **root** user belongs to the special (permission) group named "root" (it's a reserved permission group name),
-which contains only one permission named "*" (also reserved), which grants any right/permission to the users who owns it.
 
 
 
 
-The user_options and permission_options tables
+
+User Groups and plugin options: binding data to an user
 -----------------
-2019-12-16
+2019-12-17
+
+Each user belongs to a unique (user) group.
+
+A group is defined by a unique set of plugin options.
+
+We use groups because it allows us give the same set of options to multiple users at once.
+
+The **plugin options** table is populated by plugins.
+
+Different plugins might will provide different options, for instance plugin A will provide the following options:
+
+- PluginA.is_premium 
+- PluginA.has_monday_coupon
+
+and plugin B will have this option:
+
+- PluginB.maximum_storage_capacity
 
 
-The two tables **user_options** and **permission_options** are in the process of being added today.
 
-The goal with this tables is that plugins can attach some additional information to an user or a permission,
-and even provide a gui interface to interact with it.
+### plugin installation
 
-This is for instance used by the **Light_UserData** plugin (implementation in progress as I write those lines),
-which stores the maximum allowed storage capacity in bytes based on the user permission. So for instance the user with permission
-**Light_UserData_Class1** has a maximum storage capacity of 20M, then the user with permission **Light_UserData_Class2** has 50M, etc... 
+In this design, we try to make it so that when a plugin is installed, it's usable right out of the box,
+and so when a plugin is installed, it basically does two things:
 
-
-
-Binding information to the user
------------
-2019-12-16
-
-Our plugin basically provides you with two ways of binding data to the user:
-
-- using the **user_options** and/or **permission_options** tables
-- adding information to the extra field of the user table 
+- populate the **plugin options** table 
+- optionally (but recommended), create the bindings for each user group to the most common/default set of options
 
 
-We generally use the first method to store data that we intend to retrieve by the mean of a database request.
-But sometimes, we want the data to be accessible directly from the session, to avoid that database request (which can
-be considered slow). And so when this is the case, we tend to store that kind of hot data directly in the extra field of the **user** table,
-which then should be accessible from the session.  
+So for instance if pluginA is installed, it has two options (**is_premium** and **has_monday_coupon**), and we recommend
+that plugin A figures out which set of option is the most common (for instance is_premium=0 and has_monday_coupon=0),
+and binds them to all existing user groups (thus populating the **user_group_has_plugin_options** table).
+
+In parallel of this, we recommend that this plugin also listens to the **Light_Database.on_lud_user_group_create** event
+provided by the [Light_Database plugin](https://github.com/lingtalfi/Light_Database), to be consistent and add the same set of default options to the newly created user groups.  
 
 
-In order to add data in the **user_options** and **permission_options** tables, we rely on the events provided by 
-the [Light_Database plugin](https://github.com/lingtalfi/Light_Database):
+It's important to understand that a plugin cannot configure the user groups directly, as it doesn't have sufficient knowledge to do it properly.
+Only the host application main plugin might have that kind of knowledge, if there is such a plugin.
 
-- **Light_Database.on_lud_user_options_create** 
-- **Light_Database.on_lud_permission_options_create**
+The human administrator's role is to ensure that all user groups are bound to the correct plugin options. 
+She does so by reading the plugins documentation.
+Some plugins might try to help the human administrator in this task (for instance a plugin like [Light_Kit_Admin](https://github.com/lingtalfi/Light_Kit_Admin) is in a good position to provide such help). 
 
-See the [Light_Database events page](https://github.com/lingtalfi/Light_Database/blob/master/personal/mydoc/pages/events.md) for more details. 
 
-Now to store the data in the extra field of the **user** table, we use an event of ours:
+During the application life, we provide access to the options for a given group.
+
+Plugins react to some options, that's all they do.
+
+Note that we purposely didn't allow options override at the user level; instead you need to create a user group (even if that group contains only one user), that's part of our design.
+We did this to make things conceptually simpler to understand.
+ 
+That's also the reason why we didn't put the value of the options in the **user_group_has_plugin_option** table, because we wanted to make it clearer that plugins provide their own options and values.
+With this design, it's clear that the intent is that plugin keep control over the possible options they provide.
+
+Maybe one drawback of this design is that we will have to use tricks, should a plugin provide an option with an infinite number of possible values, but
+we don't think this will happen.
+
+
+Again, it's important that each group is bound to its own unique set of options, otherwise it defeats the purpose of a group as we implemented it.
+If it helps, you can think of a group as an existing use case for an user: if the user needs a certain set of options, a group needs to be created,
+and a given group is only created once.
+ 
+ 
+
+
+
+The user extra column
+---------------
+2019-12-17
+
+Plugins can also add user related information to the user **extra** column.
+
+The promise of this column is that the information it contains will be stored in the php session, making it faster to access than
+information stored in the database.
+
+
+Now to store the data in the extra field of the **user** table, plugins can use this event of ours:
 
 - Light_UserDatabase.on_new_user_before
 
 See more about this events in [our events page](https://github.com/lingtalfi/Light_UserDatabase/blob/master/personal/mydoc/pages/events.md).
+
+
+Note: also for consistency, a plugin that use this extra column will have to update the user table to inject all its extra data upon installation. 
+
+
+
+
+
+ 
+ 
+Records created by our plugin
+-----------
+2019-12-17
+
+
+When our plugin is installed, it creates the following:
+
+- the "default" user group
+- the "root" user (with group default)
+- the "root" permission group
+- the "*" permission
+- bind "*" permission to "root" permission group
+- bind "root" user to "root" permission group
+
+
+Plugin who wants to create new users can rely on the fact that a group named "default" will always be available (i.e. that group
+should never be deleted).
 

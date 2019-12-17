@@ -8,6 +8,9 @@ use Ling\Light_UserDatabase\Api\PermissionApiInterface;
 use Ling\Light_UserDatabase\Api\PermissionGroupApiInterface;
 use Ling\Light_UserDatabase\Api\PermissionGroupHasPermissionApiInterface;
 use Ling\Light_UserDatabase\Api\PermissionOptionsApiInterface;
+use Ling\Light_UserDatabase\Api\PluginOptionApiInterface;
+use Ling\Light_UserDatabase\Api\UserGroupApiInterface;
+use Ling\Light_UserDatabase\Api\UserGroupHasPluginOptionApiInterface;
 use Ling\Light_UserDatabase\Api\UserHasPermissionGroupApiInterface;
 use Ling\Light_UserDatabase\Api\UserOptionsApiInterface;
 use Ling\Light_UserDatabase\Exception\LightUserDatabaseException;
@@ -115,16 +118,22 @@ interface LightWebsiteUserDatabaseInterface extends LightUserDatabaseInterface
      */
     public function getUserHasPermissionGroupApi(): UserHasPermissionGroupApiInterface;
 
+    /**
+     * Returns a UserGroupApiInterface instance.
+     * @return UserGroupApiInterface
+     */
+    public function getUserGroupApi(): UserGroupApiInterface;
 
     /**
-     * Returns a UserOptionsApiInterface instance.
-     * @return UserOptionsApiInterface
+     * Returns a PluginOptionApiInterface instance.
+     * @return PluginOptionApiInterface
      */
-    public function getUserOptionsApi(): UserOptionsApiInterface;
+    public function getPluginOptionApi(): PluginOptionApiInterface;
 
     /**
-     * Returns a PermissionOptionsApiInterface instance.
-     * @return PermissionOptionsApiInterface
+     * Returns a UserGroupHasPluginOptionApiInterface instance.
+     * @return UserGroupHasPluginOptionApiInterface
      */
-    public function getPermissionOptionsApi(): PermissionOptionsApiInterface;
+    public function getUserGroupHasPluginOptionApi(): UserGroupHasPluginOptionApiInterface;
+
 }
