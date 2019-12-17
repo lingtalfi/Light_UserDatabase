@@ -46,7 +46,7 @@ Returns [UserHasPermissionGroupApiInterface](https://github.com/lingtalfi/Light_
 
 Source Code
 ===========
-See the source code for method [MysqlLightWebsiteUserDatabase::getUserHasPermissionGroupApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L504-L509)
+See the source code for method [MysqlLightWebsiteUserDatabase::getUserHasPermissionGroupApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L506-L511)
 
 
 See Also

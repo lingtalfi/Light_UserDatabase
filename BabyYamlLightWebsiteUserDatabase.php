@@ -7,12 +7,9 @@ namespace Ling\Light_UserDatabase;
 use Ling\BabyYaml\BabyYamlUtil;
 use Ling\Bat\ArrayTool;
 use Ling\Bat\FileSystemTool;
-use Ling\Light\Core\Light;
 use Ling\Light\Events\LightEvent;
-use Ling\Light\Http\HttpRequestInterface;
 use Ling\Light\ServiceContainer\LightServiceContainerInterface;
 use Ling\Light_Events\Service\LightEventsService;
-use Ling\Light_Initializer\Initializer\LightInitializerInterface;
 use Ling\Light_PasswordProtector\Service\LightPasswordProtector;
 use Ling\Light_UserDatabase\Api\BabyYaml\BabyYamlPermissionApi;
 use Ling\Light_UserDatabase\Api\BabyYaml\BabyYamlPermissionGroupApi;
@@ -47,7 +44,7 @@ use Ling\Light_UserDatabase\Exception\LightUserDatabaseException;
  *
  *
  */
-class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface, LightInitializerInterface
+class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
 {
 
     /**
@@ -508,9 +505,17 @@ class BabyYamlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterf
     //
     //--------------------------------------------
     /**
-     * @implementation
+     * Listener for the @page(Light.initialize_1 event).
+     * It prepares the user database in the babyYaml file (although partially only).
+     * We recommend to use the mysql version instead, because the babyYaml implementation is not complete.
+     *
+     * See more details in the @page(Light_UserDatabase conception notes).
+     *
+     *
+     * @param LightEvent $event
+     * @throws \Exception
      */
-    public function initialize(Light $light, HttpRequestInterface $httpRequest)
+    public function initialize(LightEvent $event)
     {
         if (null !== $this->file) {
 

@@ -29,14 +29,6 @@ $breeze_generator.methods_collection:
             file: ${app_dir}/config/data/Light_UserDatabase/Light_BreezeGenerator/lud.byml
 
 
-$initializer.methods_collection:
-    -
-        method: registerInitializer
-        args:
-            initializer: @service(user_database)
-            slot: install
-
-
 $bullsheet.methods_collection:
     -
         method: registerBullsheeter
@@ -49,6 +41,19 @@ $bullsheet.methods_collection:
                         dir: ${app_dir}
                     setAvatarImgDir:
                         dir: ${user_database_vars.bullsheeter_avatar_img_dir}
+
+$events.methods_collection:
+    -
+        method: registerListener
+        args:
+            events: Light.Light.initialize_1
+            listener:
+                instance: @service(user_database)
+                callable_method: initialize
+
+
+
+
 
 $plugin_database_installer.methods_collection:
     -

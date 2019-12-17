@@ -46,7 +46,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [BabyYamlLightWebsiteUserDatabase::getAllUserInfo](https://github.com/lingtalfi/Light_UserDatabase/blob/master/BabyYamlLightWebsiteUserDatabase.php#L406-L409)
+See the source code for method [BabyYamlLightWebsiteUserDatabase::getAllUserInfo](https://github.com/lingtalfi/Light_UserDatabase/blob/master/BabyYamlLightWebsiteUserDatabase.php#L403-L406)
 
 
 See Also

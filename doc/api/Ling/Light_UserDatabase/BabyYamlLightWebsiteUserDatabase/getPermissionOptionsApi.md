@@ -46,7 +46,7 @@ Returns [PermissionOptionsApiInterface](https://github.com/lingtalfi/Light_UserD
 
 Source Code
 ===========
-See the source code for method [BabyYamlLightWebsiteUserDatabase::getPermissionOptionsApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/BabyYamlLightWebsiteUserDatabase.php#L495-L502)
+See the source code for method [BabyYamlLightWebsiteUserDatabase::getPermissionOptionsApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/BabyYamlLightWebsiteUserDatabase.php#L492-L499)
 
 
 See Also

@@ -46,7 +46,7 @@ Returns [UserOptionsApiInterface](https://github.com/lingtalfi/Light_UserDatabas
 
 Source Code
 ===========
-See the source code for method [MysqlLightWebsiteUserDatabase::getUserOptionsApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L514-L519)
+See the source code for method [MysqlLightWebsiteUserDatabase::getUserOptionsApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L516-L521)
 
 
 See Also

@@ -44,7 +44,7 @@ Services
 
 This plugin provides the following services:
 
-- user_database         (returns LightWebsiteUserDatabaseInterface)
+- user_database         (returns LightUserDatabaseService)
 
 
 Any data related to an user can be stored in the database, although the primary intent
@@ -87,14 +87,6 @@ $breeze_generator.methods_collection:
             file: ${app_dir}/config/data/Light_UserDatabase/Light_BreezeGenerator/lud.byml
 
 
-$initializer.methods_collection:
-    -
-        method: registerInitializer
-        args:
-            initializer: @service(user_database)
-            slot: install
-
-
 $bullsheet.methods_collection:
     -
         method: registerBullsheeter
@@ -107,6 +99,19 @@ $bullsheet.methods_collection:
                         dir: ${app_dir}
                     setAvatarImgDir:
                         dir: ${user_database_vars.bullsheeter_avatar_img_dir}
+
+$events.methods_collection:
+    -
+        method: registerListener
+        args:
+            events: Light.Light.initialize_1
+            listener:
+                instance: @service(user_database)
+                callable_method: initialize
+
+
+
+
 
 $plugin_database_installer.methods_collection:
     -
@@ -148,6 +153,10 @@ Related
 
 History Log
 =============
+
+- 1.16.0 -- 2019-12-17
+
+    - update plugin to accommodate Light 0.50 new initialization system
 
 - 1.15.0 -- 2019-12-16
 

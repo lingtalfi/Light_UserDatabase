@@ -6,13 +6,10 @@ namespace Ling\Light_UserDatabase;
 
 use Ling\ArrayToString\ArrayToStringTool;
 use Ling\Bat\ArrayTool;
-use Ling\Light\Core\Light;
 use Ling\Light\Events\LightEvent;
-use Ling\Light\Http\HttpRequestInterface;
 use Ling\Light\ServiceContainer\LightServiceContainerInterface;
 use Ling\Light_Database\LightDatabasePdoWrapper;
 use Ling\Light_Events\Service\LightEventsService;
-use Ling\Light_Initializer\Initializer\LightInitializerInterface;
 use Ling\Light_PasswordProtector\Service\LightPasswordProtector;
 use Ling\Light_PluginDatabaseInstaller\Service\LightPluginDatabaseInstallerService;
 use Ling\Light_UserDatabase\Api\Mysql\MysqlPermissionApi;
@@ -35,7 +32,7 @@ use Ling\SqlWizard\Tool\MysqlSerializeTool;
  * The MysqlLightWebsiteUserDatabase interface.
  *
  * In this implementation, we create the tables if they don't exist, using the @page(initializer service).
- * The created tables are the ones defined in the @page(conception notes).
+ * The created tables are the ones defined in the @page(Light_UserDatabase conception notes).
  *
  *
  * Also, a root user is created along with the "user" table, so that the maintainer can connect directly to the gui
@@ -45,7 +42,7 @@ use Ling\SqlWizard\Tool\MysqlSerializeTool;
  *
  *
  */
-class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface, LightInitializerInterface
+class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
 {
 
 
@@ -376,9 +373,14 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
     //
     //--------------------------------------------
     /**
-     * @implementation
+     * Listener for the @page(Light.initialize_1 event).
+     * It installs the user database.
+     * See more details in the @page(Light_UserDatabase conception notes).
+     *
+     * @param LightEvent $event
+     * @throws \Exception
      */
-    public function initialize(Light $light, HttpRequestInterface $httpRequest)
+    public function initialize(LightEvent $event)
     {
         /**
          * @var $pih LightPluginDatabaseInstallerService
