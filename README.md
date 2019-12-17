@@ -104,7 +104,7 @@ $events.methods_collection:
     -
         method: registerListener
         args:
-            events: Light.Light.initialize_1
+            events: Light.initialize_1
             listener:
                 instance: @service(user_database)
                 callable_method: initialize
@@ -154,6 +154,10 @@ Related
 History Log
 =============
 
+- 1.16.1 -- 2019-12-17
+
+    - fix functional typo in service configuration
+    
 - 1.16.0 -- 2019-12-17
 
     - update plugin to accommodate Light 0.50 new initialization system
