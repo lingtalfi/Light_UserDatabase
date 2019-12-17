@@ -66,7 +66,7 @@ class MysqlUserGroupApi implements UserGroupApiInterface
         $ret = $this->pdoWrapper->fetch("select id from `lud_user_group` where name=:name", [
             "name" => $name,
 
-        ]);
+        ], \PDO::FETCH_COLUMN);
         if (false === $ret) {
             if (true === $throwNotFoundEx) {
                 throw new \RuntimeException("Row not found with name=$name.");

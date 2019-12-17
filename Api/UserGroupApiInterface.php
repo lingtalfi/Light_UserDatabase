@@ -76,7 +76,7 @@ interface UserGroupApiInterface
      * @param string $name
      * @param null $default
      * @param bool $throwNotFoundEx
-     * @return mixed
+     * @return string|mixed
      */
     public function getUserGroupIdByName(string $name, $default = null, bool $throwNotFoundEx = false);
 

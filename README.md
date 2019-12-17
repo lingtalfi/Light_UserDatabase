@@ -154,6 +154,10 @@ Related
 History Log
 =============
 
+- 1.18.1 -- 2019-12-17
+
+    - fix MysqlUserGroupApi->getUserGroupIdByName returning an array instead of string
+    
 - 1.18.0 -- 2019-12-17
 
     - add UserGroupApiInterface->getUserGroupIdByName method
