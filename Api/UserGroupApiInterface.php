@@ -119,4 +119,23 @@ interface UserGroupApiInterface
     public function deleteUserGroupByName(string $name);
 
 
+
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    /**
+     * Returns the id of the user group which name is given.
+     *
+     * If the row is not found, this method's return depends on the throwNotFoundEx flag:
+     * - if true, the method throws an exception
+     * - if false, the method returns the given default value
+     *
+     * @param string $name
+     * @param null $default
+     * @param bool $throwNotFoundEx
+     * @return string|mixed
+     */
+    public function getUserGroupIdByName(string $name, $default = null, bool $throwNotFoundEx = false);
+
+
 }

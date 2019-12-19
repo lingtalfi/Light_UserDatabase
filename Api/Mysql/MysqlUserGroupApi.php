@@ -160,4 +160,26 @@ class MysqlUserGroupApi extends MysqlBaseLightUserDatabaseApi implements UserGro
     }
 
 
+    //--------------------------------------------
+    // CUSTOM METHODS
+    //--------------------------------------------
+    /**
+     * @implementation
+     */
+    public function getUserGroupIdByName(string $name, $default = null, bool $throwNotFoundEx = false)
+    {
+        $ret = $this->pdoWrapper->fetch("select id from `lud_user_group` where name=:name", [
+            "name" => $name,
+
+        ], \PDO::FETCH_COLUMN);
+        if (false === $ret) {
+            if (true === $throwNotFoundEx) {
+                throw new \RuntimeException("Row not found with name=$name.");
+            } else {
+                $ret = $default;
+            }
+        }
+        return $ret;
+    }
+
 }

@@ -154,6 +154,10 @@ Related
 History Log
 =============
 
+- 1.19.1 -- 2019-12-19
+
+    - restore inadvertently removed UserGroupApiInterface->getUserGroupIdByName method
+    
 - 1.19.0 -- 2019-12-19
 
     - update api internal code using new BreezeGenerator
