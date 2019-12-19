@@ -73,7 +73,7 @@ interface PluginOptionApiInterface
      * @return array
      * @throws \Exception
      */
-    public function getAllIds();
+    public function getAllIds(): array;
 
 
 

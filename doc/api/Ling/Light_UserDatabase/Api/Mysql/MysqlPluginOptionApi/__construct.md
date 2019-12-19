@@ -7,7 +7,7 @@ MysqlPluginOptionApi::__construct
 
 
 
-MysqlPluginOptionApi::__construct — Builds the PluginOptionApi instance.
+MysqlPluginOptionApi::__construct — Builds the MysqlPluginOptionApi instance.
 
 
 
@@ -21,7 +21,7 @@ public [MysqlPluginOptionApi::__construct](https://github.com/lingtalfi/Light_Us
 
 
 
-Builds the PluginOptionApi instance.
+Builds the MysqlPluginOptionApi instance.
 
 
 
@@ -46,7 +46,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [MysqlPluginOptionApi::__construct](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPluginOptionApi.php#L29-L33)
+See the source code for method [MysqlPluginOptionApi::__construct](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPluginOptionApi.php#L20-L24)
 
 
 See Also

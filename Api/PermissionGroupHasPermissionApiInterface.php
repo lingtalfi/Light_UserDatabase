@@ -12,6 +12,28 @@ interface PermissionGroupHasPermissionApiInterface
 {
 
     /**
+     * Inserts the given permissionGroupHasPermission in the database.
+     * By default, it returns the result of the PDO::lastInsertId method.
+     * If the returnRic flag is set to true, the method will return the ric array instead of the lastInsertId.
+     *
+     *
+     * If the row you're trying to insert triggers a duplicate error, the behaviour of this method depends on
+     * the ignoreDuplicate flag:
+     * - if true, the error will be caught internally, the return of the method is not affected
+     * - if false, the error will not be caught, and depending on your configuration, it might either
+     *          trigger an exception, or fail silently in which case this method returns false.
+     *
+     *
+     *
+     * @param array $permissionGroupHasPermission
+     * @param bool $ignoreDuplicate
+     * @param bool $returnRic
+     * @return mixed
+     * @throws \Exception
+     */
+    public function insertPermissionGroupHasPermission(array $permissionGroupHasPermission, bool $ignoreDuplicate = true, bool $returnRic = false);
+
+    /**
      * Returns the permissionGroupHasPermission row identified by the given permission_group_id and permission_id.
      *
      * If the row is not found, this method's return depends on the throwNotFoundEx flag:
@@ -28,6 +50,11 @@ interface PermissionGroupHasPermissionApiInterface
      */
     public function getPermissionGroupHasPermissionByPermissionGroupIdAndPermissionId(int $permission_group_id, int $permission_id, $default = null, bool $throwNotFoundEx = false);
 
+
+
+
+
+
     /**
      * Updates the permissionGroupHasPermission row identified by the given permission_group_id and permission_id.
      *
@@ -39,26 +66,6 @@ interface PermissionGroupHasPermissionApiInterface
      */
     public function updatePermissionGroupHasPermissionByPermissionGroupIdAndPermissionId(int $permission_group_id, int $permission_id, array $permissionGroupHasPermission);
 
-    /**
-     * Inserts the given permissionGroupHasPermission in the database.
-     * By default, it returns the result of the PDO::lastInsertId method.
-     *
-     * If the row you're trying to insert triggers a duplicate error, the behaviour of this method depends on
-     * the ignoreDuplicate flag:
-     * - if true, the error will be caught internally, the method will return false
-     * - if false, the error will not be caught
-     *
-     * If the returnRic flag is set to true, the method will return the ric array instead of the lastInsertId.
-     *
-     *
-     *
-     * @param array $permissionGroupHasPermission
-     * @param bool $ignoreDuplicate
-     * @param bool $returnRic
-     * @return mixed
-     * @throws \Exception
-     */
-    public function insertPermissionGroupHasPermission(array $permissionGroupHasPermission, bool $ignoreDuplicate = true, bool $returnRic = false);
 
 
     /**
@@ -70,4 +77,5 @@ interface PermissionGroupHasPermissionApiInterface
      * @throws \Exception
      */
     public function deletePermissionGroupHasPermissionByPermissionGroupIdAndPermissionId(int $permission_group_id, int $permission_id);
+
 }

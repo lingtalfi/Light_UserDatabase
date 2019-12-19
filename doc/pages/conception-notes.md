@@ -204,3 +204,5 @@ When our plugin is installed, it creates the following:
 Plugin who wants to create new users can rely on the fact that a group named "default" will always be available (i.e. that group
 should never be deleted).
 
+
+

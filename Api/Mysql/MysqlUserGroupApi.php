@@ -3,32 +3,24 @@
 
 namespace Ling\Light_UserDatabase\Api\Mysql;
 
-
 use Ling\Light_UserDatabase\Api\UserGroupApiInterface;
 use Ling\SimplePdoWrapper\SimplePdoWrapper;
-use Ling\SimplePdoWrapper\SimplePdoWrapperInterface;
 
 
 /**
  * The MysqlUserGroupApi class.
  */
-class MysqlUserGroupApi implements UserGroupApiInterface
+class MysqlUserGroupApi extends MysqlBaseLightUserDatabaseApi implements UserGroupApiInterface
 {
 
-    /**
-     * This property holds the pdoWrapper for this instance.
-     * @var SimplePdoWrapperInterface
-     */
-    protected $pdoWrapper;
-
 
     /**
-     * Builds the UserGroupApi instance.
+     * Builds the MysqlUserGroupApi instance.
      */
     public function __construct()
     {
-        $this->pdoWrapper = null;
-
+        parent::__construct();
+        $this->table = "lud_user_group";
     }
 
 
@@ -37,126 +29,9 @@ class MysqlUserGroupApi implements UserGroupApiInterface
      */
     public function insertUserGroup(array $userGroup, bool $ignoreDuplicate = true, bool $returnRic = false)
     {
-        return $this->doInsertUserGroup($userGroup, $ignoreDuplicate, $returnRic);
-    }
-
-    /**
-     * @implementation
-     */
-    public function getUserGroupById(int $id, $default = null, bool $throwNotFoundEx = false)
-    {
-        return $this->doGetUserGroupById($id, $default, $throwNotFoundEx);
-    }
-
-
-    /**
-     * @implementation
-     */
-    public function getUserGroupByName(string $name, $default = null, bool $throwNotFoundEx = false)
-    {
-        return $this->doGetUserGroupByName($name, $default, $throwNotFoundEx);
-    }
-
-
-    /**
-     * @implementation
-     */
-    public function getUserGroupIdByName(string $name, $default = null, bool $throwNotFoundEx = false)
-    {
-        $ret = $this->pdoWrapper->fetch("select id from `lud_user_group` where name=:name", [
-            "name" => $name,
-
-        ], \PDO::FETCH_COLUMN);
-        if (false === $ret) {
-            if (true === $throwNotFoundEx) {
-                throw new \RuntimeException("Row not found with name=$name.");
-            } else {
-                $ret = $default;
-            }
-        }
-        return $ret;
-    }
-
-
-    /**
-     * @implementation
-     */
-    public function getAllIds(): array
-    {
-        return $this->pdoWrapper->fetchAll("select id from `lud_user_group`", [], \PDO::FETCH_COLUMN);
-    }
-
-    /**
-     * @implementation
-     */
-    public function updateUserGroupById(int $id, array $userGroup)
-    {
-        $this->doUpdateUserGroupById($id, $userGroup);
-    }
-
-    /**
-     * @implementation
-     */
-    public function updateUserGroupByName(string $name, array $userGroup)
-    {
-        $this->doUpdateUserGroupByName($name, $userGroup);
-    }
-
-
-    /**
-     * @implementation
-     */
-    public function deleteUserGroupById(int $id)
-    {
-        $this->doDeleteUserGroupById($id);
-    }
-
-    /**
-     * @implementation
-     */
-    public function deleteUserGroupByName(string $name)
-    {
-        $this->doDeleteUserGroupByName($name);
-    }
-
-
-
-
-    //--------------------------------------------
-    //
-    //--------------------------------------------
-    /**
-     * Sets the pdoWrapper.
-     *
-     * @param SimplePdoWrapperInterface $pdoWrapper
-     */
-    public function setPdoWrapper(SimplePdoWrapperInterface $pdoWrapper)
-    {
-        $this->pdoWrapper = $pdoWrapper;
-    }
-
-
-
-
-
-    //--------------------------------------------
-    //
-    //--------------------------------------------
-    /**
-     * The working horse behind the insertUserGroup method.
-     * See the insertUserGroup method for more details.
-     *
-     * @param array $userGroup
-     * @param bool=true $ignoreDuplicate
-     * @param bool=false $returnRic
-     * @return mixed
-     * @throws \Exception
-     */
-    protected function doInsertUserGroup(array $userGroup, bool $ignoreDuplicate = true, bool $returnRic = false)
-    {
         try {
 
-            $lastInsertId = $this->pdoWrapper->insert("lud_user_group", $userGroup);
+            $lastInsertId = $this->pdoWrapper->insert($this->table, $userGroup);
             if (false === $returnRic) {
                 return $lastInsertId;
             }
@@ -172,7 +47,7 @@ class MysqlUserGroupApi implements UserGroupApiInterface
                     throw $e;
                 }
 
-                $query = "select id from `lud_user_group`";
+                $query = "select id from `$this->table`";
                 $allMarkers = [];
                 SimplePdoWrapper::addWhereSubStmt($query, $allMarkers, $userGroup);
                 $res = $this->pdoWrapper->fetch($query, $allMarkers);
@@ -192,18 +67,11 @@ class MysqlUserGroupApi implements UserGroupApiInterface
     }
 
     /**
-     * The working horse behind the getUserGroupById method.
-     * See the getUserGroupById method for more details.
-     *
-     * @param int $id
-     * @param mixed=null $default
-     * @param bool $throwNotFoundEx
-     * @return mixed
-     * @throws \Exception
+     * @implementation
      */
-    protected function doGetUserGroupById(int $id, $default = null, bool $throwNotFoundEx = false)
+    public function getUserGroupById(int $id, $default = null, bool $throwNotFoundEx = false)
     {
-        $ret = $this->pdoWrapper->fetch("select * from `lud_user_group` where id=:id", [
+        $ret = $this->pdoWrapper->fetch("select * from `$this->table` where id=:id", [
             "id" => $id,
 
         ]);
@@ -219,18 +87,11 @@ class MysqlUserGroupApi implements UserGroupApiInterface
 
 
     /**
-     * The working horse behind the getUserGroupByName method.
-     * See the getUserGroupByName method for more details.
-     *
-     * @param string $name
-     * @param mixed=null $default
-     * @param bool $throwNotFoundEx
-     * @return mixed
-     * @throws \Exception
+     * @implementation
      */
-    protected function doGetUserGroupByName(string $name, $default = null, bool $throwNotFoundEx = false)
+    public function getUserGroupByName(string $name, $default = null, bool $throwNotFoundEx = false)
     {
-        $ret = $this->pdoWrapper->fetch("select * from `lud_user_group` where name=:name", [
+        $ret = $this->pdoWrapper->fetch("select * from `$this->table` where name=:name", [
             "name" => $name,
 
         ]);
@@ -246,34 +107,30 @@ class MysqlUserGroupApi implements UserGroupApiInterface
 
 
     /**
-     * The working horse behind the updateUserGroupById method.
-     * See the updateUserGroupById method for more details.
-     *
-     * @param int $id
-     * @param array $userGroup
-     * @return void
-     * @throws \Exception
+     * @implementation
      */
-    protected function doUpdateUserGroupById(int $id, array $userGroup)
+    public function getAllIds(): array
     {
-        $this->pdoWrapper->update("lud_user_group", $userGroup, [
+        return $this->pdoWrapper->fetchAll("select id from `$this->table`", [], \PDO::FETCH_COLUMN);
+    }
+
+    /**
+     * @implementation
+     */
+    public function updateUserGroupById(int $id, array $userGroup)
+    {
+        $this->pdoWrapper->update($this->table, $userGroup, [
             "id" => $id,
 
         ]);
     }
 
     /**
-     * The working horse behind the updateUserGroupByName method.
-     * See the updateUserGroupByName method for more details.
-     *
-     * @param string $name
-     * @param array $userGroup
-     * @return void
-     * @throws \Exception
+     * @implementation
      */
-    protected function doUpdateUserGroupByName(string $name, array $userGroup)
+    public function updateUserGroupByName(string $name, array $userGroup)
     {
-        $this->pdoWrapper->update("lud_user_group", $userGroup, [
+        $this->pdoWrapper->update($this->table, $userGroup, [
             "name" => $name,
 
         ]);
@@ -281,43 +138,26 @@ class MysqlUserGroupApi implements UserGroupApiInterface
 
 
     /**
-     * The working horse behind the deleteUserGroupById method.
-     * See the deleteUserGroupById method for more details.
-     *
-     * @param int $id
-     * @return void
-     * @throws \Exception
+     * @implementation
      */
-    protected function doDeleteUserGroupById(int $id)
+    public function deleteUserGroupById(int $id)
     {
-        $this->pdoWrapper->delete("lud_user_group", [
+        $this->pdoWrapper->delete($this->table, [
             "id" => $id,
 
         ]);
     }
 
     /**
-     * The working horse behind the deleteUserGroupByName method.
-     * See the deleteUserGroupByName method for more details.
-     *
-     * @param string $name
-     * @return void
-     * @throws \Exception
+     * @implementation
      */
-    protected function doDeleteUserGroupByName(string $name)
+    public function deleteUserGroupByName(string $name)
     {
-        $this->pdoWrapper->delete("lud_user_group", [
+        $this->pdoWrapper->delete($this->table, [
             "name" => $name,
 
         ]);
     }
-
-
-
-
-    //--------------------------------------------
-    //
-    //--------------------------------------------
 
 
 }

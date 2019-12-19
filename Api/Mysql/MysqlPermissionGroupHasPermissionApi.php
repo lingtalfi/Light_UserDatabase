@@ -5,29 +5,23 @@ namespace Ling\Light_UserDatabase\Api\Mysql;
 
 
 use Ling\Light_UserDatabase\Api\PermissionGroupHasPermissionApiInterface;
-use Ling\SimplePdoWrapper\SimplePdoWrapperInterface;
+use Ling\SimplePdoWrapper\SimplePdoWrapper;
 
 /**
  * The MysqlPermissionGroupHasPermissionApi class.
  */
-class MysqlPermissionGroupHasPermissionApi implements PermissionGroupHasPermissionApiInterface
+class MysqlPermissionGroupHasPermissionApi extends MysqlBaseLightUserDatabaseApi implements PermissionGroupHasPermissionApiInterface
 {
 
-    /**
-     * This property holds the pdoWrapper for this instance.
-     * @var SimplePdoWrapperInterface
-     */
-    protected $pdoWrapper;
 
     /**
-     * Builds the PermissionGroupHasPermissionApi instance.
+     * Builds the MysqlPermissionGroupHasPermissionApi instance.
      */
     public function __construct()
     {
-        $this->pdoWrapper = null;
+        parent::__construct();
+        $this->table = "lud_permission_group_has_permission";
     }
-
-
 
 
     /**
@@ -37,13 +31,13 @@ class MysqlPermissionGroupHasPermissionApi implements PermissionGroupHasPermissi
     {
         try {
 
-            $lastInsertId = $this->pdoWrapper->insert("lud_permission_group_has_permission", $permissionGroupHasPermission);
+            $lastInsertId = $this->pdoWrapper->insert($this->table, $permissionGroupHasPermission);
             if (false === $returnRic) {
                 return $lastInsertId;
             }
             $ric = [
                 'permission_group_id' => $permissionGroupHasPermission["permission_group_id"],
-				'permission_id' => $permissionGroupHasPermission["permission_id"],
+                'permission_id' => $permissionGroupHasPermission["permission_id"],
 
             ];
             return $ric;
@@ -53,6 +47,22 @@ class MysqlPermissionGroupHasPermissionApi implements PermissionGroupHasPermissi
                 if (false === $ignoreDuplicate) {
                     throw $e;
                 }
+
+                $query = "select permission_group_id, permission_id from `$this->table`";
+                $allMarkers = [];
+                SimplePdoWrapper::addWhereSubStmt($query, $allMarkers, $permissionGroupHasPermission);
+                $res = $this->pdoWrapper->fetch($query, $allMarkers);
+                if (false === $res) {
+                    throw new \LogicException("A duplicate entry has been found, but yet I cannot fetch it, why?");
+                }
+                if (false === $returnRic) {
+                    return "0";
+                }
+                return [
+                    'permission_group_id' => $res["permission_group_id"],
+                    'permission_id' => $res["permission_id"],
+
+                ];
             }
         }
         return false;
@@ -63,9 +73,9 @@ class MysqlPermissionGroupHasPermissionApi implements PermissionGroupHasPermissi
      */
     public function getPermissionGroupHasPermissionByPermissionGroupIdAndPermissionId(int $permission_group_id, int $permission_id, $default = null, bool $throwNotFoundEx = false)
     {
-        $ret = $this->pdoWrapper->fetch("select * from user where permission_group_id=:permission_group_id and permission_id=:permission_id", [
+        $ret = $this->pdoWrapper->fetch("select * from `$this->table` where permission_group_id=:permission_group_id and permission_id=:permission_id", [
             "permission_group_id" => $permission_group_id,
-				"permission_id" => $permission_id,
+            "permission_id" => $permission_id,
 
         ]);
         if (false === $ret) {
@@ -78,45 +88,31 @@ class MysqlPermissionGroupHasPermissionApi implements PermissionGroupHasPermissi
         return $ret;
     }
 
+
     /**
      * @implementation
      */
     public function updatePermissionGroupHasPermissionByPermissionGroupIdAndPermissionId(int $permission_group_id, int $permission_id, array $permissionGroupHasPermission)
     {
-        $this->pdoWrapper->update("lud_permission_group_has_permission", $permissionGroupHasPermission, [
+        $this->pdoWrapper->update($this->table, $permissionGroupHasPermission, [
             "permission_group_id" => $permission_group_id,
-			"permission_id" => $permission_id,
+            "permission_id" => $permission_id,
 
         ]);
     }
+
 
     /**
      * @implementation
      */
     public function deletePermissionGroupHasPermissionByPermissionGroupIdAndPermissionId(int $permission_group_id, int $permission_id)
     {
-        $this->pdoWrapper->delete("lud_permission_group_has_permission", [
+        $this->pdoWrapper->delete($this->table, [
             "permission_group_id" => $permission_group_id,
-			"permission_id" => $permission_id,
+            "permission_id" => $permission_id,
 
         ]);
     }
 
 
-
-
-
-
-    //--------------------------------------------
-    //
-    //--------------------------------------------
-    /**
-     * Sets the pdoWrapper.
-     *
-     * @param SimplePdoWrapperInterface $pdoWrapper
-     */
-    public function setPdoWrapper(SimplePdoWrapperInterface $pdoWrapper)
-    {
-        $this->pdoWrapper = $pdoWrapper;
-    }
 }

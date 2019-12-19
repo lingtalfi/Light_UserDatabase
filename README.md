@@ -1,6 +1,6 @@
 Light_UserDatabase
 ===========
-2019-07-19
+2019-07-19 -> 2019-12-19
 
 
 
@@ -154,6 +154,10 @@ Related
 History Log
 =============
 
+- 1.19.0 -- 2019-12-19
+
+    - update api internal code using new BreezeGenerator
+    
 - 1.18.1 -- 2019-12-17
 
     - fix MysqlUserGroupApi->getUserGroupIdByName returning an array instead of string

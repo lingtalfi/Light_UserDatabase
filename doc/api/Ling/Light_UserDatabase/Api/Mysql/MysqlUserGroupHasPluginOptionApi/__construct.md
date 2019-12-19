@@ -7,7 +7,7 @@ MysqlUserGroupHasPluginOptionApi::__construct
 
 
 
-MysqlUserGroupHasPluginOptionApi::__construct — Builds the UserGroupHasPluginOptionApi instance.
+MysqlUserGroupHasPluginOptionApi::__construct — Builds the MysqlUserGroupHasPluginOptionApi instance.
 
 
 
@@ -21,7 +21,7 @@ public [MysqlUserGroupHasPluginOptionApi::__construct](https://github.com/lingta
 
 
 
-Builds the UserGroupHasPluginOptionApi instance.
+Builds the MysqlUserGroupHasPluginOptionApi instance.
 
 
 
@@ -46,7 +46,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [MysqlUserGroupHasPluginOptionApi::__construct](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlUserGroupHasPluginOptionApi.php#L30-L34)
+See the source code for method [MysqlUserGroupHasPluginOptionApi::__construct](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlUserGroupHasPluginOptionApi.php#L20-L24)
 
 
 See Also

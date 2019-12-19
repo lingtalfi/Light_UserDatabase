@@ -6,33 +6,22 @@ namespace Ling\Light_UserDatabase\Api\Mysql;
 
 use Ling\Light_UserDatabase\Api\PluginOptionApiInterface;
 use Ling\SimplePdoWrapper\SimplePdoWrapper;
-use Ling\SimplePdoWrapper\SimplePdoWrapperInterface;
 
 
 /**
  * The MysqlPluginOptionApi class.
  */
-class MysqlPluginOptionApi implements PluginOptionApiInterface
+class MysqlPluginOptionApi extends MysqlBaseLightUserDatabaseApi implements PluginOptionApiInterface
 {
 
     /**
-     * This property holds the pdoWrapper for this instance.
-     * @var SimplePdoWrapperInterface
-     */
-    protected $pdoWrapper;
-
-
-
-    /**
-     * Builds the PluginOptionApi instance.
+     * Builds the MysqlPluginOptionApi instance.
      */
     public function __construct()
     {
-        $this->pdoWrapper = null;
-
+        parent::__construct();
+        $this->table = "lud_plugin_option";
     }
-
-
 
 
     /**
@@ -40,109 +29,9 @@ class MysqlPluginOptionApi implements PluginOptionApiInterface
      */
     public function insertPluginOption(array $pluginOption, bool $ignoreDuplicate = true, bool $returnRic = false)
     {
-        return $this->doInsertPluginOption($pluginOption, $ignoreDuplicate, $returnRic);
-    }
-
-    /**
-     * @implementation
-     */
-    public function getPluginOptionById(int $id, $default = null, bool $throwNotFoundEx = false)
-    {
-        return $this->doGetPluginOptionById($id, $default, $throwNotFoundEx);
-    }
-
-
-    /**
-     * @implementation
-     */
-    public function getPluginOptionByName(string $name, $default = null, bool $throwNotFoundEx = false)
-    {
-        return $this->doGetPluginOptionByName($name, $default, $throwNotFoundEx);
-    }
-
-
-
-
-    /**
-     * @implementation
-     */
-    public function getAllIds(): array
-    {
-        return $this->pdoWrapper->fetchAll("select id from `lud_plugin_option`", [], \PDO::FETCH_COLUMN);
-    }
-
-    /**
-     * @implementation
-     */
-    public function updatePluginOptionById(int $id, array $pluginOption)
-    {
-        $this->doUpdatePluginOptionById($id, $pluginOption);
-    }
-
-    /**
-     * @implementation
-     */
-    public function updatePluginOptionByName(string $name, array $pluginOption)
-    {
-        $this->doUpdatePluginOptionByName($name, $pluginOption);
-    }
-
-
-
-    /**
-     * @implementation
-     */
-    public function deletePluginOptionById(int $id)
-    {
-        $this->doDeletePluginOptionById($id);
-    }
-
-    /**
-     * @implementation
-     */
-    public function deletePluginOptionByName(string $name)
-    {
-        $this->doDeletePluginOptionByName($name);
-    }
-
-
-
-
-    //--------------------------------------------
-    //
-    //--------------------------------------------
-    /**
-     * Sets the pdoWrapper.
-     *
-     * @param SimplePdoWrapperInterface $pdoWrapper
-     */
-    public function setPdoWrapper(SimplePdoWrapperInterface $pdoWrapper)
-    {
-        $this->pdoWrapper = $pdoWrapper;
-    }
-
-
-
-
-
-    //--------------------------------------------
-    //
-    //--------------------------------------------
-    /**
-     * The working horse behind the insertPluginOption method.
-     * See the insertPluginOption method for more details.
-     *
-     * @param array $pluginOption
-     * @param bool=true $ignoreDuplicate
-     * @param bool=false $returnRic
-     * @return mixed
-     * @throws \Exception
-     */
-    protected function doInsertPluginOption(array $pluginOption, bool $ignoreDuplicate = true, bool $returnRic = false)
-    {
         try {
 
-            $lastInsertId = $this->pdoWrapper->insert("lud_plugin_option", $pluginOption);
+            $lastInsertId = $this->pdoWrapper->insert($this->table, $pluginOption);
             if (false === $returnRic) {
                 return $lastInsertId;
             }
@@ -158,7 +47,7 @@ class MysqlPluginOptionApi implements PluginOptionApiInterface
                     throw $e;
                 }
 
-                $query = "select id from `lud_plugin_option`";
+                $query = "select id from `$this->table`";
                 $allMarkers = [];
                 SimplePdoWrapper::addWhereSubStmt($query, $allMarkers, $pluginOption);
                 $res = $this->pdoWrapper->fetch($query, $allMarkers);
@@ -178,18 +67,11 @@ class MysqlPluginOptionApi implements PluginOptionApiInterface
     }
 
     /**
-     * The working horse behind the getPluginOptionById method.
-     * See the getPluginOptionById method for more details.
-     *
-     * @param int $id
-     * @param mixed=null $default
-     * @param bool $throwNotFoundEx
-     * @return mixed
-     * @throws \Exception
+     * @implementation
      */
-    protected function doGetPluginOptionById(int $id, $default = null, bool $throwNotFoundEx = false)
+    public function getPluginOptionById(int $id, $default = null, bool $throwNotFoundEx = false)
     {
-        $ret = $this->pdoWrapper->fetch("select * from `lud_plugin_option` where id=:id", [
+        $ret = $this->pdoWrapper->fetch("select * from `$this->table` where id=:id", [
             "id" => $id,
 
         ]);
@@ -205,18 +87,11 @@ class MysqlPluginOptionApi implements PluginOptionApiInterface
 
 
     /**
-     * The working horse behind the getPluginOptionByName method.
-     * See the getPluginOptionByName method for more details.
-     *
-     * @param string $name
-     * @param mixed=null $default
-     * @param bool $throwNotFoundEx
-     * @return mixed
-     * @throws \Exception
+     * @implementation
      */
-    protected function doGetPluginOptionByName(string $name, $default = null, bool $throwNotFoundEx = false)
+    public function getPluginOptionByName(string $name, $default = null, bool $throwNotFoundEx = false)
     {
-        $ret = $this->pdoWrapper->fetch("select * from `lud_plugin_option` where name=:name", [
+        $ret = $this->pdoWrapper->fetch("select * from `$this->table` where name=:name", [
             "name" => $name,
 
         ]);
@@ -231,82 +106,58 @@ class MysqlPluginOptionApi implements PluginOptionApiInterface
     }
 
 
-
+    /**
+     * @implementation
+     */
+    public function getAllIds(): array
+    {
+        return $this->pdoWrapper->fetchAll("select id from `$this->table`", [], \PDO::FETCH_COLUMN);
+    }
 
     /**
-     * The working horse behind the updatePluginOptionById method.
-     * See the updatePluginOptionById method for more details.
-     *
-     * @param int $id
-     * @param array $pluginOption
-     * @throws \Exception
-     * @return void
+     * @implementation
      */
-    protected function doUpdatePluginOptionById(int $id, array $pluginOption)
+    public function updatePluginOptionById(int $id, array $pluginOption)
     {
-        $this->pdoWrapper->update("lud_plugin_option", $pluginOption, [
+        $this->pdoWrapper->update($this->table, $pluginOption, [
             "id" => $id,
 
         ]);
     }
 
     /**
-     * The working horse behind the updatePluginOptionByName method.
-     * See the updatePluginOptionByName method for more details.
-     *
-     * @param string $name
-     * @param array $pluginOption
-     * @throws \Exception
-     * @return void
+     * @implementation
      */
-    protected function doUpdatePluginOptionByName(string $name, array $pluginOption)
+    public function updatePluginOptionByName(string $name, array $pluginOption)
     {
-        $this->pdoWrapper->update("lud_plugin_option", $pluginOption, [
+        $this->pdoWrapper->update($this->table, $pluginOption, [
             "name" => $name,
 
         ]);
     }
 
 
-
     /**
-     * The working horse behind the deletePluginOptionById method.
-     * See the deletePluginOptionById method for more details.
-     *
-     * @param int $id
-     * @throws \Exception
-     * @return void
+     * @implementation
      */
-    protected function doDeletePluginOptionById(int $id)
+    public function deletePluginOptionById(int $id)
     {
-        $this->pdoWrapper->delete("lud_plugin_option", [
+        $this->pdoWrapper->delete($this->table, [
             "id" => $id,
 
         ]);
     }
 
     /**
-     * The working horse behind the deletePluginOptionByName method.
-     * See the deletePluginOptionByName method for more details.
-     *
-     * @param string $name
-     * @throws \Exception
-     * @return void
+     * @implementation
      */
-    protected function doDeletePluginOptionByName(string $name)
+    public function deletePluginOptionByName(string $name)
     {
-        $this->pdoWrapper->delete("lud_plugin_option", [
+        $this->pdoWrapper->delete($this->table, [
             "name" => $name,
 
         ]);
     }
-
-
-
-
-    //--------------------------------------------
-    //
-    //--------------------------------------------
 
 
 }

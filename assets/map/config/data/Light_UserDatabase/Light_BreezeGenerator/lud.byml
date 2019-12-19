@@ -6,7 +6,8 @@ conf:
     # with the usePrefixInClassName property
     prefix: lud
     usePrefixInClassName: false
-    factoryClassName: LightKitAdmin
+    factoryClassName: LightUserDatabaseApiFactory
+    baseClassName: MysqlBaseLightUserDatabaseApi
     namespace: Ling\Light_UserDatabase\Api\Mysql
     # The suffix to add to the class name.
     # For instance if the class is User and the suffix is Object,

@@ -5,27 +5,27 @@ namespace Ling\Light_UserDatabase\Api\Mysql;
 
 
 use Ling\Light_UserDatabase\Api\PermissionApiInterface;
+use Ling\SimplePdoWrapper\SimplePdoWrapper;
 use Ling\SimplePdoWrapper\SimplePdoWrapperInterface;
 
 /**
  * The MysqlPermissionApi class.
  */
-class MysqlPermissionApi implements PermissionApiInterface
+class MysqlPermissionApi extends MysqlBaseLightUserDatabaseApi implements PermissionApiInterface
 {
 
-    /**
-     * This property holds the pdoWrapper for this instance.
-     * @var SimplePdoWrapperInterface
-     */
-    protected $pdoWrapper;
+
 
     /**
-     * Builds the PermissionApi instance.
+     * Builds the MysqlPermissionApi instance.
      */
     public function __construct()
     {
-        $this->pdoWrapper = null;
+        parent::__construct();
+        $this->table = "lud_permission";
     }
+
+
 
 
     /**
@@ -35,12 +35,13 @@ class MysqlPermissionApi implements PermissionApiInterface
     {
         try {
 
-            $lastInsertId = $this->pdoWrapper->insert("lud_permission", $permission);
+            $lastInsertId = $this->pdoWrapper->insert($this->table, $permission);
             if (false === $returnRic) {
                 return $lastInsertId;
             }
             $ric = [
                 'id' => $lastInsertId,
+
             ];
             return $ric;
 
@@ -49,6 +50,21 @@ class MysqlPermissionApi implements PermissionApiInterface
                 if (false === $ignoreDuplicate) {
                     throw $e;
                 }
+
+                $query = "select id from `$this->table`";
+                $allMarkers = [];
+                SimplePdoWrapper::addWhereSubStmt($query, $allMarkers, $permission);
+                $res = $this->pdoWrapper->fetch($query, $allMarkers);
+                if (false === $res) {
+                    throw new \LogicException("A duplicate entry has been found, but yet I cannot fetch it, why?");
+                }
+                if (false === $returnRic) {
+                    return $res['id'];
+                }
+                return [
+                    'id' => $res["id"],
+
+                ];
             }
         }
         return false;
@@ -59,7 +75,7 @@ class MysqlPermissionApi implements PermissionApiInterface
      */
     public function getPermissionById(int $id, $default = null, bool $throwNotFoundEx = false)
     {
-        $ret = $this->pdoWrapper->fetch("select * from user where id=:id", [
+        $ret = $this->pdoWrapper->fetch("select * from `$this->table` where id=:id", [
             "id" => $id,
 
         ]);
@@ -73,27 +89,85 @@ class MysqlPermissionApi implements PermissionApiInterface
         return $ret;
     }
 
+
+    /**
+     * @implementation
+     */
+    public function getPermissionByName(string $name, $default = null, bool $throwNotFoundEx = false)
+    {
+        $ret = $this->pdoWrapper->fetch("select * from `$this->table` where name=:name", [
+            "name" => $name,
+
+        ]);
+        if (false === $ret) {
+            if (true === $throwNotFoundEx) {
+                throw new \RuntimeException("Row not found with name=$name.");
+            } else {
+                $ret = $default;
+            }
+        }
+        return $ret;
+    }
+
+
+
+
+    /**
+     * @implementation
+     */
+    public function getAllIds(): array
+    {
+        return $this->pdoWrapper->fetchAll("select id from `$this->table`", [], \PDO::FETCH_COLUMN);
+    }
+
     /**
      * @implementation
      */
     public function updatePermissionById(int $id, array $permission)
     {
-        $this->pdoWrapper->update("lud_permission", $permission, [
+        $this->pdoWrapper->update($this->table, $permission, [
             "id" => $id,
 
         ]);
     }
+
+    /**
+     * @implementation
+     */
+    public function updatePermissionByName(string $name, array $permission)
+    {
+        $this->pdoWrapper->update($this->table, $permission, [
+            "name" => $name,
+
+        ]);
+    }
+
+
 
     /**
      * @implementation
      */
     public function deletePermissionById(int $id)
     {
-        $this->pdoWrapper->delete("lud_permission", [
+        $this->pdoWrapper->delete($this->table, [
             "id" => $id,
 
         ]);
     }
+
+    /**
+     * @implementation
+     */
+    public function deletePermissionByName(string $name)
+    {
+        $this->pdoWrapper->delete($this->table, [
+            "name" => $name,
+
+        ]);
+    }
+
+
+
 
     //--------------------------------------------
     //
@@ -119,18 +193,4 @@ class MysqlPermissionApi implements PermissionApiInterface
 
 
 
-
-
-    //--------------------------------------------
-    //
-    //--------------------------------------------
-    /**
-     * Sets the pdoWrapper.
-     *
-     * @param SimplePdoWrapperInterface $pdoWrapper
-     */
-    public function setPdoWrapper(SimplePdoWrapperInterface $pdoWrapper)
-    {
-        $this->pdoWrapper = $pdoWrapper;
-    }
 }

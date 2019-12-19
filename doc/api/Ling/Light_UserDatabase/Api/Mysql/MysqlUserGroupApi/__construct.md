@@ -7,7 +7,7 @@ MysqlUserGroupApi::__construct
 
 
 
-MysqlUserGroupApi::__construct — Builds the UserGroupApi instance.
+MysqlUserGroupApi::__construct — Builds the MysqlUserGroupApi instance.
 
 
 
@@ -21,7 +21,7 @@ public [MysqlUserGroupApi::__construct](https://github.com/lingtalfi/Light_UserD
 
 
 
-Builds the UserGroupApi instance.
+Builds the MysqlUserGroupApi instance.
 
 
 
@@ -46,7 +46,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [MysqlUserGroupApi::__construct](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlUserGroupApi.php#L28-L32)
+See the source code for method [MysqlUserGroupApi::__construct](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlUserGroupApi.php#L20-L24)
 
 
 See Also
