@@ -31,6 +31,7 @@ Summary
 - [Light_UserDatabase api](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase.md) (generated with [DocTools](https://github.com/lingtalfi/DocTools))
 - Pages
     - [Conception notes](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/pages/conception-notes.md) 
+    - [Events](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/pages/events.md) 
 - [Services](#services)
 - [Related](#related)
 
@@ -154,6 +155,10 @@ Related
 History Log
 =============
 
+- 1.19.4 -- 2019-12-19
+
+    - add link to events page in README.md
+    
 - 1.19.3 -- 2019-12-19
 
     - add "plugin author memo" section in conception notes
