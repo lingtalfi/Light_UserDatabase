@@ -168,7 +168,7 @@ If you're a plugin author, our recommendation/suggestion is:
 
 - if you create an entry in plugin_option:
     - bind it to all existing user groups upon installation
-    - listen to the **Light_Database.on_lud_user_group_create** event and bind it then too
+    - listen to the [Light_Database.on_lud_user_group_create](https://github.com/lingtalfi/Light_Database/blob/master/personal/mydoc/pages/events.md) event and bind it then too
 - if you create data in the user.extra column:
     - bind it to all existing users upon installation
     - listen to the **Light_UserDatabase.on_new_user_before** event and bind it then too
