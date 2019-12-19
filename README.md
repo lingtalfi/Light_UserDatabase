@@ -155,6 +155,10 @@ Related
 History Log
 =============
 
+- 1.20.0 -- 2019-12-19
+
+    - add PluginOptionApiInterface->getPluginOptionByName method
+    
 - 1.19.5 -- 2019-12-19
 
     - add link in conception notes

@@ -120,4 +120,23 @@ interface PluginOptionApiInterface
 
 
 
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    /**
+     * Returns the pluginOption id identified by the given name.
+     *
+     * If the row is not found, this method's return depends on the throwNotFoundEx flag:
+     * - if true, the method throws an exception
+     * - if false, the method returns the given default value
+     *
+     *
+     * @param string $name
+     * @param mixed $default = null
+     * @param bool $throwNotFoundEx = false
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getPluginOptionIdByName(string $name, $default = null, bool $throwNotFoundEx = false);
+
 }

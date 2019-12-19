@@ -34,6 +34,7 @@ abstract class <span class="pl-k">PluginOptionApiInterface</span>  {
     - abstract public [updatePluginOptionByName](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/PluginOptionApiInterface/updatePluginOptionByName.md)(string $name, array $pluginOption) : void
     - abstract public [deletePluginOptionById](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/PluginOptionApiInterface/deletePluginOptionById.md)(int $id) : void
     - abstract public [deletePluginOptionByName](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/PluginOptionApiInterface/deletePluginOptionByName.md)(string $name) : void
+    - abstract public [getPluginOptionIdByName](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/PluginOptionApiInterface/getPluginOptionIdByName.md)(string $name, ?$default = null, ?bool $throwNotFoundEx = false) : mixed
 
 }
 
@@ -53,6 +54,7 @@ Methods
 - [PluginOptionApiInterface::updatePluginOptionByName](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/PluginOptionApiInterface/updatePluginOptionByName.md) &ndash; Updates the pluginOption row identified by the given name.
 - [PluginOptionApiInterface::deletePluginOptionById](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/PluginOptionApiInterface/deletePluginOptionById.md) &ndash; Deletes the pluginOption identified by the given id.
 - [PluginOptionApiInterface::deletePluginOptionByName](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/PluginOptionApiInterface/deletePluginOptionByName.md) &ndash; Deletes the pluginOption identified by the given name.
+- [PluginOptionApiInterface::getPluginOptionIdByName](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/PluginOptionApiInterface/getPluginOptionIdByName.md) &ndash; Returns the pluginOption id identified by the given name.
 
 
 

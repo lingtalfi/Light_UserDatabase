@@ -160,4 +160,25 @@ class MysqlPluginOptionApi extends MysqlBaseLightUserDatabaseApi implements Plug
     }
 
 
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    /**
+     * @implementation
+     */
+    public function getPluginOptionIdByName(string $name, $default = null, bool $throwNotFoundEx = false)
+    {
+        $ret = $this->pdoWrapper->fetch("select id from `$this->table` where name=:name", [
+            "name" => $name,
+        ], \PDO::FETCH_COLUMN);
+        if (false === $ret) {
+            if (true === $throwNotFoundEx) {
+                throw new \RuntimeException("Row not found with name=$name.");
+            } else {
+                $ret = $default;
+            }
+        }
+        return $ret;
+    }
+
 }
