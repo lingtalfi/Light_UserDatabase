@@ -154,6 +154,10 @@ Related
 History Log
 =============
 
+- 1.19.2 -- 2019-12-19
+
+    - update MysqlLightWebsiteUserDatabase->installDatabase, now uses micro-permission disable namespace feature
+
 - 1.19.1 -- 2019-12-19
 
     - restore inadvertently removed UserGroupApiInterface->getUserGroupIdByName method

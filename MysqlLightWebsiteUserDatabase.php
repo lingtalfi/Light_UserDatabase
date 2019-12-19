@@ -10,6 +10,7 @@ use Ling\Light\Events\LightEvent;
 use Ling\Light\ServiceContainer\LightServiceContainerInterface;
 use Ling\Light_Database\LightDatabasePdoWrapper;
 use Ling\Light_Events\Service\LightEventsService;
+use Ling\Light_MicroPermission\Service\LightMicroPermissionService;
 use Ling\Light_PasswordProtector\Service\LightPasswordProtector;
 use Ling\Light_PluginDatabaseInstaller\Service\LightPluginDatabaseInstallerService;
 use Ling\Light_UserDatabase\Api\Mysql\MysqlPermissionApi;
@@ -426,6 +427,12 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
         if (true === $this->forceInstall || false === $util->hasTable($this->table)) {
 
 
+            /**
+             * @var $microService LightMicroPermissionService
+             */
+            $microService = $this->container->get('micro_permission');
+            $microService->disableNamespace("tables");
+            $this->isInstallMode = true; // we don't want other plugins to hook the new user creation.
 
             /**
              * We cannot put this statement inside the transaction, because of the mysql implicit commit rule:
@@ -458,7 +465,7 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
 
 
                 // root user
-                $this->isInstallMode = true; // we don't want other plugins to hook the new user creation.
+
                 $userId = $this->addUser([
                     'user_group_id' => $userGroupId,
                     'identifier' => $this->root_identifier,
@@ -467,7 +474,6 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
                     'avatar_url' => $this->root_avatar_url,
                     'extra' => $this->root_extra,
                 ]);
-                $this->isInstallMode = false;
 
 
                 // root permission group
@@ -495,6 +501,10 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
 
 
             }, $exception);
+
+            $microService->restoreNamespaces();
+            $this->isInstallMode = false;
+
             if (false === $res) {
                 throw $exception;
             }

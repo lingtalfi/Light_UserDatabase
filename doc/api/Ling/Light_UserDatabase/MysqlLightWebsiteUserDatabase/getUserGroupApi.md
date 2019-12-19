@@ -46,7 +46,7 @@ Returns [UserGroupApiInterface](https://github.com/lingtalfi/Light_UserDatabase/
 
 Source Code
 ===========
-See the source code for method [MysqlLightWebsiteUserDatabase::getUserGroupApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L570-L575)
+See the source code for method [MysqlLightWebsiteUserDatabase::getUserGroupApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L580-L585)
 
 
 See Also
