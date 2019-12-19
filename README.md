@@ -154,6 +154,10 @@ Related
 History Log
 =============
 
+- 1.19.3 -- 2019-12-19
+
+    - add "plugin author memo" section in conception notes
+    
 - 1.19.2 -- 2019-12-19
 
     - update MysqlLightWebsiteUserDatabase->installDatabase, now uses micro-permission disable namespace feature
