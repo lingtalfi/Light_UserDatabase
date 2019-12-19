@@ -155,6 +155,10 @@ Related
 History Log
 =============
 
+- 1.20.1 -- 2019-12-19
+
+    - update events page
+    
 - 1.20.0 -- 2019-12-19
 
     - add PluginOptionApiInterface->getPluginOptionByName method
