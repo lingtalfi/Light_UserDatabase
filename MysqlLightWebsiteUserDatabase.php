@@ -178,6 +178,11 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
     public function getUserInfoByCredentials(string $identifier, string $password)
     {
 
+        /**
+         * @var $microService LightMicroPermissionService
+         */
+        $microService = $this->container->get('micro_permission');
+        $microService->disableNamespace("tables");
 
         $table = $this->dQuoteTable($this->table);
         $ret = $this->pdoWrapper->fetch("select * from $table where identifier=:identifier", [
@@ -210,6 +215,7 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
             }
             $ret['rights'] = $rights;
         }
+        $microService->restoreNamespaces();
         return $ret;
     }
 

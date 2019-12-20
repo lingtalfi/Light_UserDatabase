@@ -155,6 +155,10 @@ Related
 History Log
 =============
 
+- 1.20.2 -- 2019-12-20
+
+    - fix MysqlLightWebsiteUserDatabase->getUserInfoByCredentials throwing micro-permission denied exception
+    
 - 1.20.1 -- 2019-12-19
 
     - update events page
