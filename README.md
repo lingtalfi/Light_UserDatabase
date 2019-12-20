@@ -1,6 +1,6 @@
 Light_UserDatabase
 ===========
-2019-07-19 -> 2019-12-19
+2019-07-19 -> 2019-12-20
 
 
 
@@ -155,6 +155,10 @@ Related
 History Log
 =============
 
+- 1.20.3 -- 2019-12-20
+
+    - removed micro-permission automatic checking in MysqlLightWebsiteUserDatabase
+    
 - 1.20.2 -- 2019-12-20
 
     - fix MysqlLightWebsiteUserDatabase->getUserInfoByCredentials throwing micro-permission denied exception
