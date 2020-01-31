@@ -51,7 +51,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlLightWebsiteUserDatabase::installDatabase](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L423-L511)
+See the source code for method [MysqlLightWebsiteUserDatabase::installDatabase](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L421-L506)
 
 
 See Also

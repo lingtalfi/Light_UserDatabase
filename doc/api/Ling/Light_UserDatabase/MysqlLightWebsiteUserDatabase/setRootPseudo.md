@@ -49,7 +49,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [MysqlLightWebsiteUserDatabase::setRootPseudo](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L664-L667)
+See the source code for method [MysqlLightWebsiteUserDatabase::setRootPseudo](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L659-L662)
 
 
 See Also

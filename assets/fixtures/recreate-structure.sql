@@ -129,12 +129,11 @@ DROP TABLE IF EXISTS `lud_plugin_option` ;
 
 CREATE TABLE IF NOT EXISTS `lud_plugin_option` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `plugin` VARCHAR(128) NOT NULL,
   `name` VARCHAR(128) NOT NULL,
   `value` VARCHAR(512) NOT NULL,
   `description` TEXT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC, `plugin` ASC))
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB;
 
 

@@ -50,7 +50,7 @@ Returns array | false.
 
 Source Code
 ===========
-See the source code for method [MysqlLightWebsiteUserDatabase::getUserInfoById](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L235-L243)
+See the source code for method [MysqlLightWebsiteUserDatabase::getUserInfoById](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L233-L241)
 
 
 See Also

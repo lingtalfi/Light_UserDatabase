@@ -49,7 +49,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [MysqlLightWebsiteUserDatabase::setRootIdentifier](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L644-L647)
+See the source code for method [MysqlLightWebsiteUserDatabase::setRootIdentifier](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L639-L642)
 
 
 See Also

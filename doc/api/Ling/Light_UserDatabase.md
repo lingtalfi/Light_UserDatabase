@@ -252,7 +252,6 @@ Dependencies
 - [Light_PasswordProtector](https://github.com/lingtalfi/Light_PasswordProtector)
 - [TinyBullsheeter](https://github.com/lingtalfi/TinyBullsheeter)
 - [ArrayToString](https://github.com/lingtalfi/ArrayToString)
-- [CheapLogger](https://github.com/lingtalfi/CheapLogger)
 - [Light_Events](https://github.com/lingtalfi/Light_Events)
 - [Light_PluginDatabaseInstaller](https://github.com/lingtalfi/Light_PluginDatabaseInstaller)
 - [SqlWizard](https://github.com/lingtalfi/SqlWizard)

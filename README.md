@@ -156,6 +156,10 @@ Related
 History Log
 =============
 
+- 1.22.2 -- 2020-01-31
+
+    - fix schema, forgot to remove lud_plugin_option.plugin as stated in 1.21.0
+    
 - 1.22.1 -- 2020-01-31
 
     - fix api insert methods not throwing exceptions when ignoreDuplicate flag is false
