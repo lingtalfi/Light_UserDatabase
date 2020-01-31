@@ -49,7 +49,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [MysqlPermissionApi::getPermissionNamesByUserId](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPermissionApi.php#L178-L190)
+See the source code for method [MysqlPermissionApi::getPermissionNamesByUserId](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPermissionApi.php#L172-L184)
 
 
 See Also

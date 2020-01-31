@@ -46,7 +46,7 @@ Returns [UserGroupHasPluginOptionApiInterface](https://github.com/lingtalfi/Ligh
 
 Source Code
 ===========
-See the source code for method [MysqlLightWebsiteUserDatabase::getUserGroupHasPluginOptionApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L599-L604)
+See the source code for method [MysqlLightWebsiteUserDatabase::getUserGroupHasPluginOptionApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/MysqlLightWebsiteUserDatabase.php#L602-L607)
 
 
 See Also

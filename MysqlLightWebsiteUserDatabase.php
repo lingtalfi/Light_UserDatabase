@@ -6,6 +6,7 @@ namespace Ling\Light_UserDatabase;
 
 use Ling\ArrayToString\ArrayToStringTool;
 use Ling\Bat\ArrayTool;
+use Ling\CheapLogger\CheapLogger;
 use Ling\Light\Events\LightEvent;
 use Ling\Light\ServiceContainer\LightServiceContainerInterface;
 use Ling\Light_Database\LightDatabasePdoWrapper;
@@ -442,7 +443,7 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
             $exception = null;
             $res = $this->pdoWrapper->transaction(function () {
 
-
+                CheapLogger::log("userDatabase: before create group");
                 /**
                  * We want to create the following:
                  * - the "default" user group
@@ -458,9 +459,10 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
                     "name" => "default",
                 ]);
 
+                CheapLogger::log("userDatabase: after create group=$userGroupId");
+
 
                 // root user
-
                 $userId = $this->addUser([
                     'user_group_id' => $userGroupId,
                     'identifier' => $this->root_identifier,
@@ -475,6 +477,7 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
                 $permGroupId = $this->getPermissionGroupApi()->insertPermissionGroup([
                     'name' => 'root',
                 ]);
+
 
 
                 // the * permission

@@ -71,7 +71,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlUserHasPermissionGroupApi::insertUserHasPermissionGroup](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlUserHasPermissionGroupApi.php#L29-L68)
+See the source code for method [MysqlUserHasPermissionGroupApi::insertUserHasPermissionGroup](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlUserHasPermissionGroupApi.php#L29-L69)
 
 
 See Also

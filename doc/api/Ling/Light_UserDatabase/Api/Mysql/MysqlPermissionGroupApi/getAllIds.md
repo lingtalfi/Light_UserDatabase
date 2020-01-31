@@ -51,7 +51,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlPermissionGroupApi::getAllIds](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPermissionGroupApi.php#L117-L120)
+See the source code for method [MysqlPermissionGroupApi::getAllIds](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPermissionGroupApi.php#L118-L121)
 
 
 See Also

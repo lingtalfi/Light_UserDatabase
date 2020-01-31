@@ -66,7 +66,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlPluginOptionApi::getPluginOptionIdByName](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPluginOptionApi.php#L169-L182)
+See the source code for method [MysqlPluginOptionApi::getPluginOptionIdByName](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPluginOptionApi.php#L170-L183)
 
 
 See Also

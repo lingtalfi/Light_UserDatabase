@@ -62,6 +62,7 @@ class MysqlUserGroupApi extends MysqlBaseLightUserDatabaseApi implements UserGro
 
                 ];
             }
+            throw $e;
         }
         return false;
     }

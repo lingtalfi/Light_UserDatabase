@@ -50,7 +50,7 @@ Returns int | false.
 
 Source Code
 ===========
-See the source code for method [MysqlPermissionGroupApi::getPermissionGroupIdByName](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPermissionGroupApi.php#L175-L185)
+See the source code for method [MysqlPermissionGroupApi::getPermissionGroupIdByName](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPermissionGroupApi.php#L176-L186)
 
 
 See Also

@@ -58,7 +58,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlUserGroupApi::updateUserGroupById](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlUserGroupApi.php#L120-L126)
+See the source code for method [MysqlUserGroupApi::updateUserGroupById](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlUserGroupApi.php#L121-L127)
 
 
 See Also

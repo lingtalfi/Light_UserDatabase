@@ -62,6 +62,7 @@ class MysqlPluginOptionApi extends MysqlBaseLightUserDatabaseApi implements Plug
 
                 ];
             }
+            throw $e;
         }
         return false;
     }

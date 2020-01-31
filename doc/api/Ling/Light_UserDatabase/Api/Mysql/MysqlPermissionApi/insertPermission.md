@@ -71,7 +71,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlPermissionApi::insertPermission](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPermissionApi.php#L34-L71)
+See the source code for method [MysqlPermissionApi::insertPermission](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPermissionApi.php#L30-L68)
 
 
 See Also

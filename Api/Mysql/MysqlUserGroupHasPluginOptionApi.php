@@ -64,6 +64,7 @@ class MysqlUserGroupHasPluginOptionApi extends MysqlBaseLightUserDatabaseApi imp
 
                 ];
             }
+            throw $e;
         }
         return false;
     }

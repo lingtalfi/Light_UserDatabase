@@ -65,6 +65,7 @@ class MysqlPermissionGroupApi extends MysqlBaseLightUserDatabaseApi implements P
 
                 ];
             }
+            throw $e;
         }
         return false;
     }

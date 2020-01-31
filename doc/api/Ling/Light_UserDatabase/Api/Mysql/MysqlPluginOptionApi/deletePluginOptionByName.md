@@ -54,7 +54,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlPluginOptionApi::deletePluginOptionByName](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPluginOptionApi.php#L154-L160)
+See the source code for method [MysqlPluginOptionApi::deletePluginOptionByName](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPluginOptionApi.php#L155-L161)
 
 
 See Also

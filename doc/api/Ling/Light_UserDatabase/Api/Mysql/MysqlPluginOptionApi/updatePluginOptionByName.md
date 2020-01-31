@@ -58,7 +58,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [MysqlPluginOptionApi::updatePluginOptionByName](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPluginOptionApi.php#L131-L137)
+See the source code for method [MysqlPluginOptionApi::updatePluginOptionByName](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPluginOptionApi.php#L132-L138)
 
 
 See Also

@@ -9,6 +9,7 @@ dependencies:
         - Light_PasswordProtector
         - TinyBullsheeter
         - ArrayToString
+        - CheapLogger
         - Light_Events
         - Light_PluginDatabaseInstaller
         - SqlWizard

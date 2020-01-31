@@ -6,14 +6,12 @@ namespace Ling\Light_UserDatabase\Api\Mysql;
 
 use Ling\Light_UserDatabase\Api\PermissionApiInterface;
 use Ling\SimplePdoWrapper\SimplePdoWrapper;
-use Ling\SimplePdoWrapper\SimplePdoWrapperInterface;
 
 /**
  * The MysqlPermissionApi class.
  */
 class MysqlPermissionApi extends MysqlBaseLightUserDatabaseApi implements PermissionApiInterface
 {
-
 
 
     /**
@@ -24,8 +22,6 @@ class MysqlPermissionApi extends MysqlBaseLightUserDatabaseApi implements Permis
         parent::__construct();
         $this->table = "lud_permission";
     }
-
-
 
 
     /**
@@ -66,6 +62,7 @@ class MysqlPermissionApi extends MysqlBaseLightUserDatabaseApi implements Permis
 
                 ];
             }
+            throw $e;
         }
         return false;
     }
@@ -110,8 +107,6 @@ class MysqlPermissionApi extends MysqlBaseLightUserDatabaseApi implements Permis
     }
 
 
-
-
     /**
      * @implementation
      */
@@ -141,7 +136,6 @@ class MysqlPermissionApi extends MysqlBaseLightUserDatabaseApi implements Permis
 
         ]);
     }
-
 
 
     /**
@@ -188,9 +182,6 @@ class MysqlPermissionApi extends MysqlBaseLightUserDatabaseApi implements Permis
         ], \PDO::FETCH_COLUMN);
         return $ret;
     }
-
-
-
 
 
 }

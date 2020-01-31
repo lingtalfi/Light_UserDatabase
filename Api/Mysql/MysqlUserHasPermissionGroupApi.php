@@ -63,6 +63,7 @@ class MysqlUserHasPermissionGroupApi extends MysqlBaseLightUserDatabaseApi imple
 
                 ];
             }
+            throw $e;
         }
         return false;
     }

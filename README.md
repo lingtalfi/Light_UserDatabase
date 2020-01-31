@@ -156,6 +156,10 @@ Related
 History Log
 =============
 
+- 1.22.1 -- 2020-01-31
+
+    - fix api insert methods not throwing exceptions when ignoreDuplicate flag is false
+    
 - 1.22.0 -- 2020-01-31
 
     - update MysqlLightWebsiteUserDatabase->initialize, now transmits initialize level to plugin_database_installer

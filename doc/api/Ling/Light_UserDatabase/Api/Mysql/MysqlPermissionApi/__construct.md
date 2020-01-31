@@ -46,7 +46,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [MysqlPermissionApi::__construct](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPermissionApi.php#L22-L26)
+See the source code for method [MysqlPermissionApi::__construct](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/MysqlPermissionApi.php#L20-L24)
 
 
 See Also
