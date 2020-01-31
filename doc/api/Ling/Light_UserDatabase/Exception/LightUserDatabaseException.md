@@ -4,7 +4,7 @@
 
 The LightUserDatabaseException class
 ================
-2019-07-19 --> 2019-12-20
+2019-07-19 --> 2020-01-31
 
 
 

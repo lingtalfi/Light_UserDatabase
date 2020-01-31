@@ -1,6 +1,6 @@
 Light_UserDatabase
 ===========
-2019-07-19 -> 2019-12-20
+2019-07-19 -> 2020-01-31
 
 
 
@@ -31,6 +31,7 @@ Summary
 - [Light_UserDatabase api](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase.md) (generated with [DocTools](https://github.com/lingtalfi/DocTools))
 - Pages
     - [Conception notes](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/pages/conception-notes.md) 
+    - [Schema conception notes](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/pages/schema-conception-notes.md) 
     - [Events](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/pages/events.md) 
 - [Services](#services)
 - [Related](#related)
@@ -155,6 +156,10 @@ Related
 History Log
 =============
 
+- 1.20.4 -- 2020-01-31
+
+    - add schema conception notes document
+    
 - 1.20.3 -- 2019-12-20
 
     - removed micro-permission automatic checking in MysqlLightWebsiteUserDatabase

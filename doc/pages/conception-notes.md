@@ -1,6 +1,6 @@
 Light_UserDatabase, conception notes
 ===================
-2019-09-16
+2019-09-16 -> 2020-01-31
 
 
 
@@ -29,6 +29,9 @@ First, we see the user as a database structure with the following tables:
 - plugin_option
 - user_group_has_plugin_option
 
+
+
+See the [schema conception notes](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/pages/schema-conception-notes.md) for more details.
 
 All table names in this document are simplified, in the concrete implementation they are all prefixed with the "lud" prefix (which stands for light user database).
 
