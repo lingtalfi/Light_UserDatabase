@@ -156,6 +156,10 @@ Related
 History Log
 =============
 
+- 1.22.0 -- 2020-01-31
+
+    - update MysqlLightWebsiteUserDatabase->initialize, now transmits initialize level to plugin_database_installer
+    
 - 1.21.0 -- 2020-01-31
 
     - update schema, removed lud_plugin_option.plugin field

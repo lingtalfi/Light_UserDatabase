@@ -407,7 +407,7 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
          */
         $pih = $this->container->get("plugin_database_installer");
         if (true === $this->forceInstall || false === $pih->isInstalled("Light_UserDatabase")) {
-            $pih->install("Light_UserDatabase");
+            $pih->install("Light_UserDatabase", 1);
         }
     }
 
@@ -519,7 +519,10 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
         $this->pdoWrapper->executeStatement("DROP table if exists lud_user_has_permission_group");
         $this->pdoWrapper->executeStatement("DROP table if exists lud_permission_group");
         $this->pdoWrapper->executeStatement("DROP table if exists lud_permission");
+        $this->pdoWrapper->executeStatement("DROP table if exists lud_user_group_has_plugin_option");
+        $this->pdoWrapper->executeStatement("DROP table if exists lud_plugin_option");
         $this->pdoWrapper->executeStatement("DROP table if exists " . $this->table);
+        $this->pdoWrapper->executeStatement("DROP table if exists lud_user_group");
     }
 
 
