@@ -11,6 +11,8 @@ Schema conception notes
     - id: aik
     - user_group: fk
     - identifier: uq, str 128. The user identifier. It must be a valid filename as defined by the FileSystemTool::isValidFilename method.
+    
+        This is important because it might be relied upon by third-party plugins, such as the [Light_UserData](https://github.com/lingtalfi/Light_UserData) plugin.
     - pseudo: str 64
     - password: str 64
     - avatar_url: str 512

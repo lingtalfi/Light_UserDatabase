@@ -156,6 +156,10 @@ Related
 History Log
 =============
 
+- 1.20.5 -- 2020-01-31
+
+    - add precision to schema conception notes
+    
 - 1.20.4 -- 2020-01-31
 
     - add schema conception notes document
