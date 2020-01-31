@@ -47,9 +47,8 @@ Schema conception notes
     
     
 - **lud_plugin_option**: the plugin options. Third-party plugins can use this table to add their own (user related) options.
-    - id: aik    
-    - plugin: str 128. The name of the plugin registering this option.    
-    - name: uq, str 128. The name of the option. We recommend the following naming convention:
+    - id: aik        
+    - name: uq, str 128. The name of the option. The following naming convention must be applied:
         - optionName: $pluginName.$pluginOptionName
         
             With:

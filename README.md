@@ -156,6 +156,10 @@ Related
 History Log
 =============
 
+- 1.21.0 -- 2020-01-31
+
+    - update schema, removed lud_plugin_option.plugin field
+    
 - 1.20.5 -- 2020-01-31
 
     - add precision to schema conception notes

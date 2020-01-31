@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `lud_plugin_option` (
   `value` VARCHAR(512) NOT NULL,
   `description` TEXT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC, `plugin` ASC))
 ENGINE = InnoDB;
 
 
