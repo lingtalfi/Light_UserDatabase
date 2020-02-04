@@ -4,15 +4,14 @@
 namespace Ling\Light_UserDatabase;
 
 
-use Ling\Light_UserDatabase\Api\PermissionApiInterface;
-use Ling\Light_UserDatabase\Api\PermissionGroupApiInterface;
-use Ling\Light_UserDatabase\Api\PermissionGroupHasPermissionApiInterface;
-use Ling\Light_UserDatabase\Api\PermissionOptionsApiInterface;
-use Ling\Light_UserDatabase\Api\PluginOptionApiInterface;
-use Ling\Light_UserDatabase\Api\UserGroupApiInterface;
-use Ling\Light_UserDatabase\Api\UserGroupHasPluginOptionApiInterface;
-use Ling\Light_UserDatabase\Api\UserHasPermissionGroupApiInterface;
-use Ling\Light_UserDatabase\Api\UserOptionsApiInterface;
+
+use Ling\Light_UserDatabase\Api\Mysql\Interfaces\PermissionApiInterface;
+use Ling\Light_UserDatabase\Api\Mysql\Interfaces\PermissionGroupApiInterface;
+use Ling\Light_UserDatabase\Api\Mysql\Interfaces\PermissionGroupHasPermissionApiInterface;
+use Ling\Light_UserDatabase\Api\Mysql\Interfaces\PluginOptionApiInterface;
+use Ling\Light_UserDatabase\Api\Mysql\Interfaces\UserGroupApiInterface;
+use Ling\Light_UserDatabase\Api\Mysql\Interfaces\UserGroupHasPluginOptionApiInterface;
+use Ling\Light_UserDatabase\Api\Mysql\Interfaces\UserHasPermissionGroupApiInterface;
 use Ling\Light_UserDatabase\Exception\LightUserDatabaseException;
 
 /**

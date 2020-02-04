@@ -1,6 +1,6 @@
 Light_UserDatabase
 ===========
-2019-07-19 -> 2020-01-31
+2019-07-19 -> 2020-02-04
 
 
 
@@ -156,6 +156,10 @@ Related
 History Log
 =============
 
+- 1.23.0 -- 2020-02-04
+
+    - update api with new BreezeGenerator organization
+    
 - 1.22.2 -- 2020-01-31
 
     - fix schema, forgot to remove lud_plugin_option.plugin as stated in 1.21.0

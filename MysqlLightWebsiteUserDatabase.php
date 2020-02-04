@@ -8,24 +8,10 @@ use Ling\ArrayToString\ArrayToStringTool;
 use Ling\Bat\ArrayTool;
 use Ling\Light\Events\LightEvent;
 use Ling\Light\ServiceContainer\LightServiceContainerInterface;
-use Ling\Light_Database\LightDatabasePdoWrapper;
 use Ling\Light_Events\Service\LightEventsService;
 use Ling\Light_PasswordProtector\Service\LightPasswordProtector;
 use Ling\Light_PluginDatabaseInstaller\Service\LightPluginDatabaseInstallerService;
-use Ling\Light_UserDatabase\Api\Mysql\MysqlPermissionApi;
-use Ling\Light_UserDatabase\Api\Mysql\MysqlPermissionGroupApi;
-use Ling\Light_UserDatabase\Api\Mysql\MysqlPermissionGroupHasPermissionApi;
-use Ling\Light_UserDatabase\Api\Mysql\MysqlPluginOptionApi;
-use Ling\Light_UserDatabase\Api\Mysql\MysqlUserGroupApi;
-use Ling\Light_UserDatabase\Api\Mysql\MysqlUserGroupHasPluginOptionApi;
-use Ling\Light_UserDatabase\Api\Mysql\MysqlUserHasPermissionGroupApi;
-use Ling\Light_UserDatabase\Api\PermissionApiInterface;
-use Ling\Light_UserDatabase\Api\PermissionGroupApiInterface;
-use Ling\Light_UserDatabase\Api\PermissionGroupHasPermissionApiInterface;
-use Ling\Light_UserDatabase\Api\PluginOptionApiInterface;
-use Ling\Light_UserDatabase\Api\UserGroupApiInterface;
-use Ling\Light_UserDatabase\Api\UserGroupHasPluginOptionApiInterface;
-use Ling\Light_UserDatabase\Api\UserHasPermissionGroupApiInterface;
+use Ling\Light_UserDatabase\Api\Mysql\LightUserDatabaseApiFactory;
 use Ling\Light_UserDatabase\Exception\LightUserDatabaseException;
 use Ling\SimplePdoWrapper\Util\MysqlInfoUtil;
 use Ling\SqlWizard\Tool\MysqlSerializeTool;
@@ -44,7 +30,7 @@ use Ling\SqlWizard\Tool\MysqlSerializeTool;
  *
  *
  */
-class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
+class MysqlLightWebsiteUserDatabase extends LightUserDatabaseApiFactory implements LightWebsiteUserDatabaseInterface
 {
 
 
@@ -55,19 +41,6 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
      * @var string|null = null
      */
     protected $database;
-
-
-    /**
-     * This property holds the container for this instance.
-     * @var LightServiceContainerInterface
-     */
-    protected $container;
-
-    /**
-     * This property holds the pdoWrapper for this instance.
-     * @var LightDatabasePdoWrapper
-     */
-    protected $pdoWrapper;
 
 
     /**
@@ -143,9 +116,11 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->database = null;
         $this->table = "lud_user";
-        $this->container = null;
+
         $this->root_identifier = "root";
         $this->root_password = "root";
         $this->root_pseudo = "root";
@@ -157,10 +132,7 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
     }
 
     /**
-     * Sets the container.
-     *
-     * @param LightServiceContainerInterface $container
-     * @throws \Exception
+     * @overrides
      */
     public function setContainer(LightServiceContainerInterface $container)
     {
@@ -522,89 +494,6 @@ class MysqlLightWebsiteUserDatabase implements LightWebsiteUserDatabaseInterface
         $this->pdoWrapper->executeStatement("DROP table if exists " . $this->table);
         $this->pdoWrapper->executeStatement("DROP table if exists lud_user_group");
     }
-
-
-    //--------------------------------------------
-    //
-    //--------------------------------------------
-
-    /**
-     * @implementation
-     */
-    public function getPermissionApi(): PermissionApiInterface
-    {
-        $o = new MysqlPermissionApi();
-        $o->setPdoWrapper($this->pdoWrapper);
-        return $o;
-    }
-
-    /**
-     * @implementation
-     */
-    public function getPermissionGroupApi(): PermissionGroupApiInterface
-    {
-        $o = new MysqlPermissionGroupApi();
-        $o->setPdoWrapper($this->pdoWrapper);
-        return $o;
-    }
-
-    /**
-     * @implementation
-     */
-    public function getPermissionGroupHasPermissionApi(): PermissionGroupHasPermissionApiInterface
-    {
-        $o = new MysqlPermissionGroupHasPermissionApi();
-        $o->setPdoWrapper($this->pdoWrapper);
-        return $o;
-    }
-
-    /**
-     * @implementation
-     */
-    public function getUserHasPermissionGroupApi(): UserHasPermissionGroupApiInterface
-    {
-        $o = new MysqlUserHasPermissionGroupApi();
-        $o->setPdoWrapper($this->pdoWrapper);
-        return $o;
-    }
-
-
-    /**
-     * @implementation
-     */
-    public function getUserGroupApi(): UserGroupApiInterface
-    {
-        $o = new MysqlUserGroupApi();
-        $o->setPdoWrapper($this->pdoWrapper);
-        return $o;
-    }
-
-
-    /**
-     * @implementation
-     */
-    public function getPluginOptionApi(): PluginOptionApiInterface
-    {
-        $o = new MysqlPluginOptionApi();
-        $o->setPdoWrapper($this->pdoWrapper);
-        return $o;
-    }
-
-
-    /**
-     * @implementation
-     */
-    public function getUserGroupHasPluginOptionApi(): UserGroupHasPluginOptionApiInterface
-    {
-        $o = new MysqlUserGroupHasPluginOptionApi();
-        $o->setPdoWrapper($this->pdoWrapper);
-        return $o;
-    }
-
-
-
-
-
 
 
 

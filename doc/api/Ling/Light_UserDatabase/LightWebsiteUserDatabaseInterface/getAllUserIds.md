@@ -46,7 +46,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [LightWebsiteUserDatabaseInterface::getAllUserIds](https://github.com/lingtalfi/Light_UserDatabase/blob/master/LightWebsiteUserDatabaseInterface.php#L89-L89)
+See the source code for method [LightWebsiteUserDatabaseInterface::getAllUserIds](https://github.com/lingtalfi/Light_UserDatabase/blob/master/LightWebsiteUserDatabaseInterface.php#L88-L88)
 
 
 See Also
