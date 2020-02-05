@@ -68,6 +68,36 @@ interface PluginOptionApiInterface
 
 
     /**
+     * Returns the pluginOption row identified by the given where conditions.
+     *
+     * If the row is not found, this method's return depends on the throwNotFoundEx flag:
+     * - if true, the method throws an exception
+     * - if false, the method returns the given default value
+     *
+     *
+     * @param $where
+     * @param array $markers
+     * @param null $default
+     * @param bool $throwNotFoundEx
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getPluginOption($where, array $markers = [], $default = null, bool $throwNotFoundEx = false);
+
+
+    /**
+     * Returns the pluginOption rows identified by the given where conditions.
+     *
+     *
+     * @param $where
+     * @param array $markers
+     * @return array
+     * @throws \Exception
+     */
+    public function getPluginOptions($where, array $markers = []);
+
+
+    /**
      * Returns the id of the lud_plugin_option table.
      *
      * If the row is not found, this method's return depends on the throwNotFoundEx flag:

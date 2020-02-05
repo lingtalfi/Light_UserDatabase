@@ -115,6 +115,43 @@ class PermissionGroupApi extends MysqlBaseLightUserDatabaseApi implements Permis
     /**
      * @implementation
      */
+    public function getPermissionGroup($where, array $markers = [], $default = null, bool $throwNotFoundEx = false)
+    {
+        $q = "select * from `$this->table`";
+        SimplePdoWrapper::addWhereSubStmt($q, $markers, $where);
+
+
+        $ret = $this->pdoWrapper->fetch($q, $markers);
+        if (false === $ret) {
+            if (true === $throwNotFoundEx) {
+                $e = new \RuntimeException("Row not found, inspect the exception for more details.");
+                $e->where = $where;
+                $e->q = $q;
+                $e->markers = $markers;
+                throw $e;
+            } else {
+                $ret = $default;
+            }
+        }
+        return $ret;
+    }
+
+
+
+    /**
+     * @implementation
+     */
+    public function getPermissionGroups($where, array $markers = [])
+    {
+        $q = "select * from `$this->table`";
+        SimplePdoWrapper::addWhereSubStmt($q, $markers, $where);
+        return $this->pdoWrapper->fetchAll($q, $markers);
+    }
+
+
+    /**
+     * @implementation
+     */
     public function getPermissionGroupIdByName(string $name, $default = null, bool $throwNotFoundEx = false)
     {
         $ret = $this->pdoWrapper->fetch("select id from `$this->table` where name=:name", [

@@ -4,7 +4,7 @@
 
 The LightUserDatabaseApiFactory class
 ================
-2019-07-19 --> 2020-02-04
+2019-07-19 --> 2020-02-05
 
 
 

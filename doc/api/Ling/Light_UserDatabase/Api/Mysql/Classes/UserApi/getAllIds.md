@@ -51,7 +51,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [UserApi::getAllIds](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/Classes/UserApi.php#L142-L145)
+See the source code for method [UserApi::getAllIds](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/Classes/UserApi.php#L179-L182)
 
 
 See Also

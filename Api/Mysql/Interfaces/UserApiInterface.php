@@ -68,6 +68,36 @@ interface UserApiInterface
 
 
     /**
+     * Returns the user row identified by the given where conditions.
+     *
+     * If the row is not found, this method's return depends on the throwNotFoundEx flag:
+     * - if true, the method throws an exception
+     * - if false, the method returns the given default value
+     *
+     *
+     * @param $where
+     * @param array $markers
+     * @param null $default
+     * @param bool $throwNotFoundEx
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getUser($where, array $markers = [], $default = null, bool $throwNotFoundEx = false);
+
+
+    /**
+     * Returns the user rows identified by the given where conditions.
+     *
+     *
+     * @param $where
+     * @param array $markers
+     * @return array
+     * @throws \Exception
+     */
+    public function getUsers($where, array $markers = []);
+
+
+    /**
      * Returns the id of the lud_user table.
      *
      * If the row is not found, this method's return depends on the throwNotFoundEx flag:

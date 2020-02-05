@@ -95,6 +95,43 @@ class UserGroupHasPluginOptionApi extends MysqlBaseLightUserDatabaseApi implemen
 
 
 
+    /**
+     * @implementation
+     */
+    public function getUserGroupHasPluginOption($where, array $markers = [], $default = null, bool $throwNotFoundEx = false)
+    {
+        $q = "select * from `$this->table`";
+        SimplePdoWrapper::addWhereSubStmt($q, $markers, $where);
+
+
+        $ret = $this->pdoWrapper->fetch($q, $markers);
+        if (false === $ret) {
+            if (true === $throwNotFoundEx) {
+                $e = new \RuntimeException("Row not found, inspect the exception for more details.");
+                $e->where = $where;
+                $e->q = $q;
+                $e->markers = $markers;
+                throw $e;
+            } else {
+                $ret = $default;
+            }
+        }
+        return $ret;
+    }
+
+
+
+    /**
+     * @implementation
+     */
+    public function getUserGroupHasPluginOptions($where, array $markers = [])
+    {
+        $q = "select * from `$this->table`";
+        SimplePdoWrapper::addWhereSubStmt($q, $markers, $where);
+        return $this->pdoWrapper->fetchAll($q, $markers);
+    }
+
+
 
 
 
@@ -121,6 +158,28 @@ class UserGroupHasPluginOptionApi extends MysqlBaseLightUserDatabaseApi implemen
         $this->pdoWrapper->delete($this->table, [
             "user_group_id" => $user_group_id,
 			"plugin_option_id" => $plugin_option_id,
+
+        ]);
+    }
+
+    /**
+     * @implementation
+     */
+    public function deleteUserGroupHasPluginOptionByUserGroupId(int $user_group_id)
+    { 
+        $this->pdoWrapper->delete($this->table, [
+            "user_group_id" => $user_group_id,
+
+        ]);
+    }
+
+    /**
+     * @implementation
+     */
+    public function deleteUserGroupHasPluginOptionByPluginOptionId(int $plugin_option_id)
+    { 
+        $this->pdoWrapper->delete($this->table, [
+            "plugin_option_id" => $plugin_option_id,
 
         ]);
     }

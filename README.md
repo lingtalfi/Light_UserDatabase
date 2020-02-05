@@ -1,6 +1,6 @@
 Light_UserDatabase
 ===========
-2019-07-19 -> 2020-02-04
+2019-07-19 -> 2020-02-05
 
 
 
@@ -156,6 +156,10 @@ Related
 History Log
 =============
 
+- 1.24.0 -- 2020-02-05
+
+    - update api with new BreezeGenerator organization (new getObject and getObjects methods)
+    
 - 1.23.0 -- 2020-02-04
 
     - update api with new BreezeGenerator organization

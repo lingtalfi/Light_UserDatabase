@@ -115,6 +115,43 @@ class UserGroupApi extends MysqlBaseLightUserDatabaseApi implements UserGroupApi
     /**
      * @implementation
      */
+    public function getUserGroup($where, array $markers = [], $default = null, bool $throwNotFoundEx = false)
+    {
+        $q = "select * from `$this->table`";
+        SimplePdoWrapper::addWhereSubStmt($q, $markers, $where);
+
+
+        $ret = $this->pdoWrapper->fetch($q, $markers);
+        if (false === $ret) {
+            if (true === $throwNotFoundEx) {
+                $e = new \RuntimeException("Row not found, inspect the exception for more details.");
+                $e->where = $where;
+                $e->q = $q;
+                $e->markers = $markers;
+                throw $e;
+            } else {
+                $ret = $default;
+            }
+        }
+        return $ret;
+    }
+
+
+
+    /**
+     * @implementation
+     */
+    public function getUserGroups($where, array $markers = [])
+    {
+        $q = "select * from `$this->table`";
+        SimplePdoWrapper::addWhereSubStmt($q, $markers, $where);
+        return $this->pdoWrapper->fetchAll($q, $markers);
+    }
+
+
+    /**
+     * @implementation
+     */
     public function getUserGroupIdByName(string $name, $default = null, bool $throwNotFoundEx = false)
     {
         $ret = $this->pdoWrapper->fetch("select id from `$this->table` where name=:name", [

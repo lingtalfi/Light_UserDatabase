@@ -95,6 +95,43 @@ class UserHasPermissionGroupApi extends MysqlBaseLightUserDatabaseApi implements
 
 
 
+    /**
+     * @implementation
+     */
+    public function getUserHasPermissionGroup($where, array $markers = [], $default = null, bool $throwNotFoundEx = false)
+    {
+        $q = "select * from `$this->table`";
+        SimplePdoWrapper::addWhereSubStmt($q, $markers, $where);
+
+
+        $ret = $this->pdoWrapper->fetch($q, $markers);
+        if (false === $ret) {
+            if (true === $throwNotFoundEx) {
+                $e = new \RuntimeException("Row not found, inspect the exception for more details.");
+                $e->where = $where;
+                $e->q = $q;
+                $e->markers = $markers;
+                throw $e;
+            } else {
+                $ret = $default;
+            }
+        }
+        return $ret;
+    }
+
+
+
+    /**
+     * @implementation
+     */
+    public function getUserHasPermissionGroups($where, array $markers = [])
+    {
+        $q = "select * from `$this->table`";
+        SimplePdoWrapper::addWhereSubStmt($q, $markers, $where);
+        return $this->pdoWrapper->fetchAll($q, $markers);
+    }
+
+
 
 
 
@@ -121,6 +158,28 @@ class UserHasPermissionGroupApi extends MysqlBaseLightUserDatabaseApi implements
         $this->pdoWrapper->delete($this->table, [
             "user_id" => $user_id,
 			"permission_group_id" => $permission_group_id,
+
+        ]);
+    }
+
+    /**
+     * @implementation
+     */
+    public function deleteUserHasPermissionGroupByUserId(int $user_id)
+    { 
+        $this->pdoWrapper->delete($this->table, [
+            "user_id" => $user_id,
+
+        ]);
+    }
+
+    /**
+     * @implementation
+     */
+    public function deleteUserHasPermissionGroupByPermissionGroupId(int $permission_group_id)
+    { 
+        $this->pdoWrapper->delete($this->table, [
+            "permission_group_id" => $permission_group_id,
 
         ]);
     }

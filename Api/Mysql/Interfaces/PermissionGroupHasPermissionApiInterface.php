@@ -52,6 +52,36 @@ interface PermissionGroupHasPermissionApiInterface
 
 
 
+    /**
+     * Returns the permissionGroupHasPermission row identified by the given where conditions.
+     *
+     * If the row is not found, this method's return depends on the throwNotFoundEx flag:
+     * - if true, the method throws an exception
+     * - if false, the method returns the given default value
+     *
+     *
+     * @param $where
+     * @param array $markers
+     * @param null $default
+     * @param bool $throwNotFoundEx
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getPermissionGroupHasPermission($where, array $markers = [], $default = null, bool $throwNotFoundEx = false);
+
+
+    /**
+     * Returns the permissionGroupHasPermission rows identified by the given where conditions.
+     *
+     *
+     * @param $where
+     * @param array $markers
+     * @return array
+     * @throws \Exception
+     */
+    public function getPermissionGroupHasPermissions($where, array $markers = []);
+
+
 
 
 
@@ -79,6 +109,24 @@ interface PermissionGroupHasPermissionApiInterface
      * @throws \Exception
      */
     public function deletePermissionGroupHasPermissionByPermissionGroupIdAndPermissionId(int $permission_group_id, int $permission_id);
+
+    /**
+     * Deletes the permissionGroupHasPermission identified by the given permission_group_id.
+     *
+     * @param int $permission_group_id
+     * @return void
+     * @throws \Exception
+     */
+    public function deletePermissionGroupHasPermissionByPermissionGroupId(int $permission_group_id);
+
+    /**
+     * Deletes the permissionGroupHasPermission identified by the given permission_id.
+     *
+     * @param int $permission_id
+     * @return void
+     * @throws \Exception
+     */
+    public function deletePermissionGroupHasPermissionByPermissionId(int $permission_id);
 
 
 

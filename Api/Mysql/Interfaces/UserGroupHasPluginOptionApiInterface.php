@@ -52,6 +52,36 @@ interface UserGroupHasPluginOptionApiInterface
 
 
 
+    /**
+     * Returns the userGroupHasPluginOption row identified by the given where conditions.
+     *
+     * If the row is not found, this method's return depends on the throwNotFoundEx flag:
+     * - if true, the method throws an exception
+     * - if false, the method returns the given default value
+     *
+     *
+     * @param $where
+     * @param array $markers
+     * @param null $default
+     * @param bool $throwNotFoundEx
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getUserGroupHasPluginOption($where, array $markers = [], $default = null, bool $throwNotFoundEx = false);
+
+
+    /**
+     * Returns the userGroupHasPluginOption rows identified by the given where conditions.
+     *
+     *
+     * @param $where
+     * @param array $markers
+     * @return array
+     * @throws \Exception
+     */
+    public function getUserGroupHasPluginOptions($where, array $markers = []);
+
+
 
 
 
@@ -79,6 +109,24 @@ interface UserGroupHasPluginOptionApiInterface
      * @throws \Exception
      */
     public function deleteUserGroupHasPluginOptionByUserGroupIdAndPluginOptionId(int $user_group_id, int $plugin_option_id);
+
+    /**
+     * Deletes the userGroupHasPluginOption identified by the given user_group_id.
+     *
+     * @param int $user_group_id
+     * @return void
+     * @throws \Exception
+     */
+    public function deleteUserGroupHasPluginOptionByUserGroupId(int $user_group_id);
+
+    /**
+     * Deletes the userGroupHasPluginOption identified by the given plugin_option_id.
+     *
+     * @param int $plugin_option_id
+     * @return void
+     * @throws \Exception
+     */
+    public function deleteUserGroupHasPluginOptionByPluginOptionId(int $plugin_option_id);
 
 
 
