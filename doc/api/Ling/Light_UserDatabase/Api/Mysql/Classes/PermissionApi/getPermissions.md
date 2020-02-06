@@ -7,7 +7,7 @@ PermissionApi::getPermissions
 
 
 
-PermissionApi::getPermissions — Returns the permission rows identified by the given where conditions.
+PermissionApi::getPermissions — Returns the permission rows identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
 
 
 
@@ -21,7 +21,7 @@ public [PermissionApi::getPermissions](https://github.com/lingtalfi/Light_UserDa
 
 
 
-Returns the permission rows identified by the given where conditions.
+Returns the permission rows identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
 
 
 

@@ -7,7 +7,7 @@ UserGroupApi::getUserGroups
 
 
 
-UserGroupApi::getUserGroups — Returns the userGroup rows identified by the given where conditions.
+UserGroupApi::getUserGroups — Returns the userGroup rows identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
 
 
 
@@ -21,7 +21,7 @@ public [UserGroupApi::getUserGroups](https://github.com/lingtalfi/Light_UserData
 
 
 
-Returns the userGroup rows identified by the given where conditions.
+Returns the userGroup rows identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
 
 
 

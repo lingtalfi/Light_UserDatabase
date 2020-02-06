@@ -7,7 +7,7 @@ UserGroupHasPluginOptionApi::getUserGroupHasPluginOptions
 
 
 
-UserGroupHasPluginOptionApi::getUserGroupHasPluginOptions — Returns the userGroupHasPluginOption rows identified by the given where conditions.
+UserGroupHasPluginOptionApi::getUserGroupHasPluginOptions — Returns the userGroupHasPluginOption rows identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
 
 
 
@@ -21,7 +21,7 @@ public [UserGroupHasPluginOptionApi::getUserGroupHasPluginOptions](https://githu
 
 
 
-Returns the userGroupHasPluginOption rows identified by the given where conditions.
+Returns the userGroupHasPluginOption rows identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
 
 
 

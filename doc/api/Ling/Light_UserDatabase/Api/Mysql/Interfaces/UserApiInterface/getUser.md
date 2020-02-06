@@ -7,7 +7,7 @@ UserApiInterface::getUser
 
 
 
-UserApiInterface::getUser — Returns the user row identified by the given where conditions.
+UserApiInterface::getUser — Returns the user row identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
 
 
 
@@ -21,7 +21,7 @@ abstract public [UserApiInterface::getUser](https://github.com/lingtalfi/Light_U
 
 
 
-Returns the user row identified by the given where conditions.
+Returns the user row identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
 
 If the row is not found, this method's return depends on the throwNotFoundEx flag:
 - if true, the method throws an exception

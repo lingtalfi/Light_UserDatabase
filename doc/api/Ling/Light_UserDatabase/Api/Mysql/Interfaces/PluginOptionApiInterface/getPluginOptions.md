@@ -7,7 +7,7 @@ PluginOptionApiInterface::getPluginOptions
 
 
 
-PluginOptionApiInterface::getPluginOptions — Returns the pluginOption rows identified by the given where conditions.
+PluginOptionApiInterface::getPluginOptions — Returns the pluginOption rows identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
 
 
 
@@ -21,7 +21,7 @@ abstract public [PluginOptionApiInterface::getPluginOptions](https://github.com/
 
 
 
-Returns the pluginOption rows identified by the given where conditions.
+Returns the pluginOption rows identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
 
 
 

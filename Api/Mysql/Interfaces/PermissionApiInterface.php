@@ -68,7 +68,7 @@ interface PermissionApiInterface
 
 
     /**
-     * Returns the permission row identified by the given where conditions.
+     * Returns the permission row identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
      *
      * If the row is not found, this method's return depends on the throwNotFoundEx flag:
      * - if true, the method throws an exception
@@ -86,7 +86,7 @@ interface PermissionApiInterface
 
 
     /**
-     * Returns the permission rows identified by the given where conditions.
+     * Returns the permission rows identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
      *
      *
      * @param $where
@@ -175,5 +175,6 @@ interface PermissionApiInterface
      * @return array
      */
     public function getPermissionNamesByUserId(int $id): array;
+
 
 }

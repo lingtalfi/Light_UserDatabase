@@ -7,7 +7,7 @@ UserApi::getUsers
 
 
 
-UserApi::getUsers — Returns the user rows identified by the given where conditions.
+UserApi::getUsers — Returns the user rows identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
 
 
 
@@ -21,7 +21,7 @@ public [UserApi::getUsers](https://github.com/lingtalfi/Light_UserDatabase/blob/
 
 
 
-Returns the user rows identified by the given where conditions.
+Returns the user rows identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
 
 
 

@@ -7,7 +7,7 @@ PermissionGroupHasPermissionApi::getPermissionGroupHasPermissions
 
 
 
-PermissionGroupHasPermissionApi::getPermissionGroupHasPermissions — Returns the permissionGroupHasPermission rows identified by the given where conditions.
+PermissionGroupHasPermissionApi::getPermissionGroupHasPermissions — Returns the permissionGroupHasPermission rows identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
 
 
 
@@ -21,7 +21,7 @@ public [PermissionGroupHasPermissionApi::getPermissionGroupHasPermissions](https
 
 
 
-Returns the permissionGroupHasPermission rows identified by the given where conditions.
+Returns the permissionGroupHasPermission rows identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
 
 
 

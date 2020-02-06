@@ -53,7 +53,7 @@ interface UserGroupHasPluginOptionApiInterface
 
 
     /**
-     * Returns the userGroupHasPluginOption row identified by the given where conditions.
+     * Returns the userGroupHasPluginOption row identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
      *
      * If the row is not found, this method's return depends on the throwNotFoundEx flag:
      * - if true, the method throws an exception
@@ -71,7 +71,7 @@ interface UserGroupHasPluginOptionApiInterface
 
 
     /**
-     * Returns the userGroupHasPluginOption rows identified by the given where conditions.
+     * Returns the userGroupHasPluginOption rows identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
      *
      *
      * @param $where

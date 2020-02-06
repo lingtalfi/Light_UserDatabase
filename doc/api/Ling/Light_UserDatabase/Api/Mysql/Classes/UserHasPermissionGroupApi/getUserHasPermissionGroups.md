@@ -7,7 +7,7 @@ UserHasPermissionGroupApi::getUserHasPermissionGroups
 
 
 
-UserHasPermissionGroupApi::getUserHasPermissionGroups — Returns the userHasPermissionGroup rows identified by the given where conditions.
+UserHasPermissionGroupApi::getUserHasPermissionGroups — Returns the userHasPermissionGroup rows identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
 
 
 
@@ -21,7 +21,7 @@ public [UserHasPermissionGroupApi::getUserHasPermissionGroups](https://github.co
 
 
 
-Returns the userHasPermissionGroup rows identified by the given where conditions.
+Returns the userHasPermissionGroup rows identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
 
 
 
