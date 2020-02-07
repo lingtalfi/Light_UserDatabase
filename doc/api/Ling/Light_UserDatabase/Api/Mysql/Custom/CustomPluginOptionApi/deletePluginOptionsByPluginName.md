@@ -52,7 +52,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [CustomPluginOptionApi::deletePluginOptionsByPluginName](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/Custom/CustomPluginOptionApi.php#L20-L23)
+See the source code for method [CustomPluginOptionApi::deletePluginOptionsByPluginName](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Api/Mysql/Custom/CustomPluginOptionApi.php#L21-L24)
 
 
 See Also
@@ -60,5 +60,5 @@ See Also
 
 The [CustomPluginOptionApi](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Mysql/Custom/CustomPluginOptionApi.md) class.
 
-
+Next method: [getOptionByCategoryAndUserId](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Mysql/Custom/CustomPluginOptionApi/getOptionByCategoryAndUserId.md)<br>
 

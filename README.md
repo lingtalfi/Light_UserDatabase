@@ -156,6 +156,10 @@ Related
 History Log
 =============
 
+- 1.28.0 -- 2020-02-07
+
+    - add PluginOptionApiInterface->getOptionByCategoryAndUserId method  
+    
 - 1.27.0 -- 2020-02-07
 
     - update schema: added lud_plugin_option.category  

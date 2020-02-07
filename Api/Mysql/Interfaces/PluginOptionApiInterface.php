@@ -125,4 +125,15 @@ interface PluginOptionApiInterface
      */
     public function deletePluginOptionsByPluginName(string $pluginName);
 
+
+    /**
+     * Returns the plugin option row identified by the given category and the user id.
+     *
+     * @param string $category
+     * @param int $userId
+     * @return array
+     * @throws \Exception
+     */
+    public function getOptionByCategoryAndUserId(string $category, int $userId): array;
+
 }

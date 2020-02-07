@@ -357,6 +357,10 @@ class MysqlLightWebsiteUserDatabase extends LightUserDatabaseApiFactory implemen
         return $this->pdoWrapper->fetchAll("select id from $table", [], \PDO::FETCH_COLUMN);
     }
 
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+
 
 
 
