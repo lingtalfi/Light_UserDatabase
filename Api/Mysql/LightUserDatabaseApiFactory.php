@@ -18,8 +18,8 @@ use Ling\Light_UserDatabase\Api\Mysql\Interfaces\UserHasPermissionGroupApiInterf
 use Ling\Light_UserDatabase\Api\Mysql\Classes\UserHasPermissionGroupApi;
 use Ling\Light_UserDatabase\Api\Mysql\Interfaces\PermissionGroupHasPermissionApiInterface;
 use Ling\Light_UserDatabase\Api\Mysql\Classes\PermissionGroupHasPermissionApi;
+use Ling\Light_UserDatabase\Api\Mysql\Custom\CustomPluginOptionApi;
 use Ling\Light_UserDatabase\Api\Mysql\Interfaces\PluginOptionApiInterface;
-use Ling\Light_UserDatabase\Api\Mysql\Classes\PluginOptionApi;
 use Ling\Light_UserDatabase\Api\Mysql\Interfaces\UserGroupHasPluginOptionApiInterface;
 use Ling\Light_UserDatabase\Api\Mysql\Classes\UserGroupHasPluginOptionApi;
 
@@ -130,11 +130,11 @@ class LightUserDatabaseApiFactory
     /**
      * Returns a PluginOptionApiInterface.
      *
-     * @return PluginOptionApi
+     * @return CustomPluginOptionApi
      */
     public function getPluginOptionApi(): PluginOptionApiInterface
     {
-        $o = new PluginOptionApi();
+        $o = new CustomPluginOptionApi();
         $o->setPdoWrapper($this->pdoWrapper);
         return $o;
     }

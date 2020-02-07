@@ -11,7 +11,7 @@ use Ling\Light_UserDatabase\Api\Mysql\Interfaces\PluginOptionApiInterface;
 /**
  * The PluginOptionApi class.
  */
-class PluginOptionApi extends MysqlBaseLightUserDatabaseApi implements PluginOptionApiInterface
+abstract class PluginOptionApi extends MysqlBaseLightUserDatabaseApi implements PluginOptionApiInterface
 {
 
 
@@ -90,26 +90,6 @@ class PluginOptionApi extends MysqlBaseLightUserDatabaseApi implements PluginOpt
     }
 
 
-    /**
-     * @implementation
-     */
-    public function getPluginOptionByName(string $name, $default = null, bool $throwNotFoundEx = false)
-    { 
-        $ret = $this->pdoWrapper->fetch("select * from `$this->table` where name=:name", [
-            "name" => $name,
-
-        ]);
-        if (false === $ret) {
-            if (true === $throwNotFoundEx) {
-                throw new \RuntimeException("Row not found with name=$name.");
-            } else {
-                $ret = $default;
-            }
-        }
-        return $ret;
-    }
-
-
 
 
     /**
@@ -149,28 +129,6 @@ class PluginOptionApi extends MysqlBaseLightUserDatabaseApi implements PluginOpt
     }
 
 
-    /**
-     * @implementation
-     */
-    public function getPluginOptionIdByName(string $name, $default = null, bool $throwNotFoundEx = false)
-    {
-        $ret = $this->pdoWrapper->fetch("select id from `$this->table` where name=:name", [
-            "name" => $name,
-
-
-        ], \PDO::FETCH_COLUMN);
-        if (false === $ret) {
-            if (true === $throwNotFoundEx) {
-                throw new \RuntimeException("Row not found with name=$name.");
-            } else {
-                $ret = $default;
-            }
-        }
-        return $ret;
-    }
-
-
-
 
 
     /**
@@ -192,17 +150,6 @@ class PluginOptionApi extends MysqlBaseLightUserDatabaseApi implements PluginOpt
         ]);
     }
 
-    /**
-     * @implementation
-     */
-    public function updatePluginOptionByName(string $name, array $pluginOption)
-    { 
-        $this->pdoWrapper->update($this->table, $pluginOption, [
-            "name" => $name,
-
-        ]);
-    }
-
 
 
     /**
@@ -212,17 +159,6 @@ class PluginOptionApi extends MysqlBaseLightUserDatabaseApi implements PluginOpt
     { 
         $this->pdoWrapper->delete($this->table, [
             "id" => $id,
-
-        ]);
-    }
-
-    /**
-     * @implementation
-     */
-    public function deletePluginOptionByName(string $name)
-    { 
-        $this->pdoWrapper->delete($this->table, [
-            "name" => $name,
 
         ]);
     }

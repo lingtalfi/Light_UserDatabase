@@ -49,23 +49,6 @@ interface PluginOptionApiInterface
      */
     public function getPluginOptionById(int $id, $default = null, bool $throwNotFoundEx = false);
 
-    /**
-     * Returns the pluginOption row identified by the given name.
-     *
-     * If the row is not found, this method's return depends on the throwNotFoundEx flag:
-     * - if true, the method throws an exception
-     * - if false, the method returns the given default value
-     *
-     *
-     * @param string $name
-     * @param mixed $default = null
-     * @param bool $throwNotFoundEx = false
-     * @return mixed
-     * @throws \Exception
-     */
-    public function getPluginOptionByName(string $name, $default = null, bool $throwNotFoundEx = false);
-
-
 
     /**
      * Returns the pluginOption row identified by the given [where conditions](https://github.com/lingtalfi/SimplePdoWrapper#the-where-conditions).
@@ -98,29 +81,12 @@ interface PluginOptionApiInterface
 
 
     /**
-     * Returns the id of the lud_plugin_option table.
-     *
-     * If the row is not found, this method's return depends on the throwNotFoundEx flag:
-     * - if true, the method throws an exception
-     * - if false, the method returns the given default value
-     *
-     * @param string $name
-     * @param null $default
-     * @param bool $throwNotFoundEx
-     * @return string|mixed
-     */
-    public function getPluginOptionIdByName(string $name, $default = null, bool $throwNotFoundEx = false);
-
-
-
-    /**
      * Returns an array of all pluginOption ids.
      *
      * @return array
      * @throws \Exception
      */
     public function getAllIds(): array;
-
 
 
     /**
@@ -135,18 +101,6 @@ interface PluginOptionApiInterface
 
 
     /**
-     * Updates the pluginOption row identified by the given name.
-     *
-     * @param string $name
-     * @param array $pluginOption
-     * @return void
-     * @throws \Exception
-     */
-    public function updatePluginOptionByName(string $name, array $pluginOption);
-
-
-
-    /**
      * Deletes the pluginOption identified by the given id.
      *
      * @param int $id
@@ -155,15 +109,20 @@ interface PluginOptionApiInterface
      */
     public function deletePluginOptionById(int $id);
 
+
+
+    //--------------------------------------------
+    // CUSTOM
+    //--------------------------------------------
     /**
-     * Deletes the pluginOption identified by the given name.
+     * Deletes all the plugin options which belongs to the given pluginName.
      *
-     * @param string $name
+     * Note: remember that the category column's notation is: pluginName.categoryName.
+     * See the @page(Light_UserDatabase conception notes) for more details.
+     *
+     * @param string $pluginName
      * @return void
-     * @throws \Exception
      */
-    public function deletePluginOptionByName(string $name);
-
-
+    public function deletePluginOptionsByPluginName(string $pluginName);
 
 }
