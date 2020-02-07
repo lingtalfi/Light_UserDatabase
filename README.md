@@ -1,6 +1,6 @@
 Light_UserDatabase
 ===========
-2019-07-19 -> 2020-02-06
+2019-07-19 -> 2020-02-07
 
 
 
@@ -156,6 +156,10 @@ Related
 History Log
 =============
 
+- 1.26.0 -- 2020-02-07
+
+    - update plugin, now uses the Light_PluginInstaller system 
+    
 - 1.25.0 -- 2020-02-06
 
     - update api with new BreezeGenerator organization (new documentation links to whereConds)

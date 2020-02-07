@@ -10,10 +10,10 @@ use Ling\Light\Events\LightEvent;
 use Ling\Light\ServiceContainer\LightServiceContainerInterface;
 use Ling\Light_Events\Service\LightEventsService;
 use Ling\Light_PasswordProtector\Service\LightPasswordProtector;
-use Ling\Light_PluginDatabaseInstaller\Service\LightPluginDatabaseInstallerService;
+use Ling\Light_PluginInstaller\PluginInstaller\PluginInstallerInterface;
+use Ling\Light_PluginInstaller\Service\LightPluginInstallerService;
 use Ling\Light_UserDatabase\Api\Mysql\LightUserDatabaseApiFactory;
 use Ling\Light_UserDatabase\Exception\LightUserDatabaseException;
-use Ling\SimplePdoWrapper\Util\MysqlInfoUtil;
 use Ling\SqlWizard\Tool\MysqlSerializeTool;
 
 /**
@@ -30,7 +30,7 @@ use Ling\SqlWizard\Tool\MysqlSerializeTool;
  *
  *
  */
-class MysqlLightWebsiteUserDatabase extends LightUserDatabaseApiFactory implements LightWebsiteUserDatabaseInterface
+class MysqlLightWebsiteUserDatabase extends LightUserDatabaseApiFactory implements LightWebsiteUserDatabaseInterface, PluginInstallerInterface
 {
 
 
@@ -360,42 +360,22 @@ class MysqlLightWebsiteUserDatabase extends LightUserDatabaseApiFactory implemen
 
 
 
+
     //--------------------------------------------
     //
     //--------------------------------------------
     /**
-     * Listener for the @page(Light.initialize_1 event).
-     * It installs the user database.
-     * See more details in the @page(Light_UserDatabase conception notes).
-     *
-     * @param LightEvent $event
-     * @throws \Exception
+     * @implementation
      */
-    public function initialize(LightEvent $event)
+    public function install()
     {
+
         /**
-         * @var $pih LightPluginDatabaseInstallerService
+         * @var $installer LightPluginInstallerService
          */
-        $pih = $this->container->get("plugin_database_installer");
-        if (true === $this->forceInstall || false === $pih->isInstalled("Light_UserDatabase")) {
-            $pih->install("Light_UserDatabase", 1);
-        }
-    }
+        $installer = $this->container->get("plugin_installer");
 
-    //--------------------------------------------
-    //
-    //--------------------------------------------
-    /**
-     * Installs the database part of this planet.
-     *
-     * @throws \Exception
-     */
-    public function installDatabase()
-    {
-
-        $util = new MysqlInfoUtil();
-        $util->setWrapper($this->pdoWrapper);
-        if (true === $this->forceInstall || false === $util->hasTable($this->table)) {
+        if (true === $this->forceInstall || false === $installer->hasTable($this->table)) {
 
 
             $this->isInstallMode = true; // we don't want other plugins to hook the new user creation.
@@ -479,11 +459,9 @@ class MysqlLightWebsiteUserDatabase extends LightUserDatabaseApiFactory implemen
 
 
     /**
-     * Uninstalls the database part of this planet.
-     *
-     * @throws \Exception
+     * @implementation
      */
-    public function uninstallDatabase()
+    public function uninstall()
     {
         $this->pdoWrapper->executeStatement("DROP table if exists lud_permission_group_has_permission");
         $this->pdoWrapper->executeStatement("DROP table if exists lud_user_has_permission_group");
@@ -494,6 +472,17 @@ class MysqlLightWebsiteUserDatabase extends LightUserDatabaseApiFactory implemen
         $this->pdoWrapper->executeStatement("DROP table if exists " . $this->table);
         $this->pdoWrapper->executeStatement("DROP table if exists lud_user_group");
     }
+
+
+    /**
+     * @implementation
+     */
+    public function getDependencies(): array
+    {
+        return [];
+    }
+
+
 
 
 

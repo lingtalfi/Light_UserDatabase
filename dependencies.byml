@@ -10,7 +10,7 @@ dependencies:
         - TinyBullsheeter
         - ArrayToString
         - Light_Events
-        - Light_PluginDatabaseInstaller
+        - Light_PluginInstaller
         - SqlWizard
     
 

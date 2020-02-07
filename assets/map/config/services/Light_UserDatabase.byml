@@ -43,31 +43,15 @@ $bullsheet.methods_collection:
                     setAvatarImgDir:
                         dir: ${user_database_vars.bullsheeter_avatar_img_dir}
 
-$events.methods_collection:
+
+
+
+$plugin_installer.methods_collection:
     -
-        method: registerListener
-        args:
-            events: Light.initialize_1
-            listener:
-                instance: @service(user_database)
-                callable_method: initialize
-
-
-
-
-
-$plugin_database_installer.methods_collection:
-    -
-        method: registerInstaller
+        method: registerPlugin
         args:
             plugin: Light_UserDatabase
-            installer:
-                -
-                    - @service(user_database)
-                    - installDatabase
-                -
-                    - @service(user_database)
-                    - uninstallDatabase
+            installer: @service(user_database)
 
 
 
