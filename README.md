@@ -1,6 +1,6 @@
 Light_UserDatabase
 ===========
-2019-07-19 -> 2020-02-07
+2019-07-19 -> 2020-03-10
 
 
 
@@ -156,6 +156,10 @@ Related
 History Log
 =============
 
+- 1.28.1 -- 2020-03-10
+
+    - update LightWebsiteUserDatabaseBullsheeter to be compliant with new interface declaration  
+    
 - 1.28.0 -- 2020-02-07
 
     - add PluginOptionApiInterface->getOptionByCategoryAndUserId method  
