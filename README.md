@@ -1,6 +1,6 @@
 Light_UserDatabase
 ===========
-2019-07-19 -> 2020-03-10
+2019-07-19 -> 2020-03-26
 
 
 
@@ -156,6 +156,10 @@ Related
 History Log
 =============
 
+- 1.28.2 -- 2020-03-26
+
+    - adapt for new Light_User 1.6.5  
+    
 - 1.28.1 -- 2020-03-10
 
     - update LightWebsiteUserDatabaseBullsheeter to be compliant with new interface declaration  
