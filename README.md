@@ -1,6 +1,6 @@
 Light_UserDatabase
 ===========
-2019-07-19 -> 2020-03-26
+2019-07-19 -> 2020-06-08
 
 
 
@@ -155,6 +155,10 @@ Related
 
 History Log
 =============
+
+- 1.29.0 -- 2020-06-07
+
+    - update service, now uses new api generated with LingBreezeGenerator2  
 
 - 1.28.2 -- 2020-03-26
 

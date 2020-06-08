@@ -12,7 +12,7 @@ use Ling\Light_Events\Service\LightEventsService;
 use Ling\Light_PasswordProtector\Service\LightPasswordProtector;
 use Ling\Light_PluginInstaller\PluginInstaller\PluginInstallerInterface;
 use Ling\Light_PluginInstaller\Service\LightPluginInstallerService;
-use Ling\Light_UserDatabase\Api\Mysql\LightUserDatabaseApiFactory;
+use Ling\Light_UserDatabase\Api\Custom\CustomLightUserDatabaseApiFactory;
 use Ling\Light_UserDatabase\Exception\LightUserDatabaseException;
 use Ling\SqlWizard\Tool\MysqlSerializeTool;
 
@@ -30,7 +30,7 @@ use Ling\SqlWizard\Tool\MysqlSerializeTool;
  *
  *
  */
-class MysqlLightWebsiteUserDatabase extends LightUserDatabaseApiFactory implements LightWebsiteUserDatabaseInterface, PluginInstallerInterface
+class MysqlLightWebsiteUserDatabase extends CustomLightUserDatabaseApiFactory implements LightWebsiteUserDatabaseInterface, PluginInstallerInterface
 {
 
 
@@ -129,15 +129,6 @@ class MysqlLightWebsiteUserDatabase extends LightUserDatabaseApiFactory implemen
         $this->passwordProtector = null;
         $this->isInstallMode = false;
         $this->forceInstall = false;
-    }
-
-    /**
-     * @overrides
-     */
-    public function setContainer(LightServiceContainerInterface $container)
-    {
-        $this->container = $container;
-        $this->pdoWrapper = $container->get("database");
     }
 
     //--------------------------------------------

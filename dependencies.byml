@@ -1,9 +1,8 @@
 dependencies: 
     Ling: 
+        - SimplePdoWrapper
         - Light
         - Light_Database
-        - Light_MicroPermission
-        - SimplePdoWrapper
         - Bat
         - Light_Bullsheet
         - Light_PasswordProtector
