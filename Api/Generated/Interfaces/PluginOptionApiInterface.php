@@ -130,52 +130,6 @@ interface PluginOptionApiInterface
 
 
 
-    /**
-     * Returns the rows of the lud_plugin_option table bound to the given user_group id.
-     * @param string $userGroupId
-     * @return array
-     */
-    public function getPluginOptionsByUserGroupId(string $userGroupId): array;
-
-    /**
-     * Returns the rows of the lud_plugin_option table bound to the given user_group name.
-     * @param string $userGroupName
-     * @return array
-     */
-    public function getPluginOptionsByUserGroupName(string $userGroupName): array;
-
-
-
-    /**
-     * Returns an array of lud_plugin_option.id bound to the given user_group id.
-     * @param string $userGroupId
-     * @return array
-     */
-    public function getPluginOptionIdsByUserGroupId(string $userGroupId): array;
-
-
-    /**
-     * Returns an array of lud_plugin_option.id bound to the given user_group name.
-     * @param string $userGroupName
-     * @return array
-     */
-    public function getPluginOptionIdsByUserGroupName(string $userGroupName): array;
-
-
-    /**
-     * Returns an array of lud_plugin_option.name bound to the given user_group id.
-     * @param string $userGroupId
-     * @return array
-     */
-    public function getPluginOptionNamesByUserGroupId(string $userGroupId): array;
-
-
-    /**
-     * Returns an array of lud_plugin_option.name bound to the given user_group name.
-     * @param string $userGroupName
-     * @return array
-     */
-    public function getPluginOptionNamesByUserGroupName(string $userGroupName): array;
 
 
 

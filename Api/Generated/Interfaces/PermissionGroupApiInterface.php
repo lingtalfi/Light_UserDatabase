@@ -161,51 +161,51 @@ interface PermissionGroupApiInterface
 
 
     /**
-     * Returns the rows of the lud_permission_group table bound to the given user id.
-     * @param string $userId
+     * Returns the rows of the lud_permission_group table bound to the given permission id.
+     * @param string $permissionId
      * @return array
      */
-    public function getPermissionGroupsByUserId(string $userId): array;
+    public function getPermissionGroupsByPermissionId(string $permissionId): array;
 
     /**
-     * Returns the rows of the lud_permission_group table bound to the given user identifier.
-     * @param string $userIdentifier
+     * Returns the rows of the lud_permission_group table bound to the given permission name.
+     * @param string $permissionName
      * @return array
      */
-    public function getPermissionGroupsByUserIdentifier(string $userIdentifier): array;
+    public function getPermissionGroupsByPermissionName(string $permissionName): array;
 
-
-
-    /**
-     * Returns an array of lud_permission_group.id bound to the given user id.
-     * @param string $userId
-     * @return array
-     */
-    public function getPermissionGroupIdsByUserId(string $userId): array;
 
 
     /**
-     * Returns an array of lud_permission_group.id bound to the given user identifier.
-     * @param string $userIdentifier
+     * Returns an array of lud_permission_group.id bound to the given permission id.
+     * @param string $permissionId
      * @return array
      */
-    public function getPermissionGroupIdsByUserIdentifier(string $userIdentifier): array;
+    public function getPermissionGroupIdsByPermissionId(string $permissionId): array;
 
 
     /**
-     * Returns an array of lud_permission_group.name bound to the given user id.
-     * @param string $userId
+     * Returns an array of lud_permission_group.id bound to the given permission name.
+     * @param string $permissionName
      * @return array
      */
-    public function getPermissionGroupNamesByUserId(string $userId): array;
+    public function getPermissionGroupIdsByPermissionName(string $permissionName): array;
 
 
     /**
-     * Returns an array of lud_permission_group.name bound to the given user identifier.
-     * @param string $userIdentifier
+     * Returns an array of lud_permission_group.name bound to the given permission id.
+     * @param string $permissionId
      * @return array
      */
-    public function getPermissionGroupNamesByUserIdentifier(string $userIdentifier): array;
+    public function getPermissionGroupNamesByPermissionId(string $permissionId): array;
+
+
+    /**
+     * Returns an array of lud_permission_group.name bound to the given permission name.
+     * @param string $permissionName
+     * @return array
+     */
+    public function getPermissionGroupNamesByPermissionName(string $permissionName): array;
 
 
 

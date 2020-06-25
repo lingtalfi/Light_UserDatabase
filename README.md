@@ -1,6 +1,6 @@
 Light_UserDatabase
 ===========
-2019-07-19 -> 2020-06-08
+2019-07-19 -> 2020-06-25
 
 
 
@@ -154,7 +154,11 @@ Related
 
 
 History Log
-=============
+=============  
+    
+- 1.30.0 -- 2020-06-25
+
+    - update service to accommodate new Light_PluginInstaller interface  
 
 - 1.29.0 -- 2020-06-07
 

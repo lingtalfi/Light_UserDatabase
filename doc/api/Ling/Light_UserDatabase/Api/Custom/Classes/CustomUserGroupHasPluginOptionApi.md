@@ -4,7 +4,7 @@
 
 The CustomUserGroupHasPluginOptionApi class
 ================
-2019-07-19 --> 2020-06-08
+2019-07-19 --> 2020-06-25
 
 
 

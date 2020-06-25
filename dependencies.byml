@@ -11,6 +11,9 @@ dependencies:
         - Light_Events
         - Light_PluginInstaller
         - SqlWizard
+        - Light_BreezeGenerator
+        - Light_DbSynchronizer
+        - Light_FileWatcher
     
 
 post_install: 

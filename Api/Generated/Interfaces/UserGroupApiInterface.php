@@ -160,6 +160,29 @@ interface UserGroupApiInterface
 
 
 
+    /**
+     * Returns the rows of the lud_user_group table bound to the given plugin_option id.
+     * @param string $pluginOptionId
+     * @return array
+     */
+    public function getUserGroupsByPluginOptionId(string $pluginOptionId): array;
+
+
+
+    /**
+     * Returns an array of lud_user_group.id bound to the given plugin_option id.
+     * @param string $pluginOptionId
+     * @return array
+     */
+    public function getUserGroupIdsByPluginOptionId(string $pluginOptionId): array;
+
+
+    /**
+     * Returns an array of lud_user_group.name bound to the given plugin_option id.
+     * @param string $pluginOptionId
+     * @return array
+     */
+    public function getUserGroupNamesByPluginOptionId(string $pluginOptionId): array;
 
 
 

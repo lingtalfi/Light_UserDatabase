@@ -4,9 +4,9 @@
 namespace Ling\Light_UserDatabase\Service;
 
 
-use Ling\Light\ServiceContainer\LightServiceContainerInterface;
-use Ling\Light_Database\Service\LightDatabaseService;
-use Ling\Light_UserDatabase\Api\Custom\CustomLightUserDatabaseApiFactory;
+use Ling\Light_BreezeGenerator\Service\LightBreezeGeneratorService;
+use Ling\Light_DbSynchronizer\Service\LightDbSynchronizerService;
+use Ling\Light_FileWatcher\Service\LightFileWatcherService;
 use Ling\Light_UserDatabase\MysqlLightWebsiteUserDatabase;
 
 /**
@@ -19,50 +19,43 @@ use Ling\Light_UserDatabase\MysqlLightWebsiteUserDatabase;
 class LightUserDatabaseService extends MysqlLightWebsiteUserDatabase
 {
 
-    /**
-     * This property holds the factory for this instance.
-     * @var CustomLightUserDatabaseApiFactory
-     */
-    private $factory;
-
 
     /**
-     * Builds the LightUserDatabaseService instance.
-     */
-    public function __construct()
-    {
-        $this->factory = null;
-        parent::__construct();
-    }
-
-
-    /**
-     * @overrides
-     */
-    public function setContainer(LightServiceContainerInterface $container)
-    {
-        $this->container = $container;
-        /**
-         * @var $databaseService LightDatabaseService
-         */
-        $databaseService = $container->get("database");
-        $this->pdoWrapper = $databaseService;
-
-    }
-
-
-    /**
-     * Returns the factory for this plugin's api.
+     * This method is executed when a change is detected in our createFile.
      *
-     * @return CustomLightUserDatabaseApiFactory
+     * We use the @page(Light_FileWatcher plugin) to detect changes.
+     *
+     *
+     * Upon a change, we to the followings:
+     *
+     * - synchronize the database with the new create file
+     * - re-generate the api (using @page(Ling breeze generator 2))
+     *
+     *
      */
-    public function getFactory(): CustomLightUserDatabaseApiFactory
+    public function onCreateFileChange()
     {
-        if (null === $this->factory) {
-            $this->factory = new CustomLightUserDatabaseApiFactory();
-            $this->factory->setContainer($this->container);
-            $this->factory->setPdoWrapper($this->pdoWrapper);
-        }
-        return $this->factory;
+
+
+        /**
+         * @var $filewatcher LightFileWatcherService
+         */
+        $filewatcher = $this->container->get("file_watcher");
+
+        /**
+         * @var $dbsync LightDbSynchronizerService
+         */
+        $filewatcher->debugLog("user_database: synchronizing database.");
+        $dbsync = $this->container->get("db_synchronizer");
+        $dbsync->synchronize(__DIR__ . "/../assets/fixtures/recreate-structure.sql", [
+            "scope" => $this->getScopeTables(),
+        ]);
+        $filewatcher->debugLog("user_database: re-generating the api.");
+
+        /**
+         * @var $gen LightBreezeGeneratorService
+         */
+        $gen = $this->container->get("breeze_generator");
+        $gen->generate('lud');
     }
 }

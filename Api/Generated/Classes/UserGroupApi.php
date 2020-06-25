@@ -212,7 +212,53 @@ class UserGroupApi extends CustomLightUserDatabaseBaseApi implements UserGroupAp
 
 
 
+    /**
+     * @implementation
+     */
+    public function getUserGroupsByPluginOptionId(string $pluginOptionId): array
+    {
+        return $this->pdoWrapper->fetchAll("
+        select a.* from `$this->table` a
+        inner join lud_user_group_has_plugin_option h on h.user_group_id=a.id
+        where h.plugin_option_id=:plugin_option_id
 
+
+        ", [
+            ":plugin_option_id" => $pluginOptionId,
+        ]);
+    }
+
+
+
+    /**
+     * @implementation
+     */
+    public function getUserGroupIdsByPluginOptionId(string $pluginOptionId): array
+    {
+        return $this->pdoWrapper->fetchAll("
+        select a.id from `$this->table` a
+        inner join lud_user_group_has_plugin_option h on h.user_group_id=a.id
+        inner join lud_plugin_option b on b.id=h.plugin_option_id
+        where b.id=:plugin_option_id
+        ", [
+            ":plugin_option_id" => $pluginOptionId,
+        ], \PDO::FETCH_COLUMN);
+    }
+
+    /**
+     * @implementation
+     */
+    public function getUserGroupNamesByPluginOptionId(string $pluginOptionId): array
+    {
+        return $this->pdoWrapper->fetchAll("
+        select a.name from `$this->table` a
+        inner join lud_user_group_has_plugin_option h on h.user_group_id=a.id
+        inner join lud_plugin_option b on b.id=h.plugin_option_id
+        where b.id=:plugin_option_id
+        ", [
+            ":plugin_option_id" => $pluginOptionId,
+        ], \PDO::FETCH_COLUMN);
+    }
 
 
 

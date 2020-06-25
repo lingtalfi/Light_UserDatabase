@@ -160,52 +160,6 @@ interface PermissionApiInterface
 
 
 
-    /**
-     * Returns the rows of the lud_permission table bound to the given permission_group id.
-     * @param string $permissionGroupId
-     * @return array
-     */
-    public function getPermissionsByPermissionGroupId(string $permissionGroupId): array;
-
-    /**
-     * Returns the rows of the lud_permission table bound to the given permission_group name.
-     * @param string $permissionGroupName
-     * @return array
-     */
-    public function getPermissionsByPermissionGroupName(string $permissionGroupName): array;
-
-
-
-    /**
-     * Returns an array of lud_permission.id bound to the given permission_group id.
-     * @param string $permissionGroupId
-     * @return array
-     */
-    public function getPermissionIdsByPermissionGroupId(string $permissionGroupId): array;
-
-
-    /**
-     * Returns an array of lud_permission.id bound to the given permission_group name.
-     * @param string $permissionGroupName
-     * @return array
-     */
-    public function getPermissionIdsByPermissionGroupName(string $permissionGroupName): array;
-
-
-    /**
-     * Returns an array of lud_permission.name bound to the given permission_group id.
-     * @param string $permissionGroupId
-     * @return array
-     */
-    public function getPermissionNamesByPermissionGroupId(string $permissionGroupId): array;
-
-
-    /**
-     * Returns an array of lud_permission.name bound to the given permission_group name.
-     * @param string $permissionGroupName
-     * @return array
-     */
-    public function getPermissionNamesByPermissionGroupName(string $permissionGroupName): array;
 
 
 
