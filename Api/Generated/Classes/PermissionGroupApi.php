@@ -5,6 +5,7 @@ namespace Ling\Light_UserDatabase\Api\Generated\Classes;
 
 use Ling\SimplePdoWrapper\SimplePdoWrapper;
 use Ling\SimplePdoWrapper\Util\Where;
+use Ling\SimplePdoWrapper\Exception\SimplePdoWrapperQueryException;
 use Ling\Light_UserDatabase\Api\Custom\Classes\CustomLightUserDatabaseBaseApi;
 use Ling\Light_UserDatabase\Api\Generated\Interfaces\PermissionGroupApiInterface;
 
@@ -34,6 +35,11 @@ class PermissionGroupApi extends CustomLightUserDatabaseBaseApi implements Permi
      */
     public function insertPermissionGroup(array $permissionGroup, bool $ignoreDuplicate = true, bool $returnRic = false)
     { 
+
+        $errorInfo = null;
+
+
+
         try {
 
             $lastInsertId = $this->pdoWrapper->insert($this->table, $permissionGroup);
@@ -47,7 +53,14 @@ class PermissionGroupApi extends CustomLightUserDatabaseBaseApi implements Permi
             return $ric;
 
         } catch (\PDOException $e) {
-            if ('23000' === $e->errorInfo[0]) {
+            $errorInfo = $e->errorInfo;
+        } catch (SimplePdoWrapperQueryException $e) {
+            $errorInfo = $e->getPrevious()->errorInfo;
+        }
+
+
+        if (null !== $errorInfo) {
+            if ('23000' === $errorInfo[0]) {
                 if (false === $ignoreDuplicate) {
                     throw $e;
                 }
@@ -69,7 +82,24 @@ class PermissionGroupApi extends CustomLightUserDatabaseBaseApi implements Permi
             }
             throw $e;
         }
+
         return false;
+    }
+
+    /**
+     * @implementation
+     */
+    public function insertPermissionGroups(array $permissionGroups, bool $ignoreDuplicate = true, bool $returnRic = false)
+    {
+        $ret = [];
+        foreach ($permissionGroups as $permissionGroup) {
+            $res = $this->insertPermissionGroup($permissionGroup, $ignoreDuplicate, $returnRic);
+            if (false === $res) {
+                return false;
+            }
+            $ret[] = $res;
+        }
+        return $ret;
     }
 
     /**
@@ -215,32 +245,32 @@ class PermissionGroupApi extends CustomLightUserDatabaseBaseApi implements Permi
     /**
      * @implementation
      */
-    public function getPermissionGroupsByPermissionId(string $permissionId): array
+    public function getPermissionGroupsByUserId(string $userId): array
     {
         return $this->pdoWrapper->fetchAll("
         select a.* from `$this->table` a
-        inner join lud_permission_group_has_permission h on h.permission_group_id=a.id
-        where h.permission_id=:permission_id
+        inner join lud_user_has_permission_group h on h.permission_group_id=a.id
+        where h.user_id=:user_id
 
 
         ", [
-            ":permission_id" => $permissionId,
+            ":user_id" => $userId,
         ]);
     }
 
     /**
      * @implementation
      */
-    public function getPermissionGroupsByPermissionName(string $permissionName): array
+    public function getPermissionGroupsByUserIdentifier(string $userIdentifier): array
     {
         return $this->pdoWrapper->fetchAll("
         select a.* from `$this->table` a
-        inner join lud_permission_group_has_permission h on h.permission_group_id=a.id
-        where h.permission_id=:permission_id
+        inner join lud_user_has_permission_group h on h.permission_group_id=a.id
+        where h.user_id=:user_id
 
 
         ", [
-            ":permission_name" => $permissionName,
+            ":user_identifier" => $userIdentifier,
         ]);
     }
 
@@ -249,60 +279,60 @@ class PermissionGroupApi extends CustomLightUserDatabaseBaseApi implements Permi
     /**
      * @implementation
      */
-    public function getPermissionGroupIdsByPermissionId(string $permissionId): array
+    public function getPermissionGroupIdsByUserId(string $userId): array
     {
         return $this->pdoWrapper->fetchAll("
         select a.id from `$this->table` a
-        inner join lud_permission_group_has_permission h on h.permission_group_id=a.id
-        inner join lud_permission b on b.id=h.permission_id
-        where b.id=:permission_id
+        inner join lud_user_has_permission_group h on h.permission_group_id=a.id
+        inner join lud_user b on b.id=h.user_id
+        where b.id=:user_id
         ", [
-            ":permission_id" => $permissionId,
+            ":user_id" => $userId,
         ], \PDO::FETCH_COLUMN);
     }
 
     /**
      * @implementation
      */
-    public function getPermissionGroupIdsByPermissionName(string $permissionName): array
+    public function getPermissionGroupIdsByUserIdentifier(string $userIdentifier): array
     {
         return $this->pdoWrapper->fetchAll("
         select a.id from `$this->table` a
-        inner join lud_permission_group_has_permission h on h.permission_group_id=a.id
-        inner join lud_permission b on b.id=h.permission_id
-        where b.name=:permission_name
+        inner join lud_user_has_permission_group h on h.permission_group_id=a.id
+        inner join lud_user b on b.id=h.user_id
+        where b.identifier=:user_identifier
         ", [
-            ":permission_name" => $permissionName,
+            ":user_identifier" => $userIdentifier,
         ], \PDO::FETCH_COLUMN);
     }
 
     /**
      * @implementation
      */
-    public function getPermissionGroupNamesByPermissionId(string $permissionId): array
+    public function getPermissionGroupNamesByUserId(string $userId): array
     {
         return $this->pdoWrapper->fetchAll("
         select a.name from `$this->table` a
-        inner join lud_permission_group_has_permission h on h.permission_group_id=a.id
-        inner join lud_permission b on b.id=h.permission_id
-        where b.id=:permission_id
+        inner join lud_user_has_permission_group h on h.permission_group_id=a.id
+        inner join lud_user b on b.id=h.user_id
+        where b.id=:user_id
         ", [
-            ":permission_id" => $permissionId,
+            ":user_id" => $userId,
         ], \PDO::FETCH_COLUMN);
     }
 
     /**
      * @implementation
      */
-    public function getPermissionGroupNamesByPermissionName(string $permissionName): array
+    public function getPermissionGroupNamesByUserIdentifier(string $userIdentifier): array
     {
         return $this->pdoWrapper->fetchAll("
         select a.name from `$this->table` a
-        inner join lud_permission_group_has_permission h on h.permission_group_id=a.id
-        inner join lud_permission b on b.id=h.permission_id
-        where b.name=:permission_name
+        inner join lud_user_has_permission_group h on h.permission_group_id=a.id
+        inner join lud_user b on b.id=h.user_id
+        where b.identifier=:user_identifier
         ", [
-            ":permission_name" => $permissionName,
+            ":user_identifier" => $userIdentifier,
         ], \PDO::FETCH_COLUMN);
     }
 

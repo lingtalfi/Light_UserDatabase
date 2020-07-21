@@ -5,6 +5,7 @@ namespace Ling\Light_UserDatabase\Api\Generated\Classes;
 
 use Ling\SimplePdoWrapper\SimplePdoWrapper;
 use Ling\SimplePdoWrapper\Util\Where;
+use Ling\SimplePdoWrapper\Exception\SimplePdoWrapperQueryException;
 use Ling\Light_UserDatabase\Api\Custom\Classes\CustomLightUserDatabaseBaseApi;
 use Ling\Light_UserDatabase\Api\Generated\Interfaces\PermissionGroupHasPermissionApiInterface;
 
@@ -34,6 +35,11 @@ class PermissionGroupHasPermissionApi extends CustomLightUserDatabaseBaseApi imp
      */
     public function insertPermissionGroupHasPermission(array $permissionGroupHasPermission, bool $ignoreDuplicate = true, bool $returnRic = false)
     { 
+
+        $errorInfo = null;
+
+
+
         try {
 
             $lastInsertId = $this->pdoWrapper->insert($this->table, $permissionGroupHasPermission);
@@ -48,7 +54,14 @@ class PermissionGroupHasPermissionApi extends CustomLightUserDatabaseBaseApi imp
             return $ric;
 
         } catch (\PDOException $e) {
-            if ('23000' === $e->errorInfo[0]) {
+            $errorInfo = $e->errorInfo;
+        } catch (SimplePdoWrapperQueryException $e) {
+            $errorInfo = $e->getPrevious()->errorInfo;
+        }
+
+
+        if (null !== $errorInfo) {
+            if ('23000' === $errorInfo[0]) {
                 if (false === $ignoreDuplicate) {
                     throw $e;
                 }
@@ -71,7 +84,24 @@ class PermissionGroupHasPermissionApi extends CustomLightUserDatabaseBaseApi imp
             }
             throw $e;
         }
+
         return false;
+    }
+
+    /**
+     * @implementation
+     */
+    public function insertPermissionGroupHasPermissions(array $permissionGroupHasPermissions, bool $ignoreDuplicate = true, bool $returnRic = false)
+    {
+        $ret = [];
+        foreach ($permissionGroupHasPermissions as $permissionGroupHasPermission) {
+            $res = $this->insertPermissionGroupHasPermission($permissionGroupHasPermission, $ignoreDuplicate, $returnRic);
+            if (false === $res) {
+                return false;
+            }
+            $ret[] = $res;
+        }
+        return $ret;
     }
 
     /**

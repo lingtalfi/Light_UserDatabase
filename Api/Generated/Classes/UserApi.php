@@ -5,6 +5,7 @@ namespace Ling\Light_UserDatabase\Api\Generated\Classes;
 
 use Ling\SimplePdoWrapper\SimplePdoWrapper;
 use Ling\SimplePdoWrapper\Util\Where;
+use Ling\SimplePdoWrapper\Exception\SimplePdoWrapperQueryException;
 use Ling\Light_UserDatabase\Api\Custom\Classes\CustomLightUserDatabaseBaseApi;
 use Ling\Light_UserDatabase\Api\Generated\Interfaces\UserApiInterface;
 
@@ -34,6 +35,11 @@ class UserApi extends CustomLightUserDatabaseBaseApi implements UserApiInterface
      */
     public function insertUser(array $user, bool $ignoreDuplicate = true, bool $returnRic = false)
     { 
+
+        $errorInfo = null;
+
+
+
         try {
 
             $lastInsertId = $this->pdoWrapper->insert($this->table, $user);
@@ -47,7 +53,14 @@ class UserApi extends CustomLightUserDatabaseBaseApi implements UserApiInterface
             return $ric;
 
         } catch (\PDOException $e) {
-            if ('23000' === $e->errorInfo[0]) {
+            $errorInfo = $e->errorInfo;
+        } catch (SimplePdoWrapperQueryException $e) {
+            $errorInfo = $e->getPrevious()->errorInfo;
+        }
+
+
+        if (null !== $errorInfo) {
+            if ('23000' === $errorInfo[0]) {
                 if (false === $ignoreDuplicate) {
                     throw $e;
                 }
@@ -69,7 +82,24 @@ class UserApi extends CustomLightUserDatabaseBaseApi implements UserApiInterface
             }
             throw $e;
         }
+
         return false;
+    }
+
+    /**
+     * @implementation
+     */
+    public function insertUsers(array $users, bool $ignoreDuplicate = true, bool $returnRic = false)
+    {
+        $ret = [];
+        foreach ($users as $user) {
+            $res = $this->insertUser($user, $ignoreDuplicate, $returnRic);
+            if (false === $res) {
+                return false;
+            }
+            $ret[] = $res;
+        }
+        return $ret;
     }
 
     /**
@@ -212,99 +242,7 @@ class UserApi extends CustomLightUserDatabaseBaseApi implements UserApiInterface
 
 
 
-    /**
-     * @implementation
-     */
-    public function getUsersByPermissionGroupId(string $permissionGroupId): array
-    {
-        return $this->pdoWrapper->fetchAll("
-        select a.* from `$this->table` a
-        inner join lud_user_has_permission_group h on h.user_id=a.id
-        where h.permission_group_id=:permission_group_id
 
-
-        ", [
-            ":permission_group_id" => $permissionGroupId,
-        ]);
-    }
-
-    /**
-     * @implementation
-     */
-    public function getUsersByPermissionGroupName(string $permissionGroupName): array
-    {
-        return $this->pdoWrapper->fetchAll("
-        select a.* from `$this->table` a
-        inner join lud_user_has_permission_group h on h.user_id=a.id
-        where h.permission_group_id=:permission_group_id
-
-
-        ", [
-            ":permission_group_name" => $permissionGroupName,
-        ]);
-    }
-
-
-
-    /**
-     * @implementation
-     */
-    public function getUserIdsByPermissionGroupId(string $permissionGroupId): array
-    {
-        return $this->pdoWrapper->fetchAll("
-        select a.id from `$this->table` a
-        inner join lud_user_has_permission_group h on h.user_id=a.id
-        inner join lud_permission_group b on b.id=h.permission_group_id
-        where b.id=:permission_group_id
-        ", [
-            ":permission_group_id" => $permissionGroupId,
-        ], \PDO::FETCH_COLUMN);
-    }
-
-    /**
-     * @implementation
-     */
-    public function getUserIdsByPermissionGroupName(string $permissionGroupName): array
-    {
-        return $this->pdoWrapper->fetchAll("
-        select a.id from `$this->table` a
-        inner join lud_user_has_permission_group h on h.user_id=a.id
-        inner join lud_permission_group b on b.id=h.permission_group_id
-        where b.name=:permission_group_name
-        ", [
-            ":permission_group_name" => $permissionGroupName,
-        ], \PDO::FETCH_COLUMN);
-    }
-
-    /**
-     * @implementation
-     */
-    public function getUserIdentifiersByPermissionGroupId(string $permissionGroupId): array
-    {
-        return $this->pdoWrapper->fetchAll("
-        select a.identifier from `$this->table` a
-        inner join lud_user_has_permission_group h on h.user_id=a.id
-        inner join lud_permission_group b on b.id=h.permission_group_id
-        where b.id=:permission_group_id
-        ", [
-            ":permission_group_id" => $permissionGroupId,
-        ], \PDO::FETCH_COLUMN);
-    }
-
-    /**
-     * @implementation
-     */
-    public function getUserIdentifiersByPermissionGroupName(string $permissionGroupName): array
-    {
-        return $this->pdoWrapper->fetchAll("
-        select a.identifier from `$this->table` a
-        inner join lud_user_has_permission_group h on h.user_id=a.id
-        inner join lud_permission_group b on b.id=h.permission_group_id
-        where b.name=:permission_group_name
-        ", [
-            ":permission_group_name" => $permissionGroupName,
-        ], \PDO::FETCH_COLUMN);
-    }
 
 
 

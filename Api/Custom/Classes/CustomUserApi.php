@@ -3,9 +3,9 @@
 
 namespace Ling\Light_UserDatabase\Api\Custom\Classes;
 
-use Ling\Light_UserDatabase\Api\Generated\Classes\UserApi;
 use Ling\Light_UserDatabase\Api\Custom\Interfaces\CustomUserApiInterface;
-
+use Ling\Light_UserDatabase\Api\Generated\Classes\UserApi;
+use Ling\SimplePdoWrapper\Util\Where;
 
 
 /**
@@ -22,5 +22,14 @@ class CustomUserApi extends UserApi implements CustomUserApiInterface
     {
         parent::__construct();
     }
+
+    /**
+     * @implementation
+     */
+    public function getUsersByEmail(string $email)
+    {
+        return $this->getUsers(Where::inst()->key("email")->equals($email));
+    }
+
 
 }

@@ -34,6 +34,28 @@ interface PermissionApiInterface
     public function insertPermission(array $permission, bool $ignoreDuplicate = true, bool $returnRic = false);
 
     /**
+     * Inserts the given permission rows in the database.
+     * By default, it returns an array of the result of the PDO::lastInsertId method for each insert.
+     * If the returnRic flag is set to true, the method will return an array of the ric array (for each insert) instead of the lastInsertId.
+     *
+     *
+     * If the rows you're trying to insert triggers a duplicate error, the behaviour of this method depends on
+     * the ignoreDuplicate flag:
+     * - if true, the error will be caught internally, the return of the method is not affected
+     * - if false, the error will not be caught, and depending on your configuration, it might either
+     *          trigger an exception, or fail silently in which case this method returns false.
+     *
+     *
+     *
+     * @param array $permissions
+     * @param bool $ignoreDuplicate
+     * @param bool $returnRic
+     * @return mixed
+     * @throws \Exception
+     */
+    public function insertPermissions(array $permissions, bool $ignoreDuplicate = true, bool $returnRic = false);
+
+    /**
      * Returns the permission row identified by the given id.
      *
      * If the row is not found, this method's return depends on the throwNotFoundEx flag:
@@ -160,6 +182,52 @@ interface PermissionApiInterface
 
 
 
+    /**
+     * Returns the rows of the lud_permission table bound to the given permission_group id.
+     * @param string $permissionGroupId
+     * @return array
+     */
+    public function getPermissionsByPermissionGroupId(string $permissionGroupId): array;
+
+    /**
+     * Returns the rows of the lud_permission table bound to the given permission_group name.
+     * @param string $permissionGroupName
+     * @return array
+     */
+    public function getPermissionsByPermissionGroupName(string $permissionGroupName): array;
+
+
+
+    /**
+     * Returns an array of lud_permission.id bound to the given permission_group id.
+     * @param string $permissionGroupId
+     * @return array
+     */
+    public function getPermissionIdsByPermissionGroupId(string $permissionGroupId): array;
+
+
+    /**
+     * Returns an array of lud_permission.id bound to the given permission_group name.
+     * @param string $permissionGroupName
+     * @return array
+     */
+    public function getPermissionIdsByPermissionGroupName(string $permissionGroupName): array;
+
+
+    /**
+     * Returns an array of lud_permission.name bound to the given permission_group id.
+     * @param string $permissionGroupId
+     * @return array
+     */
+    public function getPermissionNamesByPermissionGroupId(string $permissionGroupId): array;
+
+
+    /**
+     * Returns an array of lud_permission.name bound to the given permission_group name.
+     * @param string $permissionGroupName
+     * @return array
+     */
+    public function getPermissionNamesByPermissionGroupName(string $permissionGroupName): array;
 
 
 

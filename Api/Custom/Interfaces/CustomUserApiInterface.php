@@ -12,4 +12,13 @@ use Ling\Light_UserDatabase\Api\Generated\Interfaces\UserApiInterface;
 interface CustomUserApiInterface extends UserApiInterface
 {
 
+
+    /**
+     * Returns the user rows matching the given email.
+     *
+     * @param string $email
+     * @return array
+     * @throws \Exception
+     */
+    public function getUsersByEmail(string $email);
 }

@@ -5,6 +5,7 @@ namespace Ling\Light_UserDatabase\Api\Generated\Classes;
 
 use Ling\SimplePdoWrapper\SimplePdoWrapper;
 use Ling\SimplePdoWrapper\Util\Where;
+use Ling\SimplePdoWrapper\Exception\SimplePdoWrapperQueryException;
 use Ling\Light_UserDatabase\Api\Custom\Classes\CustomLightUserDatabaseBaseApi;
 use Ling\Light_UserDatabase\Api\Generated\Interfaces\PluginOptionApiInterface;
 
@@ -34,6 +35,11 @@ class PluginOptionApi extends CustomLightUserDatabaseBaseApi implements PluginOp
      */
     public function insertPluginOption(array $pluginOption, bool $ignoreDuplicate = true, bool $returnRic = false)
     { 
+
+        $errorInfo = null;
+
+
+
         try {
 
             $lastInsertId = $this->pdoWrapper->insert($this->table, $pluginOption);
@@ -47,7 +53,14 @@ class PluginOptionApi extends CustomLightUserDatabaseBaseApi implements PluginOp
             return $ric;
 
         } catch (\PDOException $e) {
-            if ('23000' === $e->errorInfo[0]) {
+            $errorInfo = $e->errorInfo;
+        } catch (SimplePdoWrapperQueryException $e) {
+            $errorInfo = $e->getPrevious()->errorInfo;
+        }
+
+
+        if (null !== $errorInfo) {
+            if ('23000' === $errorInfo[0]) {
                 if (false === $ignoreDuplicate) {
                     throw $e;
                 }
@@ -69,7 +82,24 @@ class PluginOptionApi extends CustomLightUserDatabaseBaseApi implements PluginOp
             }
             throw $e;
         }
+
         return false;
+    }
+
+    /**
+     * @implementation
+     */
+    public function insertPluginOptions(array $pluginOptions, bool $ignoreDuplicate = true, bool $returnRic = false)
+    {
+        $ret = [];
+        foreach ($pluginOptions as $pluginOption) {
+            $res = $this->insertPluginOption($pluginOption, $ignoreDuplicate, $returnRic);
+            if (false === $res) {
+                return false;
+            }
+            $ret[] = $res;
+        }
+        return $ret;
     }
 
     /**
@@ -170,7 +200,99 @@ class PluginOptionApi extends CustomLightUserDatabaseBaseApi implements PluginOp
 
 
 
+    /**
+     * @implementation
+     */
+    public function getPluginOptionsByUserGroupId(string $userGroupId): array
+    {
+        return $this->pdoWrapper->fetchAll("
+        select a.* from `$this->table` a
+        inner join lud_user_group_has_plugin_option h on h.plugin_option_id=a.id
+        where h.user_group_id=:user_group_id
 
+
+        ", [
+            ":user_group_id" => $userGroupId,
+        ]);
+    }
+
+    /**
+     * @implementation
+     */
+    public function getPluginOptionsByUserGroupName(string $userGroupName): array
+    {
+        return $this->pdoWrapper->fetchAll("
+        select a.* from `$this->table` a
+        inner join lud_user_group_has_plugin_option h on h.plugin_option_id=a.id
+        where h.user_group_id=:user_group_id
+
+
+        ", [
+            ":user_group_name" => $userGroupName,
+        ]);
+    }
+
+
+
+    /**
+     * @implementation
+     */
+    public function getPluginOptionIdsByUserGroupId(string $userGroupId): array
+    {
+        return $this->pdoWrapper->fetchAll("
+        select a.id from `$this->table` a
+        inner join lud_user_group_has_plugin_option h on h.plugin_option_id=a.id
+        inner join lud_user_group b on b.id=h.user_group_id
+        where b.id=:user_group_id
+        ", [
+            ":user_group_id" => $userGroupId,
+        ], \PDO::FETCH_COLUMN);
+    }
+
+    /**
+     * @implementation
+     */
+    public function getPluginOptionIdsByUserGroupName(string $userGroupName): array
+    {
+        return $this->pdoWrapper->fetchAll("
+        select a.id from `$this->table` a
+        inner join lud_user_group_has_plugin_option h on h.plugin_option_id=a.id
+        inner join lud_user_group b on b.id=h.user_group_id
+        where b.name=:user_group_name
+        ", [
+            ":user_group_name" => $userGroupName,
+        ], \PDO::FETCH_COLUMN);
+    }
+
+    /**
+     * @implementation
+     */
+    public function getPluginOptionNamesByUserGroupId(string $userGroupId): array
+    {
+        return $this->pdoWrapper->fetchAll("
+        select a.name from `$this->table` a
+        inner join lud_user_group_has_plugin_option h on h.plugin_option_id=a.id
+        inner join lud_user_group b on b.id=h.user_group_id
+        where b.id=:user_group_id
+        ", [
+            ":user_group_id" => $userGroupId,
+        ], \PDO::FETCH_COLUMN);
+    }
+
+    /**
+     * @implementation
+     */
+    public function getPluginOptionNamesByUserGroupName(string $userGroupName): array
+    {
+        return $this->pdoWrapper->fetchAll("
+        select a.name from `$this->table` a
+        inner join lud_user_group_has_plugin_option h on h.plugin_option_id=a.id
+        inner join lud_user_group b on b.id=h.user_group_id
+        where b.name=:user_group_name
+        ", [
+            ":user_group_name" => $userGroupName,
+        ], \PDO::FETCH_COLUMN);
+    }
 
 
 

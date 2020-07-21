@@ -34,6 +34,28 @@ interface PluginOptionApiInterface
     public function insertPluginOption(array $pluginOption, bool $ignoreDuplicate = true, bool $returnRic = false);
 
     /**
+     * Inserts the given pluginOption rows in the database.
+     * By default, it returns an array of the result of the PDO::lastInsertId method for each insert.
+     * If the returnRic flag is set to true, the method will return an array of the ric array (for each insert) instead of the lastInsertId.
+     *
+     *
+     * If the rows you're trying to insert triggers a duplicate error, the behaviour of this method depends on
+     * the ignoreDuplicate flag:
+     * - if true, the error will be caught internally, the return of the method is not affected
+     * - if false, the error will not be caught, and depending on your configuration, it might either
+     *          trigger an exception, or fail silently in which case this method returns false.
+     *
+     *
+     *
+     * @param array $pluginOptions
+     * @param bool $ignoreDuplicate
+     * @param bool $returnRic
+     * @return mixed
+     * @throws \Exception
+     */
+    public function insertPluginOptions(array $pluginOptions, bool $ignoreDuplicate = true, bool $returnRic = false);
+
+    /**
      * Returns the pluginOption row identified by the given id.
      *
      * If the row is not found, this method's return depends on the throwNotFoundEx flag:
@@ -130,6 +152,52 @@ interface PluginOptionApiInterface
 
 
 
+    /**
+     * Returns the rows of the lud_plugin_option table bound to the given user_group id.
+     * @param string $userGroupId
+     * @return array
+     */
+    public function getPluginOptionsByUserGroupId(string $userGroupId): array;
+
+    /**
+     * Returns the rows of the lud_plugin_option table bound to the given user_group name.
+     * @param string $userGroupName
+     * @return array
+     */
+    public function getPluginOptionsByUserGroupName(string $userGroupName): array;
+
+
+
+    /**
+     * Returns an array of lud_plugin_option.id bound to the given user_group id.
+     * @param string $userGroupId
+     * @return array
+     */
+    public function getPluginOptionIdsByUserGroupId(string $userGroupId): array;
+
+
+    /**
+     * Returns an array of lud_plugin_option.id bound to the given user_group name.
+     * @param string $userGroupName
+     * @return array
+     */
+    public function getPluginOptionIdsByUserGroupName(string $userGroupName): array;
+
+
+    /**
+     * Returns an array of lud_plugin_option.name bound to the given user_group id.
+     * @param string $userGroupId
+     * @return array
+     */
+    public function getPluginOptionNamesByUserGroupId(string $userGroupId): array;
+
+
+    /**
+     * Returns an array of lud_plugin_option.name bound to the given user_group name.
+     * @param string $userGroupName
+     * @return array
+     */
+    public function getPluginOptionNamesByUserGroupName(string $userGroupName): array;
 
 
 

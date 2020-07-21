@@ -5,6 +5,7 @@ namespace Ling\Light_UserDatabase\Api\Generated\Classes;
 
 use Ling\SimplePdoWrapper\SimplePdoWrapper;
 use Ling\SimplePdoWrapper\Util\Where;
+use Ling\SimplePdoWrapper\Exception\SimplePdoWrapperQueryException;
 use Ling\Light_UserDatabase\Api\Custom\Classes\CustomLightUserDatabaseBaseApi;
 use Ling\Light_UserDatabase\Api\Generated\Interfaces\UserGroupApiInterface;
 
@@ -34,6 +35,11 @@ class UserGroupApi extends CustomLightUserDatabaseBaseApi implements UserGroupAp
      */
     public function insertUserGroup(array $userGroup, bool $ignoreDuplicate = true, bool $returnRic = false)
     { 
+
+        $errorInfo = null;
+
+
+
         try {
 
             $lastInsertId = $this->pdoWrapper->insert($this->table, $userGroup);
@@ -47,7 +53,14 @@ class UserGroupApi extends CustomLightUserDatabaseBaseApi implements UserGroupAp
             return $ric;
 
         } catch (\PDOException $e) {
-            if ('23000' === $e->errorInfo[0]) {
+            $errorInfo = $e->errorInfo;
+        } catch (SimplePdoWrapperQueryException $e) {
+            $errorInfo = $e->getPrevious()->errorInfo;
+        }
+
+
+        if (null !== $errorInfo) {
+            if ('23000' === $errorInfo[0]) {
                 if (false === $ignoreDuplicate) {
                     throw $e;
                 }
@@ -69,7 +82,24 @@ class UserGroupApi extends CustomLightUserDatabaseBaseApi implements UserGroupAp
             }
             throw $e;
         }
+
         return false;
+    }
+
+    /**
+     * @implementation
+     */
+    public function insertUserGroups(array $userGroups, bool $ignoreDuplicate = true, bool $returnRic = false)
+    {
+        $ret = [];
+        foreach ($userGroups as $userGroup) {
+            $res = $this->insertUserGroup($userGroup, $ignoreDuplicate, $returnRic);
+            if (false === $res) {
+                return false;
+            }
+            $ret[] = $res;
+        }
+        return $ret;
     }
 
     /**
@@ -212,53 +242,7 @@ class UserGroupApi extends CustomLightUserDatabaseBaseApi implements UserGroupAp
 
 
 
-    /**
-     * @implementation
-     */
-    public function getUserGroupsByPluginOptionId(string $pluginOptionId): array
-    {
-        return $this->pdoWrapper->fetchAll("
-        select a.* from `$this->table` a
-        inner join lud_user_group_has_plugin_option h on h.user_group_id=a.id
-        where h.plugin_option_id=:plugin_option_id
 
-
-        ", [
-            ":plugin_option_id" => $pluginOptionId,
-        ]);
-    }
-
-
-
-    /**
-     * @implementation
-     */
-    public function getUserGroupIdsByPluginOptionId(string $pluginOptionId): array
-    {
-        return $this->pdoWrapper->fetchAll("
-        select a.id from `$this->table` a
-        inner join lud_user_group_has_plugin_option h on h.user_group_id=a.id
-        inner join lud_plugin_option b on b.id=h.plugin_option_id
-        where b.id=:plugin_option_id
-        ", [
-            ":plugin_option_id" => $pluginOptionId,
-        ], \PDO::FETCH_COLUMN);
-    }
-
-    /**
-     * @implementation
-     */
-    public function getUserGroupNamesByPluginOptionId(string $pluginOptionId): array
-    {
-        return $this->pdoWrapper->fetchAll("
-        select a.name from `$this->table` a
-        inner join lud_user_group_has_plugin_option h on h.user_group_id=a.id
-        inner join lud_plugin_option b on b.id=h.plugin_option_id
-        where b.id=:plugin_option_id
-        ", [
-            ":plugin_option_id" => $pluginOptionId,
-        ], \PDO::FETCH_COLUMN);
-    }
 
 
 

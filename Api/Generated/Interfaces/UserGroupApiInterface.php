@@ -34,6 +34,28 @@ interface UserGroupApiInterface
     public function insertUserGroup(array $userGroup, bool $ignoreDuplicate = true, bool $returnRic = false);
 
     /**
+     * Inserts the given userGroup rows in the database.
+     * By default, it returns an array of the result of the PDO::lastInsertId method for each insert.
+     * If the returnRic flag is set to true, the method will return an array of the ric array (for each insert) instead of the lastInsertId.
+     *
+     *
+     * If the rows you're trying to insert triggers a duplicate error, the behaviour of this method depends on
+     * the ignoreDuplicate flag:
+     * - if true, the error will be caught internally, the return of the method is not affected
+     * - if false, the error will not be caught, and depending on your configuration, it might either
+     *          trigger an exception, or fail silently in which case this method returns false.
+     *
+     *
+     *
+     * @param array $userGroups
+     * @param bool $ignoreDuplicate
+     * @param bool $returnRic
+     * @return mixed
+     * @throws \Exception
+     */
+    public function insertUserGroups(array $userGroups, bool $ignoreDuplicate = true, bool $returnRic = false);
+
+    /**
      * Returns the userGroup row identified by the given id.
      *
      * If the row is not found, this method's return depends on the throwNotFoundEx flag:
@@ -160,29 +182,6 @@ interface UserGroupApiInterface
 
 
 
-    /**
-     * Returns the rows of the lud_user_group table bound to the given plugin_option id.
-     * @param string $pluginOptionId
-     * @return array
-     */
-    public function getUserGroupsByPluginOptionId(string $pluginOptionId): array;
-
-
-
-    /**
-     * Returns an array of lud_user_group.id bound to the given plugin_option id.
-     * @param string $pluginOptionId
-     * @return array
-     */
-    public function getUserGroupIdsByPluginOptionId(string $pluginOptionId): array;
-
-
-    /**
-     * Returns an array of lud_user_group.name bound to the given plugin_option id.
-     * @param string $pluginOptionId
-     * @return array
-     */
-    public function getUserGroupNamesByPluginOptionId(string $pluginOptionId): array;
 
 
 
