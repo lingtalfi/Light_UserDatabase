@@ -156,6 +156,10 @@ Related
 History Log
 =============  
     
+- 1.31.3 -- 2020-09-11
+
+    - update schema conception notes, changed categoryName to optionName  
+    
 - 1.31.2 -- 2020-09-11
 
     - update conception notes about plugin options, changed section title  
