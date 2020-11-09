@@ -107,14 +107,15 @@ We use groups because it allows us give the same set of options to multiple user
 The **plugin options** table is populated by plugins.
 
 
-An option is defined by a category and a value.
+An option is defined by a category, a name, and a value.
+
 We recommend that the category has the following format:
 
-- category: $pluginName.$optionName
+- category: $pluginName.$pluginCategoryName
 
 With:
 - $pluginName: the plugin name
-- $optionName: the name of the option, as defined by the plugin
+- $pluginCategoryName: the name of the option category, as defined by the plugin
 
 
 For instance plugin A will provide the following categories:

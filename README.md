@@ -156,6 +156,10 @@ Related
 History Log
 =============  
     
+- 1.31.4 -- 2020-09-11
+
+    - update schema and conception notes, update nomenclature  
+    
 - 1.31.3 -- 2020-09-11
 
     - update schema conception notes, changed categoryName to optionName  
