@@ -156,6 +156,10 @@ Related
 History Log
 =============  
     
+- 1.31.2 -- 2020-09-11
+
+    - update conception notes about plugin options, changed section title  
+    
 - 1.31.1 -- 2020-09-11
 
     - update conception notes about plugin options  

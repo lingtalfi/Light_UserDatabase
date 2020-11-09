@@ -94,7 +94,7 @@ but with the extra "rights" property, which contains all the permissions of the 
 
 
 
-User Groups and plugin options: binding data to an user
+Plugin options and user groups
 -----------------
 2019-12-17 -> 2020-11-09
 
