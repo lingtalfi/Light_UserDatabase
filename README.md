@@ -155,7 +155,11 @@ Related
 
 History Log
 =============  
-    
+
+- 1.31.5 -- 2020-12-04
+
+    - Add lpi-deps.byml file
+
 - 1.31.4 -- 2020-09-11
 
     - update schema and conception notes, update nomenclature  
