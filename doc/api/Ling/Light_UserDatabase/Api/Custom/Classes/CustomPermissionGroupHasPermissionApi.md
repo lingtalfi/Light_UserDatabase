@@ -4,7 +4,7 @@
 
 The CustomPermissionGroupHasPermissionApi class
 ================
-2019-07-19 --> 2021-01-28
+2019-07-19 --> 2021-02-11
 
 
 
@@ -51,7 +51,6 @@ class <span class="pl-k">CustomPermissionGroupHasPermissionApi</span> extends [P
     - public [PermissionGroupHasPermissionApi::deletePermissionGroupHasPermissionByPermissionIds](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Generated/Classes/PermissionGroupHasPermissionApi/deletePermissionGroupHasPermissionByPermissionIds.md)(array $permission_ids) : void
     - public [PermissionGroupHasPermissionApi::deletePermissionGroupHasPermissionByPermissionGroupId](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Generated/Classes/PermissionGroupHasPermissionApi/deletePermissionGroupHasPermissionByPermissionGroupId.md)(int $permissionGroupId) : void
     - public [PermissionGroupHasPermissionApi::deletePermissionGroupHasPermissionByPermissionId](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Generated/Classes/PermissionGroupHasPermissionApi/deletePermissionGroupHasPermissionByPermissionId.md)(int $permissionId) : void
-    - private [PermissionGroupHasPermissionApi::fetchRoutine](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Generated/Classes/PermissionGroupHasPermissionApi/fetchRoutine.md)(string &$q, array &$markers, array $components) : array
     - public [LightUserDatabaseBaseApi::setPdoWrapper](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Generated/Classes/LightUserDatabaseBaseApi/setPdoWrapper.md)([Ling\SimplePdoWrapper\SimplePdoWrapperInterface](https://github.com/lingtalfi/SimplePdoWrapper/blob/master/doc/api/Ling/SimplePdoWrapper/SimplePdoWrapperInterface.md) $pdoWrapper) : void
     - public [LightUserDatabaseBaseApi::setContainer](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Generated/Classes/LightUserDatabaseBaseApi/setContainer.md)([Ling\Light\ServiceContainer\LightServiceContainerInterface](https://github.com/lingtalfi/Light/blob/master/doc/api/Ling/Light/ServiceContainer/LightServiceContainerInterface.md) $container) : void
 
@@ -84,7 +83,6 @@ Methods
 - [PermissionGroupHasPermissionApi::deletePermissionGroupHasPermissionByPermissionIds](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Generated/Classes/PermissionGroupHasPermissionApi/deletePermissionGroupHasPermissionByPermissionIds.md) &ndash; Deletes the permission group has permission rows identified by the given permission_ids.
 - [PermissionGroupHasPermissionApi::deletePermissionGroupHasPermissionByPermissionGroupId](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Generated/Classes/PermissionGroupHasPermissionApi/deletePermissionGroupHasPermissionByPermissionGroupId.md) &ndash; Deletes the permission group has permission rows having the given permission group id.
 - [PermissionGroupHasPermissionApi::deletePermissionGroupHasPermissionByPermissionId](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Generated/Classes/PermissionGroupHasPermissionApi/deletePermissionGroupHasPermissionByPermissionId.md) &ndash; Deletes the permission group has permission rows having the given permission id.
-- [PermissionGroupHasPermissionApi::fetchRoutine](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Generated/Classes/PermissionGroupHasPermissionApi/fetchRoutine.md) &ndash; Appends the given components to the given query, and returns an array of options.
 - [LightUserDatabaseBaseApi::setPdoWrapper](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Generated/Classes/LightUserDatabaseBaseApi/setPdoWrapper.md) &ndash; Sets the pdoWrapper.
 - [LightUserDatabaseBaseApi::setContainer](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Api/Generated/Classes/LightUserDatabaseBaseApi/setContainer.md) &ndash; Sets the container.
 

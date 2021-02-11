@@ -54,7 +54,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [LightUserDatabasePluginInstaller::install](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Light_PluginInstaller/LightUserDatabasePluginInstaller.php#L25-L112)
+See the source code for method [LightUserDatabasePluginInstaller::install](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Light_PluginInstaller/LightUserDatabasePluginInstaller.php#L24-L110)
 
 
 See Also

@@ -54,7 +54,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [LightUserDatabasePluginInstaller::uninstall](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Light_PluginInstaller/LightUserDatabasePluginInstaller.php#L118-L136)
+See the source code for method [LightUserDatabasePluginInstaller::uninstall](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Light_PluginInstaller/LightUserDatabasePluginInstaller.php#L116-L134)
 
 
 See Also
@@ -62,5 +62,5 @@ See Also
 
 The [LightUserDatabasePluginInstaller](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabasePluginInstaller.md) class.
 
-Previous method: [install](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabasePluginInstaller/install.md)<br>Next method: [isInstalled](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabasePluginInstaller/isInstalled.md)<br>
+Previous method: [install](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabasePluginInstaller/install.md)<br>Next method: [getDependencies](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabasePluginInstaller/getDependencies.md)<br>
 

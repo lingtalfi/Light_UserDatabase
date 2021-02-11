@@ -1,6 +1,6 @@
 Ling/Light_UserDatabase
 ================
-2019-07-19 --> 2021-01-28
+2019-07-19 --> 2021-02-11
 
 
 
@@ -833,14 +833,22 @@ Table of contents
     - [LightUserDatabaseInterface::getAllUserInfo](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/LightUserDatabaseInterface/getAllUserInfo.md) &ndash; Returns an array of user info (one per user).
     - [LightUserDatabaseInterface::updateUser](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/LightUserDatabaseInterface/updateUser.md) &ndash; Updates the user identified by the given identifier.
     - [LightUserDatabaseInterface::deleteUser](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/LightUserDatabaseInterface/deleteUser.md) &ndash; Deletes the user identified by the given identifier.
+- [LightUserDatabaseBasePluginInstaller](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabaseBasePluginInstaller.md) &ndash; The LightUserDatabaseBasePluginInstaller class.
+    - [LightUserDatabaseBasePluginInstaller::__construct](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabaseBasePluginInstaller/__construct.md) &ndash; Builds the LightBasePluginInstaller instance.
+    - [LightUserDatabaseBasePluginInstaller::setContainer](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabaseBasePluginInstaller/setContainer.md) &ndash; Sets the container.
+    - [LightUserDatabaseBasePluginInstaller::install](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabaseBasePluginInstaller/install.md) &ndash; Installs the plugin in the light application.
+    - [LightUserDatabaseBasePluginInstaller::isInstalled](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabaseBasePluginInstaller/isInstalled.md) &ndash; Returns whether the core install phase of the plugin is fully completed.
+    - [LightUserDatabaseBasePluginInstaller::uninstall](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabaseBasePluginInstaller/uninstall.md) &ndash; Uninstalls the plugin.
+    - [LightUserDatabaseBasePluginInstaller::getDependencies](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabaseBasePluginInstaller/getDependencies.md) &ndash; Returns the array of dependencies.
+    - [LightUserDatabaseBasePluginInstaller::getTableScope](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabaseBasePluginInstaller/getTableScope.md) &ndash; Returns the [table scope](https://github.com/lingtalfi/TheBar/blob/master/discussions/table-scope.md) for this planet.
 - [LightUserDatabasePluginInstaller](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabasePluginInstaller.md) &ndash; The LightUserDatabasePluginInstaller class.
     - [LightUserDatabasePluginInstaller::install](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabasePluginInstaller/install.md) &ndash; Installs the plugin in the light application.
     - [LightUserDatabasePluginInstaller::uninstall](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabasePluginInstaller/uninstall.md) &ndash; Uninstalls the plugin.
-    - [LightUserDatabasePluginInstaller::isInstalled](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabasePluginInstaller/isInstalled.md) &ndash; Returns whether the core install phase of the plugin is fully completed.
+    - [LightUserDatabasePluginInstaller::getDependencies](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabasePluginInstaller/getDependencies.md) &ndash; Returns the array of dependencies.
     - [LightUserDatabasePluginInstaller::getTableScope](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabasePluginInstaller/getTableScope.md) &ndash; Returns the [table scope](https://github.com/lingtalfi/TheBar/blob/master/discussions/table-scope.md) for this planet.
-    - LightBasePluginInstaller::__construct &ndash; Builds the LightBasePluginInstaller instance.
-    - LightBasePluginInstaller::setContainer &ndash; Sets the container.
-    - LightBasePluginInstaller::getDependencies &ndash; Returns the array of dependencies.
+    - [LightUserDatabaseBasePluginInstaller::__construct](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabaseBasePluginInstaller/__construct.md) &ndash; Builds the LightBasePluginInstaller instance.
+    - [LightUserDatabaseBasePluginInstaller::setContainer](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabaseBasePluginInstaller/setContainer.md) &ndash; Sets the container.
+    - [LightUserDatabaseBasePluginInstaller::isInstalled](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabaseBasePluginInstaller/isInstalled.md) &ndash; Returns whether the core install phase of the plugin is fully completed.
 - [MysqlLightWebsiteUserDatabase](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/MysqlLightWebsiteUserDatabase.md) &ndash; The MysqlLightWebsiteUserDatabase interface.
     - [MysqlLightWebsiteUserDatabase::__construct](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/MysqlLightWebsiteUserDatabase/__construct.md) &ndash; Builds the MysqlLightUserDatabase instance.
     - [MysqlLightWebsiteUserDatabase::getUserInfoByCredentials](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/MysqlLightWebsiteUserDatabase/getUserInfoByCredentials.md) &ndash; credentials don't match any user.
@@ -892,6 +900,7 @@ Dependencies
 - [Light_Bullsheet](https://github.com/lingtalfi/Light_Bullsheet)
 - [Light_PasswordProtector](https://github.com/lingtalfi/Light_PasswordProtector)
 - [TinyBullsheeter](https://github.com/lingtalfi/TinyBullsheeter)
+- [Light_DbSynchronizer](https://github.com/lingtalfi/Light_DbSynchronizer)
 - [Light_PluginInstaller](https://github.com/lingtalfi/Light_PluginInstaller)
 - [ArrayToString](https://github.com/lingtalfi/ArrayToString)
 - [Light_Events](https://github.com/lingtalfi/Light_Events)

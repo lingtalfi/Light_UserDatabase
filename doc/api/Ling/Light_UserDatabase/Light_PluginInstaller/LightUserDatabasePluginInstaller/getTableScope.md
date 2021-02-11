@@ -47,7 +47,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [LightUserDatabasePluginInstaller::getTableScope](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Light_PluginInstaller/LightUserDatabasePluginInstaller.php#L169-L182)
+See the source code for method [LightUserDatabasePluginInstaller::getTableScope](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Light_PluginInstaller/LightUserDatabasePluginInstaller.php#L157-L170)
 
 
 See Also
@@ -55,5 +55,5 @@ See Also
 
 The [LightUserDatabasePluginInstaller](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabasePluginInstaller.md) class.
 
-Previous method: [isInstalled](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabasePluginInstaller/isInstalled.md)<br>
+Previous method: [getDependencies](https://github.com/lingtalfi/Light_UserDatabase/blob/master/doc/api/Ling/Light_UserDatabase/Light_PluginInstaller/LightUserDatabasePluginInstaller/getDependencies.md)<br>
 

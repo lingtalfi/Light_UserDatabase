@@ -5,16 +5,15 @@ namespace Ling\Light_UserDatabase\Light_PluginInstaller;
 
 
 use Ling\Light_Database\Service\LightDatabaseService;
-use Ling\Light_PluginInstaller\Helper\PluginInstallerSynchronizerHelper;
-use Ling\Light_PluginInstaller\PluginInstaller\LightBasePluginInstaller;
 use Ling\Light_UserDatabase\Service\LightUserDatabaseService;
 
 
 /**
  * The LightUserDatabasePluginInstaller class.
  */
-class LightUserDatabasePluginInstaller extends LightBasePluginInstaller
+class LightUserDatabasePluginInstaller extends LightUserDatabaseBasePluginInstaller
 {
+
 
     //--------------------------------------------
     // PluginInstallerInterface
@@ -33,8 +32,7 @@ class LightUserDatabasePluginInstaller extends LightBasePluginInstaller
         $ud->setIsInstalling(true);
 
 
-        $this->debugMsg("synchronizing <b>create file</b>." . PHP_EOL);
-        PluginInstallerSynchronizerHelper::synchronizeDatabaseByPlanetDotName("Ling.Light_UserDatabase", $this->container);
+        parent::install();
 
 
         /**
@@ -139,21 +137,11 @@ class LightUserDatabasePluginInstaller extends LightBasePluginInstaller
     /**
      * @overrides
      */
-    public function isInstalled(): bool
+    public function getDependencies(): array
     {
-
-        if (true === $this->hasTable("lud_permission")) {
-            $permissionName = "*";
-            /**
-             * @var $userDb LightUserDatabaseService
-             */
-            $userDb = $this->container->get('user_database');
-            if (null !== $userDb->getFactory()->getPermissionApi()->getPermissionIdByName($permissionName)) {
-                return true;
-            }
-        }
-        return false;
+        return [];
     }
+
 
 
 
