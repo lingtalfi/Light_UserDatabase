@@ -139,6 +139,10 @@ Related
 History Log
 =============  
 
+- 1.31.10 -- 2021-02-11
+
+    - update lpi deps with latest Light_DbSynchronizer planet version
+  
 - 1.31.9 -- 2021-02-11
 
     - fix incorrect planet dependencies in lpi file
