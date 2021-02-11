@@ -48,7 +48,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [LightUserDatabasePluginInstaller::getDependencies](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Light_PluginInstaller/LightUserDatabasePluginInstaller.php#L140-L143)
+See the source code for method [LightUserDatabasePluginInstaller::getDependencies](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Light_PluginInstaller/LightUserDatabasePluginInstaller.php#L141-L144)
 
 
 See Also

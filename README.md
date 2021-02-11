@@ -139,6 +139,10 @@ Related
 History Log
 =============  
 
+- 1.31.9 -- 2021-02-11
+
+    - fix incorrect planet dependencies in lpi file
+  
 - 1.31.8 -- 2021-02-11
 
     - add LightUserDatabaseBasePluginInstaller class

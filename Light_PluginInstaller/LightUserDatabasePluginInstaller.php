@@ -35,6 +35,7 @@ class LightUserDatabasePluginInstaller extends LightUserDatabaseBasePluginInstal
         parent::install();
 
 
+
         /**
          * @var $exception \Exception
          */

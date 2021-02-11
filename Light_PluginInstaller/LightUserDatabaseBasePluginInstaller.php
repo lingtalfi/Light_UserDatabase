@@ -102,11 +102,11 @@ class LightUserDatabaseBasePluginInstaller implements PluginInstallerInterface, 
 
         list($galaxy, $planet) = $this->extractPlanetDotName();
 
-
         //--------------------------------------------
         // CREATE FILE SYNCHRONIZATION
         //--------------------------------------------
         $this->synchronizeDatabase();
+
 
 
 
@@ -275,6 +275,9 @@ class LightUserDatabaseBasePluginInstaller implements PluginInstallerInterface, 
         list($galaxy, $planet) = $this->extractPlanetDotName();
 
         $scope = $this->getTableScope();
+
+
+
         $this->debugMsg("synchronizing <b>create file</b>." . PHP_EOL);
         LightDbSynchronizerHelper::synchronizePlanetCreateFile("$galaxy.$planet", $this->container, [
             'scope' => $scope,
