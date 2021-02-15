@@ -1,6 +1,6 @@
 Light_UserDatabase
 ===========
-2019-07-19 -> 2021-02-11
+2019-07-19 -> 2021-02-15
 
 
 
@@ -139,6 +139,10 @@ Related
 History Log
 =============  
 
+- 1.31.11 -- 2021-02-15
+
+    - update LightUserDatabaseBasePluginInstaller->dropTables, now disable foreign key checks before executing
+  
 - 1.31.10 -- 2021-02-11
 
     - update lpi deps with latest Light_DbSynchronizer planet version
