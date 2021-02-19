@@ -139,6 +139,10 @@ Related
 History Log
 =============  
 
+- 1.31.12 -- 2021-02-19
+
+    - upgrade dependencies
+
 - 1.31.11 -- 2021-02-15
 
     - update LightUserDatabaseBasePluginInstaller->dropTables, now disable foreign key checks before executing
