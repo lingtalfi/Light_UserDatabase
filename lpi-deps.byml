@@ -1223,3 +1223,18 @@
     - Ling:SimplePdoWrapper:1.30.16+
     - Ling:SqlWizard:1.13.7+
     - Ling:TinyBullsheeter:1.0.2+
+
+1.31.13: 
+    - Ling:ArrayToString:1.4.4+
+    - Ling:Bat:1.307+
+    - Ling:Light:0.69.29+
+    - Ling:Light_Bullsheet:1.1.2+
+    - Ling:Light_Database:1.14.14+
+    - Ling:Light_DbSynchronizer:1.2.13+
+    - Ling:Light_Events:1.9.6+
+    - Ling:Light_FileWatcher:1.1.2+
+    - Ling:Light_PasswordProtector:1.0.3+
+    - Ling:Light_PluginInstaller:2.0.17+
+    - Ling:SimplePdoWrapper:1.30.16+
+    - Ling:SqlWizard:1.13.7+
+    - Ling:TinyBullsheeter:1.0.2+

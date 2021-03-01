@@ -3,6 +3,9 @@ user_database:
     methods:
         setContainer:
             container: @container()
+        setPasswordProtector:
+            protector: @service(password_protector)
+
 
 
 user_database_vars:

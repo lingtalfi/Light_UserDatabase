@@ -1,6 +1,6 @@
 Light_UserDatabase
 ===========
-2019-07-19 -> 2021-02-15
+2019-07-19 -> 2021-03-01
 
 
 
@@ -57,12 +57,16 @@ of this service was just to store the user rights.
 
 Here is an example of the service configuration file using a database stored in [babyYaml](https://github.com/lingtalfi/BabyYaml) files:
 
+
 ```yaml
 user_database:
     instance: Ling\Light_UserDatabase\Service\LightUserDatabaseService
     methods:
         setContainer:
             container: @container()
+        setPasswordProtector:
+            protector: @service(password_protector)
+
 
 
 user_database_vars:
@@ -89,6 +93,7 @@ $breeze_generator.methods_collection:
             file: ${app_dir}/config/data/Light_UserDatabase/Light_BreezeGenerator/lud.byml
 
 
+
 $bullsheet.methods_collection:
     -
         method: registerBullsheeter
@@ -102,14 +107,27 @@ $bullsheet.methods_collection:
                     setAvatarImgDir:
                         dir: ${user_database_vars.bullsheeter_avatar_img_dir}
 
-$events.methods_collection:
+
+
+$file_watcher.methods_collection:
     -
-        method: registerListener
+        method: registerCallable
         args:
-            events: Light.initialize_1
-            listener:
+            path: ${app_dir}/universe/Ling/Light_UserDatabase/assets/fixtures/recreate-structure.sql
+            callable:
                 instance: @service(user_database)
-                callable_method: initialize
+                callable_method: onCreateFileChange
+
+
+
+
+$table_prefix_info.methods_collection:
+    -
+        method: registerPrefixInfo
+        args:
+            prefix: lud
+            info:
+                planetId: Ling/Light_UserDatabase
 
 
 
@@ -139,6 +157,10 @@ Related
 History Log
 =============  
 
+- 1.31.13 -- 2021-03-01
+
+    - update service configuration, now has a default password protector
+  
 - 1.31.12 -- 2021-02-19
 
     - upgrade dependencies
