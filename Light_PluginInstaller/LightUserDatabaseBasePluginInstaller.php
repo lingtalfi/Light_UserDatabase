@@ -112,7 +112,6 @@ class LightUserDatabaseBasePluginInstaller implements PluginInstallerInterface, 
         // LIGHT STANDARD PERMISSIONS
         //--------------------------------------------
         if (true === $this->container->has("user_database")) {
-
             /**
              * @var $userDb LightUserDatabaseService
              */

@@ -54,7 +54,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [LightUserDatabaseBasePluginInstaller::dropTables](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Light_PluginInstaller/LightUserDatabaseBasePluginInstaller.php#L341-L363)
+See the source code for method [LightUserDatabaseBasePluginInstaller::dropTables](https://github.com/lingtalfi/Light_UserDatabase/blob/master/Light_PluginInstaller/LightUserDatabaseBasePluginInstaller.php#L340-L362)
 
 
 See Also
