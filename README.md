@@ -162,6 +162,10 @@ Related
 History Log
 =============  
 
+- 1.31.17 -- 2021-05-03
+
+    - Update dependencies to Ling.Light_Events (pushed by SubscribersUtil)
+
 - 1.31.16 -- 2021-05-03
 
     - Update dependencies to Ling.Light_Events (pushed by SubscribersUtil)
