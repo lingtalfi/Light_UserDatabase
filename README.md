@@ -162,6 +162,10 @@ Related
 History Log
 =============  
 
+- 1.31.20 -- 2021-05-10
+
+    - Update dependencies to Ling.Light_PasswordProtector (pushed by SubscribersUtil)
+
 - 1.31.19 -- 2021-05-03
 
     - Update dependencies to Ling.Light_PluginInstaller (pushed by SubscribersUtil)
