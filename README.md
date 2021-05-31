@@ -1,6 +1,6 @@
 Light_UserDatabase
 ===========
-2019-07-19 -> 2021-03-15
+2019-07-19 -> 2021-05-31
 
 
 
@@ -162,6 +162,10 @@ Related
 History Log
 =============  
 
+- 1.31.21 -- 2021-05-31
+
+    - update api to work with Light_PlanetInstaller 2.0.0
+  
 - 1.31.20 -- 2021-05-10
 
     - Update dependencies to Ling.Light_PasswordProtector (pushed by SubscribersUtil)
