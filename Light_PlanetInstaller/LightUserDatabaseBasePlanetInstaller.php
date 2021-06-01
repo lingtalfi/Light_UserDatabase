@@ -194,7 +194,7 @@ class LightUserDatabaseBasePlanetInstaller implements LightPlanetInstallerInit3H
 
         $planetDotName = "$galaxy.$planet";
         $createFile = $this->container->getApplicationDir() . "/universe/" . PlanetTool::getPlanetSlashNameByDotName($planetDotName) . "/assets/fixtures/create-structure.sql";
-        if (true === $createFile) {
+        if (true === file_exists($createFile)) {
             $output->write("synchronizing <b>create file</b>." . PHP_EOL);
             LightDbSynchronizerHelper::synchronizePlanetCreateFile("$galaxy.$planet", $this->container, [
                 'scope' => $scope,

@@ -1,6 +1,6 @@
 Light_UserDatabase
 ===========
-2019-07-19 -> 2021-05-31
+2019-07-19 -> 2021-06-01
 
 
 
@@ -162,6 +162,10 @@ Related
 History Log
 =============  
 
+- 1.31.23 -- 2021-06-01
+
+    - fix LightUserDatabaseBasePlanetInstaller->synchronizeDatabase not synchronizing (typo)
+  
 - 1.31.22 -- 2021-05-31
 
     - Removing trailing plus in lpi-deps file (to work with Light_PlanetInstaller:2.0.0 api
