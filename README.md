@@ -1,6 +1,6 @@
 Light_UserDatabase
 ===========
-2019-07-19 -> 2021-06-01
+2019-07-19 -> 2021-06-03
 
 
 
@@ -162,6 +162,10 @@ Related
 History Log
 =============  
 
+- 1.31.24 -- 2021-06-03
+
+    - removed LightUserDatabaseBasePlanetInstaller class
+  
 - 1.31.23 -- 2021-06-01
 
     - fix LightUserDatabaseBasePlanetInstaller->synchronizeDatabase not synchronizing (typo)
