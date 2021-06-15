@@ -1,6 +1,6 @@
 Light_UserDatabase
 ===========
-2019-07-19 -> 2021-06-03
+2019-07-19 -> 2021-06-15
 
 
 
@@ -162,6 +162,10 @@ Related
 History Log
 =============  
 
+- 1.31.25 -- 2021-06-15
+
+    - update MysqlLightWebsiteUserDatabase->serialize and unserialize, now use BabyYaml under the hood (instead of not readable php native serialize)
+  
 - 1.31.24 -- 2021-06-03
 
     - removed LightUserDatabaseBasePlanetInstaller class

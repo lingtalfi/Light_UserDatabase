@@ -1,6 +1,6 @@
 Ling/Light_UserDatabase
 ================
-2019-07-19 --> 2021-06-03
+2019-07-19 --> 2021-06-15
 
 
 
@@ -883,6 +883,7 @@ Table of contents
 Dependencies
 ============
 - [ArrayToString](https://github.com/lingtalfi/ArrayToString)
+- [BabyYaml](https://github.com/lingtalfi/BabyYaml)
 - [Bat](https://github.com/lingtalfi/Bat)
 - [CliTools](https://github.com/lingtalfi/CliTools)
 - [Light](https://github.com/lingtalfi/Light)
@@ -891,9 +892,7 @@ Dependencies
 - [Light_Events](https://github.com/lingtalfi/Light_Events)
 - [Light_FileWatcher](https://github.com/lingtalfi/Light_FileWatcher)
 - [Light_PasswordProtector](https://github.com/lingtalfi/Light_PasswordProtector)
-- [Light_PluginInstaller](https://github.com/lingtalfi/Light_PluginInstaller)
 - [SimplePdoWrapper](https://github.com/lingtalfi/SimplePdoWrapper)
-- [SqlWizard](https://github.com/lingtalfi/SqlWizard)
 - [TinyBullsheeter](https://github.com/lingtalfi/TinyBullsheeter)
 
 

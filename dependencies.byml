@@ -1,6 +1,7 @@
 dependencies: 
     Ling: 
         - ArrayToString
+        - BabyYaml
         - Bat
         - CliTools
         - Light
@@ -9,9 +10,7 @@ dependencies:
         - Light_Events
         - Light_FileWatcher
         - Light_PasswordProtector
-        - Light_PluginInstaller
         - SimplePdoWrapper
-        - SqlWizard
         - TinyBullsheeter
     
 
